@@ -48,7 +48,7 @@ class JinyAdminServiceProvider extends ServiceProvider
         /* 라이브와이어 컴포넌트 등록 */
         $this->app->afterResolving(BladeCompiler::class, function () {
 
-            Livewire::component('LiveAdminUsers', \Jiny\Admin\Http\Livewire\LiveAdminUsers::class);
+            //Livewire::component('LiveAdminUsers', \Jiny\Admin\Http\Livewire\LiveAdminUsers::class);
         });
 
     }
