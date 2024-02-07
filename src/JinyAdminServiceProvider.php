@@ -10,6 +10,8 @@ use Livewire\Livewire;
 use Illuminate\Routing\Router;
 use Jiny\Admin\Http\Middleware\AdminSetup;
 use Jiny\Admin\Http\Middleware\AdminAuth;
+use Jiny\Admin\Http\Middleware\IsAdmin;
+use Jiny\Admin\Http\Middleware\SuperAdminMiddleware;
 
 class JinyAdminServiceProvider extends ServiceProvider
 {
@@ -39,6 +41,8 @@ class JinyAdminServiceProvider extends ServiceProvider
 
         // 패키지 미들웨어 등록
         $router = $this->app->make(Router::class);
+        $router->aliasMiddleware('admin', IsAdmin::class);
+        $router->aliasMiddleware('super', SuperAdminMiddleware::class);
         /*
         $router->aliasMiddleware('adminSetup', AdminSetup::class);
         $router->aliasMiddleware('adminAuth', AdminAuth::class);
