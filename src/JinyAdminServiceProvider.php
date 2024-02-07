@@ -39,8 +39,10 @@ class JinyAdminServiceProvider extends ServiceProvider
 
         // 패키지 미들웨어 등록
         $router = $this->app->make(Router::class);
-            $router->aliasMiddleware('adminSetup', AdminSetup::class);
-            $router->aliasMiddleware('adminAuth', AdminAuth::class);
+        /*
+        $router->aliasMiddleware('adminSetup', AdminSetup::class);
+        $router->aliasMiddleware('adminAuth', AdminAuth::class);
+        */
     }
 
     public function register()
