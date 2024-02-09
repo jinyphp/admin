@@ -21,17 +21,25 @@ class SuperAdminMiddleware
         $user = Auth::user();
         if($user) {
             $myUser = DB::table('users')->where('email', $user->email)->first();
+            //dd($myUser);
             if($myUser) {
-                if($myUser->isAdmin && $myUser->utype == "SUPER") {
+                if($myUser->isAdmin && strtoupper($myUser->utype) == "SUPER") {
+                    //dd('Super2 ');
                     return $next($request);
                 } else {
+                    //dd('Super3 ');
                     // 접속할 수 있는 관리자 등급이 아닙니다.;
                     $prefix = admin_prefix();
-                    return redirect($prefix.'/permit');
+                    return redirect($prefix.'/permit')
+                    ->with('error','Super 권한만 접속 가능합니다.');
                 }
             }
+
+            // 일반 사용자
+            return redirect('/home');
         }
 
-        return redirect('/');
+        // 권한이 없는 사용자는 로그인
+        return redirect('/'.$prefix.'/login'); // ->with('error','You have not admin access');
     }
 }

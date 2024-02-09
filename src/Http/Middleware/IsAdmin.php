@@ -18,12 +18,19 @@ class IsAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::user() &&  Auth::user()->isAdmin == 1) {
-            return $next($request);
-       }
+        $prefix = admin_prefix();
 
-       // 권한이 없는 사용자는 루트로 이동
-       // 경로 숨기기
-       return redirect('/admin/login'); // ->with('error','You have not admin access');
+        if(Auth::user()) {
+            if (Auth::user()->isAdmin == 1) {
+                //dd("admin");
+                return $next($request);
+            }
+
+            // 권한이 없는 사용자는 로그인
+            return redirect('/'.$prefix.'/reject');
+        }
+
+       // 권한이 없는 사용자는 로그인
+       return redirect('/'.$prefix.'/login'); // ->with('error','You have not admin access');
     }
 }

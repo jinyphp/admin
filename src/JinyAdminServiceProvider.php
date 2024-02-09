@@ -1,5 +1,4 @@
 <?php
-
 namespace Jiny\Admin;
 
 use Illuminate\Support\ServiceProvider;
@@ -43,10 +42,9 @@ class JinyAdminServiceProvider extends ServiceProvider
         $router = $this->app->make(Router::class);
         $router->aliasMiddleware('admin', IsAdmin::class);
         $router->aliasMiddleware('super', SuperAdminMiddleware::class);
-        /*
-        $router->aliasMiddleware('adminSetup', AdminSetup::class);
-        $router->aliasMiddleware('adminAuth', AdminAuth::class);
-        */
+
+
+
     }
 
     public function register()
