@@ -1,10 +1,8 @@
 {
     "name": "jiny/admin",
-    "description": "jiny admin",
+    "description": "Admin for JinyPHP",
     "keywords": [
-        "jinyPHP",
-        "framwork",
-        "admin"
+        "Laravel", "jinyPHP", "framwork", "admin"
     ],
     "homepage": "http://www.jinyphp.com",
     "type": "library",
@@ -18,7 +16,7 @@
     ],
     "minimum-stability": "stable",
     "require": {
-        "php": "^8.0.2"
+        "php": "^8.1"
     },
     "autoload": {
         "psr-4": {

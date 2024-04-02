@@ -44,6 +44,8 @@ class JinyAdminServiceProvider extends ServiceProvider
         $router->aliasMiddleware('super', SuperAdminMiddleware::class);
 
 
+        // admin 레이아웃 템플릿
+        Blade::component($this->package.'::layouts.hyper.'.'app', 'admin-hyper');
 
     }
 
@@ -52,7 +54,8 @@ class JinyAdminServiceProvider extends ServiceProvider
         /* 라이브와이어 컴포넌트 등록 */
         $this->app->afterResolving(BladeCompiler::class, function () {
 
-            //Livewire::component('LiveAdminUsers', \Jiny\Admin\Http\Livewire\LiveAdminUsers::class);
+            Livewire::component('WireAdminSetup-Database', \Jiny\Admin\Http\Livewire\WireAdminSetupDatabase::class);
+            Livewire::component('WireAdminSetup-User', \Jiny\Admin\Http\Livewire\WireAdminSetupUser::class);
         });
 
     }

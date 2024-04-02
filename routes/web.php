@@ -41,3 +41,40 @@ Route::middleware(['web','auth:sanctum', 'verified', 'admin'])
     Route::get('permit', [AdminRejectSuper::class, 'index']);
 });
 
+
+Route::middleware(['web','auth:sanctum', 'verified'])
+->name('admin.')
+->prefix($prefix)->group(function () {
+
+    Route::resource(
+        '/mypage',
+        \Jiny\Admin\Http\Controllers\AdminMypageDashboard::class);
+
+    /*
+
+        */
+
+
+
+});
+
+Route::middleware(['web','auth:sanctum', 'verified'])
+->name('admin.')
+->prefix($prefix."/laravel")->group(function () {
+    Route::resource(
+        '/',
+        \Jiny\Admin\Http\Controllers\LaravelAdminDashboard::class);
+
+    ## 마이그레이션 관리
+    Route::resource(
+        '/migrations',
+        \Jiny\Admin\Http\Controllers\LaravelMigrationController::class);
+});
+
+
+
+Route::middleware(['web'])
+->name('admin')
+->prefix($prefix)->group(function () {
+    Route::get('/setup', [\Jiny\Admin\Http\Controllers\AdminSetup::class, 'index']);
+});

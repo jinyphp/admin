@@ -63,10 +63,24 @@ class userAdmin extends Command
 
     private function enableAdmin($email)
     {
+        $user = DB::table('users')->where('email', $email)->first();
+
+        // Admin 컬럼을 변경합니다.
         DB::table('users')->where('email',$email)->update([
             'isAdmin'=>1,
             'utype'=>"admin",
             'auth'=>1
+        ]);
+
+        // Admin 테이블에 row를 추가합니다.
+        DB::table('users_admin')->insert([
+            'user_id'=>$user->id,
+            'enable' => 1,
+            'name' => $user->name,
+            'email'=>$user->email,
+
+            'created_at'=> date("Y-m-d H:i:s"),
+            'updated_at'=> date("Y-m-d H:i:s")
         ]);
     }
 
