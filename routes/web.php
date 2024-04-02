@@ -17,9 +17,10 @@ Route::middleware(['web'])
 
     // 접속 권한이 없는 사용자가 관리자 페이지에 접근하는 경우
     // 오류 페이지 출력
-    Route::get('/reject', function(){
-        return view("jiny-admin::admin_reject");
-    });
+    Route::get('/reject', [
+        Jiny\Admin\Http\Controllers\AdminRejectController::class,
+        'index']);
+
 });
 
 
