@@ -21,33 +21,15 @@ class AdminDashboard extends Controller
 
     public function index(Request $request)
     {
-        return view("jiny-admin::dashboard");
-        //$this->setViewMain("admin::index");
-        //return parent::index($request);
-    }
+        // 지니테마가 설치되어 있는지 확인
+        if(function_exists("getThemeName")) {
 
-
-    /*
-    public function permit()
-    {
-        // permit 화면 갱신시
-        // 권환을 다시 검사하여 admin 페이지로 리다이렉트
-        $user = Auth::user();
-        if($user) {
-            $myUser = DB::table('users')->where('email', $user->email)->first();
-
-            if($myUser) {
-                if($myUser->isAdmin && $myUser->utype == "SUPER") {
-                    $prefix = admin_prefix();
-                    return redirect($prefix);
-                }
-            }
+            // 테마의 view를 출력
+            return view("jiny-admin::dashboard.theme");
         }
 
-        // 권환 없음 페이지 출력
-        return view('jiny-admin::permit');
+        $viewFile = "jiny-admin"."::dashboard.index";
+        return view($viewFile);
     }
-    */
-
 
 }

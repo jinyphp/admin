@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 // 모듈에서 설정되 접속 prefix값을 읽어 옵니다.
 $prefix = admin_prefix();
 
-
 Route::middleware(['web'])
 ->name('admin')
 ->prefix($prefix)->group(function () {
@@ -20,17 +19,17 @@ Route::middleware(['web'])
     Route::get('/reject', [
         Jiny\Admin\Http\Controllers\AdminRejectController::class,
         'index']);
-
 });
 
 
-use Jiny\Admin\Http\Controllers\AdminDashboard;
 // Super 권한이 있는 경우
 // admin과 super 2개의 미들웨어 통과 필요
 Route::middleware(['web','auth:sanctum', 'verified', 'admin', 'super'])
 ->name('admin')
 ->prefix($prefix)->group(function () {
-    Route::get('/', [AdminDashboard::class, 'index']);
+    Route::get('/', [
+        Jiny\Admin\Http\Controllers\AdminDashboard::class,
+        'index']);
 });
 
 
@@ -51,13 +50,9 @@ Route::middleware(['web','auth:sanctum', 'verified'])
         '/mypage',
         \Jiny\Admin\Http\Controllers\AdminMypageDashboard::class);
 
-    /*
-
-        */
-
-
-
 });
+
+
 
 Route::middleware(['web','auth:sanctum', 'verified'])
 ->name('admin.')
