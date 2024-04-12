@@ -54,19 +54,6 @@ Route::middleware(['web','auth:sanctum', 'verified'])
 
 
 
-Route::middleware(['web','auth:sanctum', 'verified'])
-->name('admin.')
-->prefix($prefix."/laravel")->group(function () {
-    Route::resource(
-        '/',
-        \Jiny\Admin\Http\Controllers\LaravelAdminDashboard::class);
-
-    ## 마이그레이션 관리
-    Route::resource(
-        '/migrations',
-        \Jiny\Admin\Http\Controllers\LaravelMigrationController::class);
-});
-
 
 
 Route::middleware(['web'])
