@@ -24,6 +24,33 @@
                             <div>
                                 <h5 class="card-title">
                                     <a href="/admin/auth">
+                                    가입/인증
+                                    </a>
+                                </h5>
+                                <h6 class="card-subtitle text-muted">
+                                    회원 인증을 처리합니다.
+                                </h6>
+                            </div>
+                            <div>
+                                @icon("info-circle.svg")
+                            </div>
+                        </x-flex-between>
+                    </div>
+                    <div class="card-body">
+                        <x-badge-secondary>동의서</x-badge-secondary>
+                        <x-badge-secondary>동의서로그</x-badge-secondary>
+                        <x-badge-info>설정</x-badge-info>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-3">
+                <div class="card">
+                    <div class="card-header">
+                        <x-flex-between>
+                            <div>
+                                <h5 class="card-title">
+                                    <a href="/admin/auth">
                                     회원관리
                                     </a>
                                 </h5>
@@ -41,10 +68,9 @@
                         <x-badge-primary>등급</x-badge-primary>
                         <x-badge-danger>예약어</x-badge-danger>
                         <x-badge-danger>블렉리스트</x-badge-danger>
-                        <x-badge-secondary>동의서</x-badge-secondary>
-                        <x-badge-secondary>동의서로그</x-badge-secondary>
+
                         <x-badge-info>국가</x-badge-info>
-                        <x-badge-info>설정</x-badge-info>
+
                         <x-badge-info>휴면회원</x-badge-info>
                     </div>
                 </div>
