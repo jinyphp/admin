@@ -19,7 +19,11 @@
                 </x-flex-between>
             </div>
             <div class="card-body">
-                <x-badge-secondary>마이그레이션</x-badge-secondary>
+                <x-badge-secondary>
+                    <a href="/admin/laravel/migrations">
+                        마이그레이션
+                    </a>
+                </x-badge-secondary>
             </div>
         </div>
     </div>
