@@ -1,47 +1,73 @@
-@if($addKeyStatus)
-    <label class="form-label">키 이름</label>
-    <div class="row row-cols-md-auto align-items-center">
-        <div class="col-12">
-            {!! xInputText()
-                ->setWire('model.defer',"key_name")
-                ->setWidth("standard")
-            !!}
-        </div>
+<x-navtab class="mb-3 nav-bordered">
 
-        <div class="col-12">
-            <button class="btn btn-primary" wire:click="addNewSubmit">확인</button>
-        </div>
+    <x-navtab-item><!-- Action 정보 -->
+        <x-navtab-link class="rounded-0">
+            <span class="d-none d-md-block">정보</span>
+        </x-navtab-link>
 
-        <div class="col-12">
-            <button class="btn btn-secondary" wire:click="addNewCancel">취소</button>
-        </div>
-    </div>
-    <p>새로운 데이터 항목을 추가합니다.</p>
-
-@else
-    @foreach($forms as $key => $value)
-        @if($key != "updated_at")
-            <div class="mb-3 row">
-                <label class="col-form-label col-sm-2 text-sm-end">{{$key}}</label>
-                <div class="col-sm-8">
+        <fieldset>
+            <legend class="px-2 text-xs">Argument</legend>
+            <x-form-hor>
+                <x-form-label>타이틀</x-form-label>
+                <x-form-item>
                     {!! xInputText()
-                        ->setWire('model.defer',"forms.".$key)
+                        ->setWire('model.defer',"forms.title")
                     !!}
+                </x-form-item>
+            </x-form-hor>
 
-                </div>
-                <div class="col-sm-2">
-                    <x-click wire:click="itemRemove('{{$key}}')">
-                        delete
-                    </x-click>
-                </div>
-            </div>
-        @endif
-    @endforeach
-    <div class="mb-3 row">
-        <label class="col-form-label col-sm-2 text-sm-end"></label>
-        <div class="col-sm-10">
-            <button class="btn btn-primary" wire:click="addNewCreate()">+</button>
-        </div>
+            <x-form-hor>
+                <x-form-label>서브타이틀</x-form-label>
+                <x-form-item>
+                    {!! xTextarea()
+                        ->setWire('model.defer',"forms.subtitle")
+                    !!}
+                </x-form-item>
+            </x-form-hor>
+        </fieldset>
 
-    </div>
-@endif
+    </x-navtab-item>
+
+
+    <x-navtab-item class="show active"><!-- formTab -->
+        <x-navtab-link class="rounded-0 active">
+            <span class="d-none d-md-block">화면</span>
+        </x-navtab-link>
+
+        @includeIf('jiny-admin::actions_set.form_views')
+
+    </x-navtab-item>
+
+    <x-navtab-item ><!-- formTab -->
+        <x-navtab-link class="rounded-0">
+            <span class="d-none d-md-block">테이블</span>
+        </x-navtab-link>
+
+        @includeIf('jiny-admin::actions_set.form_table')
+
+    </x-navtab-item>
+
+    <x-navtab-item ><!-- formTab -->
+        <x-navtab-link class="rounded-0">
+            <span class="d-none d-md-block">입력폼</span>
+        </x-navtab-link>
+
+        @includeIf('jiny-admin::actions_set.form_forms')
+
+    </x-navtab-item>
+
+
+
+
+    <x-navtab-item ><!-- formTab -->
+        <x-navtab-link class="rounded-0">
+            <span class="d-none d-md-block">입력값</span>
+        </x-navtab-link>
+
+        @includeIf("jiny-admin::actions_set.values")
+    </x-navtab-item>
+
+
+
+
+</x-navtab>

@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
 
+/**
+ * Actions Popup 설정
+ */
 class SetActionRule extends Component
 {
     const PATH = "actions";
@@ -49,6 +52,7 @@ class SetActionRule extends Component
     private function detectURI()
     {
         // 라우터에서 uri 정보 확인
+        // 컨트롤러가 동작하지 않는 경우
         $uri = Route::current()->uri;
         if($uri == "{fallbackPlaceholder}") {
             $this->viewForms = "jiny-admin::actions_set.json";
@@ -190,14 +194,48 @@ class SetActionRule extends Component
     {
         $this->addKeyStatus = false;
         if($this->key_name) {
-            $this->forms[$this->key_name] = null;
+            $this->forms['site'][$this->key_name] = null;
         }
 
     }
 
     public function itemRemove($key)
     {
-        unset($this->forms[$key]);
+        unset($this->forms['site'][$key]);
+    }
+
+
+    public function addBlade()
+    {
+        if(isset($this->forms['blade'])) {
+            $cnt = count($this->forms['blade']);
+            $this->forms['blade'][$cnt] = null;
+        } else {
+            $this->forms['blade'][0] = "";
+        }
+    }
+
+    public function removeBlade($i)
+    {
+        unset( $this->forms['blade'][$i] );
+    }
+
+    public function bladeUp($i)
+    {
+        if($i>0) {
+            $temp = $this->forms['blade'][$i-1];
+            $this->forms['blade'][$i-1] = $this->forms['blade'][$i];
+            $this->forms['blade'][$i] = $temp;
+        }
+    }
+
+    public function bladeDown($i)
+    {
+        if( $i < count($this->forms['blade'])-1 ) {
+            $temp = $this->forms['blade'][$i];
+            $this->forms['blade'][$i] = $this->forms['blade'][$i+1];
+            $this->forms['blade'][$i+1] = $temp;
+        }
     }
 
 }

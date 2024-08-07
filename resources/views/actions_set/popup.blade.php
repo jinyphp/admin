@@ -3,10 +3,30 @@
     <x-loading-indicator/>
 
     <style>
-
+        .floating-buttons {
+  transform: translateX(50%) rotate(-90deg);
+}
+        .animate-rotate:hover .animate-target, .animate-rotate:focus-visible .animate-target {
+  animation: rotate 0.45s ease-in-out;
+}
     </style>
 
-    <div class="d-flex">
+    <!-- Customizer toggle -->
+    <div class="floating-buttons position-fixed top-50 end-0 z-sticky me-3 me-xl-4 pb-4">
+        <a class="btn btn-sm
+            btn-outline-secondary
+            text-uppercase bg-body
+            rounded-pill shadow
+            animate-rotate ms-2 me-n5"
+        href="javascript:void(0)"
+        wire:click="popupRuleOpen()"
+        style="font-size: .625rem; letter-spacing: .05rem;"
+        role="button" aria-controls="customizer">
+            Actions <i class="ci-settings fs-base ms-1 me-n2 animate-target"></i>
+        </a>
+    </div>
+
+    {{-- <div class="d-flex">
         <button class="btn btn-primary" wire:click="popupRuleOpen()">
             <div class="d-flex gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-gear" viewBox="0 0 16 16">
@@ -21,7 +41,7 @@
         <div>
 
         </div>
-    </div>
+    </div> --}}
 
 
 

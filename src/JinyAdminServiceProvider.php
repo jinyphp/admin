@@ -47,7 +47,7 @@ class JinyAdminServiceProvider extends ServiceProvider
         // admin 레이아웃 템플릿
         Blade::component($this->package.'::layouts.hyper.'.'app', 'admin-hyper');
 
-        Blade::component($this->package.'::actions_set.'.'action', 'set-actions');
+        Blade::component($this->package.'::actions_set.'.'action_side', 'set-actions');
 
     }
 
