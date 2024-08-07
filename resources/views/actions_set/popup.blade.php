@@ -4,17 +4,21 @@
 
     <style>
         .floating-buttons {
-  transform: translateX(50%) rotate(-90deg);
-}
+            transform: translateX(50%) rotate(-90deg);
+        }
         .animate-rotate:hover .animate-target, .animate-rotate:focus-visible .animate-target {
-  animation: rotate 0.45s ease-in-out;
-}
+            animation: rotate 0.45s ease-in-out;
+        }
+
+        .top-30 {
+            top: 350px; !important;
+        }
     </style>
 
     <!-- Customizer toggle -->
-    <div class="floating-buttons position-fixed top-50 end-0 z-sticky me-3 me-xl-4 pb-4">
+    <div class="floating-buttons position-fixed top-30 end-0 z-sticky me-3 me-xl-4 pb-4">
         <a class="btn btn-sm
-            btn-outline-secondary
+            btn-outline-primary
             text-uppercase bg-body
             rounded-pill shadow
             animate-rotate ms-2 me-n5"
