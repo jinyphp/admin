@@ -34,7 +34,8 @@ class JinyAdminServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->commands([
                 \Jiny\Admin\Console\Commands\userAdmin::class,
-                \Jiny\Admin\Console\Commands\userSuper::class
+                \Jiny\Admin\Console\Commands\userSuper::class,
+                \Jiny\Admin\Console\Commands\packagePull::class
             ]);
         }
 
