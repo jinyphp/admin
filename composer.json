@@ -18,9 +18,9 @@
     "require": {
         "php": "^8.2",
         "czproject/git-php": "^4.3",
-        "jiny/config": "^0.4.0",
+        "jiny/config": "^0.6",
         "jiny/permit": "^0.3.0",
-        "jiny/wire-table": "^0.7.0"
+        "jiny/wire-table": "^0.10"
     },
     "autoload": {
         "psr-4": {
