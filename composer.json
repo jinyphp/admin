@@ -20,7 +20,7 @@
         "czproject/git-php": "^4.3",
         "jiny/config": "^0.6",
         "jiny/permit": "^0.3.0",
-        "jiny/wire-table": "^0.10"
+        "jiny/wire-table": "^0.11"
     },
     "autoload": {
         "psr-4": {

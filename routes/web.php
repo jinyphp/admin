@@ -10,9 +10,11 @@ Route::middleware(['web'])
 ->name('admin')
 ->prefix($prefix)->group(function () {
     // 로그인 하지 않은 경우, 로그인 페이지 출력
+    /*
     Route::get('/login', function(){
         return view("jiny-admin::admin_login");
     });
+    */
 
     // 접속 권한이 없는 사용자가 관리자 페이지에 접근하는 경우
     // 오류 페이지 출력

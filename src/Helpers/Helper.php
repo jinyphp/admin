@@ -22,25 +22,3 @@ if(!function_exists('admin_prefix')) {
     }
 }
 
-
-// --- Dashboard
-function table_count($tablename,$where=[]) {
-    $db = DB::table($tablename);
-    /*
-    ->where('created_at',">", date("Y-m-d 00:00:00"))
-    */
-    return $db->count();
-}
-
-
-function table_count_today($tablename,$where=[]) {
-    $db = DB::table($tablename);
-    $db->where('created_at',">", date("Y-m-d 00:00:00"));
-    return $db->count();
-}
-
-
-function table_top5($tablename,$where=[]) {
-    $db = DB::table($tablename);
-    return $db->limit(5)->get();
-}
