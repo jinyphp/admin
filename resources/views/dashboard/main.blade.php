@@ -1,88 +1,20 @@
 <div class="row">
-    <div class="col-3">
-        <div class="card">
-            <div class="card-header">
-                <x-flex-between>
-                    <div>
-                        <h5 class="card-title">
-                            <a href="/admin/laravel">
-                            라라벨
-                            </a>
-                        </h5>
-                        <h6 class="card-subtitle text-muted">
-                            JinyPHP의 기본베이스인 라라벨을 관리합니다.
-                        </h6>
-                    </div>
-                    <div>
-                        @icon("info-circle.svg")
-                    </div>
-                </x-flex-between>
-            </div>
-            <div class="card-body">
-                <x-badge-secondary>
-                    <a href="/admin/laravel/migrations">
-                        마이그레이션
-                    </a>
-                </x-badge-secondary>
+    <div class="col-xl-6 col-xxl-5 d-flex">
+        <div class="w-100">
+            <div class="row">
+                <div class="col-sm-6">
+                    @includeIf("jiny-admin::dashboard.laravel")
+                    @includeIf("jiny-admin::dashboard.actions")
+                </div>
+                <div class="col-sm-6">
+                    @includeIf("jiny-admin::dashboard.auth")
+                    @includeIf("jiny-admin::dashboard.locale")
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="col-3">
-        <div class="card">
-            <div class="card-header">
-                <x-flex-between>
-                    <div>
-                        <h5 class="card-title">
-                            <a href="/admin/auth">
-                            회원관리 및 인증
-                            </a>
-                        </h5>
-                        <h6 class="card-subtitle text-muted">
-                            가입된 회원 및 인증을 관리합니다.
-                        </h6>
-                    </div>
-                    <div>
-                        @icon("info-circle.svg")
-                    </div>
-                </x-flex-between>
-            </div>
-            <div class="card-body">
-
-            </div>
-        </div>
-    </div>
-
-    <!-- -->
-    <div class="col-3">
-        <div class="card">
-            <div class="card-header">
-                <h5 class="card-title">
-                    <a href="/admin/locale">지역설정</a>
-                </h5>
-                <h6 class="card-subtitle text-muted">
-                    ...
-                </h6>
-            </div>
-            <div class="card-body">
-                <x-badge-primary>
-                    <a href="/admin/locale/country">
-                    국가
-                    </a>
-                </x-badge-primary>
-
-                <x-badge-success>
-                    <a href="/admin/locale/language">
-                    언어
-                    </a>
-                </x-badge-success>
-
-                <x-badge-secondary>통화</x-badge-secondary>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-3">
+    <div class="col-xl-6 col-xxl-7">
         <div class="card">
             <div class="card-header">
                 <h5 class="card-title">모듈관리</h5>
@@ -97,9 +29,11 @@
             </div>
         </div>
     </div>
+
 </div>
 
-<hr>
+<x-ui-divider>웹서비스 관리</x-ui-divider>
+
 
 <div class="page-title-box mt-4">
     <x-flex class="align-items-center gap-2">

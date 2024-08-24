@@ -60,7 +60,13 @@ class JinyAdminServiceProvider extends ServiceProvider
             Livewire::component('WireAdminSetup-Database', \Jiny\Admin\Http\Livewire\WireAdminSetupDatabase::class);
             Livewire::component('WireAdminSetup-User', \Jiny\Admin\Http\Livewire\WireAdminSetupUser::class);
 
-            Livewire::component('setActionRule', \Jiny\Admin\Http\Livewire\SetActionRule::class);
+            Livewire::component('setActionRule',
+                \Jiny\Admin\Http\Livewire\SetActionRule::class);
+
+            Livewire::component('action-files',
+                \Jiny\Admin\Http\Livewire\ActionFiles::class);
+            Livewire::component('action-edit',
+                \Jiny\Admin\Http\Livewire\ActionEdit::class);
 
         });
 

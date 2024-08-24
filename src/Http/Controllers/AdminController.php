@@ -10,15 +10,15 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Schema;
 
-use Jiny\WireTable\Http\Controllers\LiveController;
-class AdminController extends LiveController
+use Jiny\WireTable\Http\Controllers\WireTablePopupForms;
+class AdminController extends WireTablePopupForms
 {
     public function __construct()
     {
         parent::__construct();
 
         // 컨트롤러 테마 지정
-        $this->setTheme("admin.sidebar");
+        // $this->setTheme("admin.sidebar");
     }
 
 }

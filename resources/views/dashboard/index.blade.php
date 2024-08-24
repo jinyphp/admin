@@ -1,6 +1,5 @@
-@extends('jinyauth::layouts.bootstrap')
-@section('content')
+<x-theme theme="admin.sidebar">
+    <x-theme-layout>
 
-Dashboard
-
-@endsection
+    </x-theme-layout>
+</x-theme>

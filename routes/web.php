@@ -32,6 +32,20 @@ Route::middleware(['web','auth:sanctum', 'verified', 'admin', 'super'])
     Route::get('/', [
         Jiny\Admin\Http\Controllers\AdminDashboard::class,
         'index']);
+
+    Route::get('/actions', [
+        Jiny\Admin\Http\Controllers\AdminActionFiles::class,
+        'index']);
+
+    Route::get('/actions/{all?}', [
+        Jiny\Admin\Http\Controllers\AdminActionFiles::class,
+        'edit'])->where('all', '.*');;
+
+    // Route::get('/actions/edit', [
+    //     Jiny\Admin\Http\Controllers\AdminActionFileEdit::class,
+    //     'index']);
+
+
 });
 
 
