@@ -11,28 +11,29 @@ use Illuminate\Support\Facades\Route;
 
 class ActionEdit extends Component
 {
+    public $actions = [];
     public $filename;
 
-    public $menus=[]; // 메뉴트리
+    public $rows = [];
     public $upload_path;
+    public $forms = [];
+    public $edit_id;
+    public $ref;
+
+    public $message;
 
     public $viewFile;
-    public $rows = [];
-
-    public $popupForm = false;
-    public $popupSubForm = false;
     public $viewForm;
     public $viewList;
 
-    public $popupDelete = false;
-    public $confirm = false;
-
-    public $actions = [];
-    public $forms = [];
-    public $edit_id;
+    // json 파일을 수정할 수 있는 모드로 전환합니다.
+    public $editable = false;
 
     public $popupWindowWidth = "4xl";
-    public $message;
+    public $popupForm = false;
+    public $popupSubForm = false;
+    public $popupDelete = false;
+    public $confirm = false;
 
     public function mount()
     {
@@ -55,14 +56,8 @@ class ActionEdit extends Component
         $path = resource_path('actions');
         if(!is_dir($path)) mkdir($path,0777,true);
 
-        if(file_exists($path.DIRECTORY_SEPARATOR.$this->filename)) {
-            $body = file_get_contents($path.DIRECTORY_SEPARATOR.$this->filename);
-            $menus = json_decode($body,true);
-        } else {
-            $menus = [];
-        }
-
-        $this->rows = $menus;
+        $json = json_file_decode($path.DIRECTORY_SEPARATOR.$this->filename);
+        $this->rows = $json;
 
     }
 
@@ -77,7 +72,7 @@ class ActionEdit extends Component
     {
         if(!$this->viewForm) {
             $this->viewForm = "jiny-admin::actions.form";
-
+            // 팝업창에서 사용
             $this->actions['view']['form'] = $this->viewForm;
         }
     }
@@ -98,7 +93,17 @@ class ActionEdit extends Component
         return view($this->viewFile);
     }
 
-    public $ref;
+    public function modify()
+    {
+        $this->editable = true;
+    }
+
+    public function modifyCancel()
+    {
+        $this->editable = false;
+    }
+
+
 
     public function create($ref=null)
     {
@@ -163,39 +168,18 @@ class ActionEdit extends Component
             }
 
             $temp = &$temp[$i];
-
-
-            // if(is_array($temp[$i])) {
-            //     $temp = &$temp[$i];
-            // }
-            // else {
-            //     $temp = &$temp;
-            // }
         }
 
         // 서브배열
-        //dump($temp);
         if(is_array($temp)) {
-
             $temp[$key] = "";
         } else {
             $temp = []; // 강제변경
 
             $key = $this->forms['key'];
             $temp[$key] = "";
-        // }
-        //
         }
 
-        //dd($temp);
-
-        // dd($temp[$i]);
-
-        // // 신규추가
-        // $key = $this->forms['key'];
-        // $temp[$i][$key] = "";
-        // //dump($key);
-        // //dd($temp);
 
 
         $this->cancel();
@@ -204,20 +188,12 @@ class ActionEdit extends Component
 
     public function save()
     {
-        // dd($this->rows);
-        $str = json_encode($this->rows,
-            JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT );
-
-        //dd($str);
-
         $path = resource_path('actions');
         if(!is_dir($path)) mkdir($path,0777,true);
 
-        //$filepath = str_replace(["/","."],DIRECTORY_SEPARATOR,$filepath);
-        file_put_contents(
-            $path.DIRECTORY_SEPARATOR.$this->filename,
-            $str);
+        json_file_encode($path.DIRECTORY_SEPARATOR.$this->filename, $this->rows);
 
+        $this->editable = false;
     }
 
     public $popupEdit = false;

@@ -32,7 +32,7 @@ class AdminActionFiles extends WireDashController
         $this->actions['view']['main'] = "jiny-admin::actions.edit";
 
         // view 인자값 추가
-        $this->params['filename'] = $all.".json";
+        $this->params['filename'] = $all; //.".json";
         //dd($this->params);
 
         return parent::index($request);
