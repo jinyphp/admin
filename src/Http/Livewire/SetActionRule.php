@@ -145,10 +145,13 @@ class SetActionRule extends Component
         $path = resource_path(self::PATH);
         if(!is_dir($path)) mkdir($path);
 
-        $this->actionPath = str_replace("/","_",$this->uri).".json";
+        //$this->actionPath = str_replace("/","_",$this->uri).".json";
+        $uri = rtrim($this->uri,'/');
+        $uri = str_replace('/',DIRECTORY_SEPARATOR,$uri);
+        $this->actionPath = $uri.".json";
 
         $filename = $path.DIRECTORY_SEPARATOR.$this->actionPath;
-
+        //dd($filename);
         return $filename;
     }
 
