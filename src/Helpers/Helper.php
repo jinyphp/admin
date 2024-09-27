@@ -1,6 +1,13 @@
 <?php
 use Illuminate\Support\Facades\DB;
 
+if(!function_exists('Action')) {
+    function Action()
+    {
+        return \Jiny\Admin\Actions::instance();
+    }
+}
+
 // 어드민 패키지가 설치가 되어 있는지 확인을 위한 함수
 if(!function_exists('isAdminPackage')) {
     function isAdminPackage() {

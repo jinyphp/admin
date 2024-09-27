@@ -1,7 +1,7 @@
 <x-navtab class="mb-3 nav-bordered">
 
-    <x-navtab-item><!-- Action 정보 -->
-        <x-navtab-link class="rounded-0">
+    <x-navtab-item class="show active">
+        <x-navtab-link class="rounded-0 active">
             <span class="d-none d-md-block">정보</span>
         </x-navtab-link>
 
@@ -49,14 +49,14 @@
     </x-navtab-item>
 
 
-    <x-navtab-item class="show active"><!-- formTab -->
+    {{-- <x-navtab-item class="show active"><!-- formTab -->
         <x-navtab-link class="rounded-0 active">
             <span class="d-none d-md-block">화면</span>
         </x-navtab-link>
 
         @includeIf('jiny-admin::actions_set.form_views')
 
-    </x-navtab-item>
+    </x-navtab-item> --}}
 
     <x-navtab-item ><!-- formTab -->
         <x-navtab-link class="rounded-0">
@@ -110,18 +110,7 @@
             <span class="d-none d-md-block">메뉴</span>
         </x-navtab-link>
 
-        <x-form-hor>
-            <x-form-label>메뉴</x-form-label>
-            <x-form-item>
-                @if(function_exists('xMenu'))
-                {!! xSelect()
-                    ->table('menus','code')
-                    ->setWire('model.defer',"forms.menu")
-                    ->setWidth("medium")
-                !!}
-                @endif
-            </x-form-item>
-        </x-form-hor>
+        @includeIf("jiny-admin::actions_set.from_action_menu")
 
     </x-navtab-item>
 

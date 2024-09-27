@@ -1,20 +1,124 @@
+<x-ui-divider>라라벨 및 JinyPHP</x-ui-divider>
 <div class="row">
-    <div class="col-xl-6 col-xxl-5 d-flex">
-        <div class="w-100">
-            <div class="row">
-                <div class="col-sm-6">
-                    @includeIf("jiny-admin::dashboard.laravel")
-                    @includeIf("jiny-admin::dashboard.actions")
-                </div>
-                <div class="col-sm-6">
-                    @includeIf("jiny-admin::dashboard.auth")
-                    @includeIf("jiny-admin::dashboard.locale")
-                </div>
+    <div class="col-4">
+        <div class="card">
+            <div class="card-header">
+                <x-flex-between>
+                    <div>
+                        <h5 class="card-title">
+                            <a href="/admin/laravel">
+                            라라벨
+                            </a>
+                        </h5>
+                        <h6 class="card-subtitle text-muted">
+                            JinyPHP의 기본베이스인 라라벨을 관리합니다.
+                        </h6>
+                    </div>
+                    <div>
+                        @icon("info-circle.svg")
+                    </div>
+                </x-flex-between>
+            </div>
+            <div class="card-body">
+                <x-badge-secondary>
+                    <a href="/admin/laravel/migrations">
+                        마이그레이션
+                    </a>
+                </x-badge-secondary>
+
+                <x-badge-secondary>
+                    <a href="/admin/laravel/view">
+                        Cache
+                    </a>
+                </x-badge-secondary>
             </div>
         </div>
     </div>
 
-    <div class="col-xl-6 col-xxl-7">
+    <div class="col-4">
+        <div class="card">
+            <div class="card-header">
+                <x-flex-between>
+                    <div>
+                        <h5 class="card-title">
+                            <a href="/admin/actions">
+                            Actions
+                            </a>
+                        </h5>
+                        <h6 class="card-subtitle text-muted">
+                         uri 별 actions 설정값을 관리합니다.
+                        </h6>
+                    </div>
+                    <div>
+                        @icon("info-circle.svg")
+                    </div>
+                </x-flex-between>
+            </div>
+            <div class="card-body">
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title">
+                    <a href="/admin/locale">지역설정</a>
+                </h5>
+                <h6 class="card-subtitle text-muted">
+                    시스템의 서비스 지역을 설정합니다.
+                </h6>
+            </div>
+            <div class="card-body">
+                <x-badge-primary>
+                    <a href="/admin/locale/country">
+                    국가
+                    </a>
+                </x-badge-primary>
+
+                <x-badge-success>
+                    <a href="/admin/locale/language">
+                    언어
+                    </a>
+                </x-badge-success>
+
+                <x-badge-secondary>통화</x-badge-secondary>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-4">
+        <div class="card">
+            <div class="card-header">
+                <x-flex-between>
+                    <div>
+                        <h5 class="card-title">
+                            <a href="/admin/auth">
+                            회원관리 및 인증
+                            </a>
+                        </h5>
+                        <h6 class="card-subtitle text-muted">
+                            가입된 회원 및 인증을 관리합니다.
+                        </h6>
+                    </div>
+                    <div>
+                        @icon("info-circle.svg")
+                    </div>
+                </x-flex-between>
+            </div>
+            <div class="card-body">
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
         <div class="card">
             <div class="card-header">
                 <h5 class="card-title">모듈관리</h5>
@@ -29,7 +133,6 @@
             </div>
         </div>
     </div>
-
 </div>
 
 <x-ui-divider>웹서비스 관리</x-ui-divider>
@@ -49,7 +152,8 @@
 
 {{-- 시스템 관련 기능 --}}
 <div class="row">
-    <div class="col-3">
+
+    <div class="col-4">
         <div class="card">
             <div class="card-header">
                 <x-flex-between>
@@ -73,8 +177,7 @@
     </div>
 
 
-
-    <div class="col-3">
+    <div class="col-4">
         <div class="card">
             <div class="card-header">
                 <x-flex-between>
@@ -97,7 +200,21 @@
         </div>
     </div>
 
-    <div class="col-3">
+    <div class="col-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title">UI 및 위젯</h5>
+                <h6 class="card-subtitle text-muted">
+                    UI 컴포넌트와 위젯을 관리합니다.
+                </h6>
+            </div>
+            <div class="card-body">
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-4">
         <div class="card">
             <div class="card-header">
                 <h5 class="card-title">테마관리</h5>
@@ -109,6 +226,25 @@
                 <x-badge-primary>설치테마</x-badge-primary>
                 <x-badge-success>테마스토어</x-badge-success>
                 <x-badge-secondary>설정</x-badge-secondary>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title">
+                    <a href="/admin/service/">
+                        서비스관리
+                    </a>
+                </h5>
+                <h6 class="card-subtitle text-muted">
+                    구독형 서비스를 관리 합니다.
+                </h6>
+            </div>
+            <div class="card-body">
+                <x-badge-primary>Plan</x-badge-primary>
+                <x-badge-primary>Reseller</x-badge-primary>
             </div>
         </div>
     </div>
@@ -129,7 +265,7 @@
 </div>
 
 <div class="row">
-    <div class="col-3">
+    <div class="col-4">
         <div class="card">
             <div class="card-header">
                 <h5 class="card-title">ERP 기본</h5>
@@ -148,7 +284,7 @@
         </div>
     </div>
 
-    <div class="col-3">
+    <div class="col-4">
         <div class="card">
             <div class="card-header">
                 <h5 class="card-title">
@@ -173,7 +309,7 @@
         </div>
     </div>
 
-    <div class="col-3">
+    <div class="col-4">
         <div class="card">
             <div class="card-header">
                 <h5 class="card-title">기업 자산관리</h5>
@@ -187,7 +323,7 @@
         </div>
     </div>
 
-    <div class="col-3">
+    <div class="col-4">
         <div class="card">
             <div class="card-header">
                 <h5 class="card-title">
@@ -205,7 +341,7 @@
         </div>
     </div>
 
-    <div class="col-3">
+    <div class="col-4">
         <div class="card">
             <div class="card-header">
                 <h5 class="card-title">
@@ -223,7 +359,7 @@
         </div>
     </div>
 
-    <div class="col-3">
+    <div class="col-4">
         <div class="card">
             <div class="card-header">
                 <h5 class="card-title">업무전자결제</h5>
@@ -237,7 +373,7 @@
         </div>
     </div>
 
-    <div class="col-3">
+    <div class="col-4">
         <div class="card">
             <div class="card-header">
                 <h5 class="card-title">SCM 공급망관리</h5>
@@ -252,7 +388,7 @@
     </div>
 
 
-    <div class="col-3">
+    <div class="col-4">
         <div class="card">
             <div class="card-header">
                 <h5 class="card-title">Work 업무프로세스</h5>
@@ -268,7 +404,7 @@
 
 
 
-    <div class="col-3">
+    <div class="col-4">
         <div class="card">
             <div class="card-header">
                 <h5 class="card-title">업무관리</h5>
@@ -283,38 +419,3 @@
     </div>
 </div>
 
-
-<hr>
-
-<div class="page-title-box mt-4">
-    <x-flex class="align-items-center gap-2">
-        <h2 class="align-middle h3 d-inline">
-            구독 서비스 관리
-        </h2>
-        <x-badge-info>Admin</x-badge-info>
-    </x-flex>
-    <p>
-        구독형 웹서비스를 관리합니다.
-    </p>
-</div>
-
-<div class="row">
-    <div class="col-3">
-        <div class="card">
-            <div class="card-header">
-                <h5 class="card-title">
-                    <a href="/admin/service/">
-                        서비스관리
-                    </a>
-                </h5>
-                <h6 class="card-subtitle text-muted">
-                    구독형 서비스를 관리 합니다.
-                </h6>
-            </div>
-            <div class="card-body">
-                <x-badge-primary>Plan</x-badge-primary>
-                <x-badge-primary>Reseller</x-badge-primary>
-            </div>
-        </div>
-    </div>
-</div>

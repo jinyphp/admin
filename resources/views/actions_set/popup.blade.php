@@ -1,17 +1,20 @@
 <div>
     {{-- loading 화면 처리 --}}
-    <x-loading-indicator/>
+    <x-loading-indicator />
 
     <style>
         .floating-buttons {
             transform: translateX(50%) rotate(-90deg);
         }
-        .animate-rotate:hover .animate-target, .animate-rotate:focus-visible .animate-target {
+
+        .animate-rotate:hover .animate-target,
+        .animate-rotate:focus-visible .animate-target {
             animation: rotate 0.45s ease-in-out;
         }
 
         .top-30 {
-            top: 350px; !important;
+            top: 350px;
+            !important;
         }
     </style>
 
@@ -22,10 +25,8 @@
             text-uppercase bg-body
             rounded-pill shadow
             animate-rotate ms-2 me-n5"
-        href="javascript:void(0)"
-        wire:click="popupRuleOpen()"
-        style="font-size: .625rem; letter-spacing: .05rem;"
-        role="button" aria-controls="customizer">
+            href="javascript:void(0)" wire:click="popupRuleOpen()" style="font-size: .625rem; letter-spacing: .05rem;"
+            role="button" aria-controls="customizer">
             Actions <i class="ci-settings fs-base ms-1 me-n2 animate-target"></i>
         </a>
     </div>
@@ -52,54 +53,103 @@
 
     <!-- 팝업 Rule 수정창 -->
     @if ($popupRule)
-    <x-dialog-modal wire:model="popupRule" maxWidth="2xl">
-        <x-slot name="title">
-            {{$actionPath}}
-        </x-slot>
-        <x-slot name="content">
-            @includeIf($viewForms)
-        </x-slot>
+        <x-dialog-modal wire:model="popupRule" maxWidth="2xl">
+            <x-slot name="title">
+                {{ $actionPath }}
+            </x-slot>
+            <x-slot name="content">
+                @includeIf($viewForms)
+            </x-slot>
 
-        <x-slot name="footer">
-            <div class="flex justify-between">
-            @if (isset($actions['id']))
-                <div>
+            <x-slot name="footer">
+                <div class="flex justify-between">
+                    @if (isset($actions['id']))
+                        <div>
+                        </div>
+                        <div>
+                            <x-button secondary wire:click="popupRuleClose">취소</x-button>
+                            <x-button primary wire:click="update">수정</x-button>
+                        </div>
+                    @else
+                        <div></div>
+                        <div class="text-right">
+                            <x-button secondary wire:click="popupRuleClose">취소</x-button>
+                            <x-button primary wire:click="save">저장</x-button>
+                        </div>
+                    @endif
                 </div>
-                <div>
-                    <x-button secondary wire:click="popupRuleClose">취소</x-button>
-                    <x-button primary wire:click="update">수정</x-button>
-                </div>
-            @else
-                <div></div>
-                <div class="text-right">
-                    <x-button secondary wire:click="popupRuleClose">취소</x-button>
-                    <x-button primary wire:click="save">저장</x-button>
-                </div>
-            @endif
-            </div>
-        </x-slot>
-    </x-dialog-modal>
+            </x-slot>
+        </x-dialog-modal>
     @endif
 
 
     @if ($popupResourceEdit)
-    <x-dialog-modal wire:model="popupResourceEdit" maxWidth="2xl">
-        <x-slot name="content">
-            {!! xTextarea()
-                ->setWire('model.defer',"content")
-            !!}
-        </x-slot>
+        <x-dialog-modal wire:model="popupResourceEdit" maxWidth="2xl">
+            <x-slot name="content">
+                {!! xTextarea()->setWire('model.defer', 'content') !!}
+            </x-slot>
 
-        <x-slot name="footer">
-            <div class="flex justify-between">
-                <div></div>
-                <div class="text-right">
-                    <x-button secondary wire:click="returnRule">취소</x-button>
-                    <x-button primary wire:click="update">수정</x-button>
+            <x-slot name="footer">
+                <div class="flex justify-between">
+                    <div></div>
+                    <div class="text-right">
+                        <x-button secondary wire:click="returnRule">취소</x-button>
+                        <x-button primary wire:click="update">수정</x-button>
+                    </div>
                 </div>
-            </div>
-        </x-slot>
-    </x-dialog-modal>
+            </x-slot>
+        </x-dialog-modal>
+    @endif
+
+
+    {{-- 레이아웃 --}}
+    @if ($design == 'layout')
+        <x-dialog-modal wire:model="popupForms" :maxWidth="$popupWindowWidth">
+            <x-slot name="title">
+                {{ __('레이아웃 변경') }}
+            </x-slot>
+
+            <x-slot name="content">
+
+                @includeIf('jiny-admin::actions_set.form_dynamic_layout')
+
+            </x-slot>
+
+            <x-slot name="footer">
+                <div class="flex justify-between">
+                    <div></div>
+                    <div class="text-right">
+                        <x-button secondary wire:click="close">취소</x-button>
+                        <x-button primary wire:click="save">저장</x-button>
+                    </div>
+                </div>
+            </x-slot>
+        </x-dialog-modal>
+    @endif
+
+    {{-- 레이아웃 --}}
+    @if ($design == 'action')
+        <x-dialog-modal wire:model="popupForms" :maxWidth="$popupWindowWidth">
+            <x-slot name="title">
+                {{ __('Action Rules') }} : {{ $actionPath }}
+            </x-slot>
+
+            <x-slot name="content">
+
+                {{-- @includeIf('jiny-admin::actions_set.form_dynamic_layout') --}}
+                @includeIf($viewForms)
+            </x-slot>
+
+            <x-slot name="footer">
+                <div class="flex justify-between">
+                    <div></div>
+                    <div class="text-right">
+                        <x-button secondary wire:click="close">취소</x-button>
+                        <x-button primary wire:click="save">저장</x-button>
+                    </div>
+                </div>
+            </x-slot>
+        </x-dialog-modal>
     @endif
 
 </div>

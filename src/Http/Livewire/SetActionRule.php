@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
 
+use Livewire\Attributes\On;
+
 /**
  * Actions Popup 설정
  */
@@ -21,9 +23,13 @@ class SetActionRule extends Component
     public $viewForms;
     public $actionPath;
 
+    public $popupForms = false;
+    public $mode;
+    public $popupWindowWidth = "4xl";
+    use \Jiny\Widgets\Http\Trait\DesignMode;
+
     public function mount()
     {
-
         if(!$this->viewFile) {
             $this->viewFile = "jiny-admin::actions_set.popup";
         }
@@ -142,12 +148,12 @@ class SetActionRule extends Component
 
     private function getFilename()
     {
-        $path = resource_path(self::PATH);
-        if(!is_dir($path)) mkdir($path);
+        $path = resource_path("actions");
 
-        //$this->actionPath = str_replace("/","_",$this->uri).".json";
         $uri = rtrim($this->uri,'/');
         $uri = str_replace('/',DIRECTORY_SEPARATOR,$uri);
+        if(!is_dir($path.DIRECTORY_SEPARATOR.$uri)) mkdir($path.DIRECTORY_SEPARATOR.$uri, 0777, true);
+
         $this->actionPath = $uri.".json";
 
         $filename = $path.DIRECTORY_SEPARATOR.$this->actionPath;
@@ -238,6 +244,55 @@ class SetActionRule extends Component
             $temp = $this->forms['blade'][$i];
             $this->forms['blade'][$i] = $this->forms['blade'][$i+1];
             $this->forms['blade'][$i+1] = $temp;
+        }
+    }
+
+    public function close()
+    {
+        $this->popupForms = false;
+        $this->design = null;
+    }
+
+
+    public $layouts = [];
+
+    #[On('layout-mode')]
+    public function layoutMode($mode=null)
+    {
+        if($this->design) {
+            $this->design = false;
+            $this->popupForms = false;
+        } else {
+            $this->design = "layout";
+            $this->popupForms = true;
+
+            $layouts = DB::table('site_layouts')->get();
+            $this->layouts = [];
+            foreach($layouts as $item) {
+                $tag = $item->tag;
+                $this->layouts[$tag] []= $item;
+            }
+
+        }
+    }
+
+    #[On('action-mode')]
+    public function actionMode($mode=null)
+    {
+        if($this->design) {
+            $this->design = false;
+            $this->popupForms = false;
+        } else {
+            $this->design = "action";
+            $this->popupForms = true;
+
+            // $layouts = DB::table('site_layouts')->get();
+            // $this->layouts = [];
+            // foreach($layouts as $item) {
+            //     $tag = $item->tag;
+            //     $this->layouts[$tag] []= $item;
+            // }
+
         }
     }
 
