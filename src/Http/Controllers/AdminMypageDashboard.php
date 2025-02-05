@@ -21,7 +21,8 @@ class AdminMypageDashboard extends Controller
 
     public function index(Request $request)
     {
-        return view("jiny-admin::admin.mypage");
+        $viewFile = "jiny-admin::admin.mypage";
+        return view($viewFile);
     }
 
 }

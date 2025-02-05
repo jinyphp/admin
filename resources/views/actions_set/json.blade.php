@@ -5,26 +5,32 @@
             <span class="d-none d-md-block">정보</span>
         </x-navtab-link>
 
-        <fieldset>
-            <legend class="px-2 text-xs">Argument</legend>
-            <x-form-hor>
-                <x-form-label>타이틀</x-form-label>
-                <x-form-item>
-                    {!! xInputText()
-                        ->setWire('model.defer',"forms.title")
-                    !!}
-                </x-form-item>
-            </x-form-hor>
+        <x-form-hor>
+            <x-form-label>타이틀</x-form-label>
+            <x-form-item>
+                {!! xInputText()
+                    ->setWire('model.defer',"forms.title")
+                !!}
+            </x-form-item>
+        </x-form-hor>
 
-            <x-form-hor>
-                <x-form-label>서브타이틀</x-form-label>
-                <x-form-item>
-                    {!! xTextarea()
-                        ->setWire('model.defer',"forms.subtitle")
-                    !!}
-                </x-form-item>
-            </x-form-hor>
-        </fieldset>
+        <x-form-hor>
+            <x-form-label>description</x-form-label>
+            <x-form-item>
+                {!! xTextarea()
+                    ->setWire('model.defer',"forms.description")
+                !!}
+            </x-form-item>
+        </x-form-hor>
+
+        <x-form-hor>
+            <x-form-label>keyword</x-form-label>
+            <x-form-item>
+                {!! xTextarea()
+                    ->setWire('model.defer',"forms.keyword")
+                !!}
+            </x-form-item>
+        </x-form-hor>
 
     </x-navtab-item>
 
@@ -68,6 +74,14 @@
     </x-navtab-item>
 
 
+    <x-navtab-item ><!-- formTab -->
+        <x-navtab-link class="rounded-0">
+            <span class="d-none d-md-block">권환</span>
+        </x-navtab-link>
+
+        @includeIf("jiny-admin::actions_set.permit")
+
+    </x-navtab-item>
 
 
 </x-navtab>

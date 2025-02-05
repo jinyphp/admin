@@ -45,8 +45,14 @@ class JinyAdminServiceProvider extends ServiceProvider
         $router->aliasMiddleware('super', SuperAdminMiddleware::class);
 
 
+        Blade::component($this->package.'::layouts.'.'admin', 'admin');
+        Blade::component($this->package.'::layouts.'.'layout', 'admin-layout');
+        Blade::component($this->package.'::layouts.'.'sidebar', 'admin-sidebar');
+        Blade::component($this->package.'::layouts.'.'header', 'admin-header');
+        Blade::component($this->package.'::layouts.'.'footer', 'admin-footer');
+
         // admin 레이아웃 템플릿
-        Blade::component($this->package.'::layouts.hyper.'.'app', 'admin-hyper');
+        //Blade::component($this->package.'::layouts.hyper.'.'app', 'admin-hyper');
 
         Blade::component($this->package.'::actions_set.'.'action_side', 'set-actions');
 

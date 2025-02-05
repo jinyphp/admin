@@ -1,18 +1,47 @@
 <x-navtab class="mb-3 nav-bordered">
     <x-navtab-item class="show active">
         <x-navtab-link class="rounded-0 active">
+            <span class="d-none d-md-block">컨트롤러</span>
+        </x-navtab-link>
+
+        <div class="mb-3">
+            <label class="form-label">Layout</label>
+            {!! xInputText()
+                ->setWire('model.defer',"forms.view.layout")
+                ->setWidth("standard")
+            !!}
+        </div>
+
+
+        {{-- <div class="mb-3">
+            <label class="form-label">
+                컨트롤러 Main
+            </label>
+            {!! xInputText()
+                ->setWire('model.defer',"forms.view.main")
+                ->setWidth("standard")
+            !!}
+        </div> --}}
+
+    </x-navtab-item>
+
+    <x-navtab-item class="">
+        <x-navtab-link class="rounded-0">
             <span class="d-none d-md-block">다이나믹</span>
         </x-navtab-link>
 
         @foreach($layouts as $key => $item)
         <x-form-hor>
-            <x-form-label>{{$key}}</x-form-label>
+            <x-form-label>x-www-{{$key}}</x-form-label>
             <x-form-item>
                 <select class="form-control mb-3"
                     wire:model="forms.layouts.{{$key}}">
                     <option value="">적용할 디자인을 선택해주세요.</option>
                     @foreach($item as $val)
-                    <option value="{{$val->name}}">{{$val->name}}</option>
+                    <option value="{{$val->name}}">
+                        {{$val->name}} /
+                        {{$val->description}}
+                    </option>
                     @endforeach
                 </select>
             </x-form-item>
@@ -21,31 +50,7 @@
 
     </x-navtab-item>
 
-    <x-navtab-item class="">
-        <x-navtab-link class="rounded-0">
-            <span class="d-none d-md-block">레이아웃</span>
-        </x-navtab-link>
 
-        <div class="mb-3">
-            <label class="form-label">컨트롤러 Layout</label>
-            {!! xInputText()
-                ->setWire('model.defer',"forms.view.layout")
-                ->setWidth("standard")
-            !!}
-        </div>
-
-
-        <div class="mb-3">
-            <label class="form-label">
-                컨트롤러 Main
-            </label>
-            {!! xInputText()
-                ->setWire('model.defer',"forms.view.main")
-                ->setWidth("standard")
-            !!}
-        </div>
-
-    </x-navtab-item>
 
     <x-navtab-item >
         <x-navtab-link class="rounded-0">

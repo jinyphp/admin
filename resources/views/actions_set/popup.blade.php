@@ -19,7 +19,7 @@
     </style>
 
     <!-- Customizer toggle -->
-    <div class="floating-buttons position-fixed top-30 end-0 z-sticky me-3 me-xl-4 pb-4">
+    {{-- <div class="floating-buttons position-fixed top-30 end-0 z-sticky me-3 me-xl-4 pb-4">
         <a class="btn btn-sm
             btn-outline-primary
             text-uppercase bg-body
@@ -29,7 +29,7 @@
             role="button" aria-controls="customizer">
             Actions <i class="ci-settings fs-base ms-1 me-n2 animate-target"></i>
         </a>
-    </div>
+    </div> --}}
 
     {{-- <div class="d-flex">
         <button class="btn btn-primary" wire:click="popupRuleOpen()">

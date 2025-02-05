@@ -14,8 +14,12 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div class="text-center">
-                                        권환이 없는 사용자로 관리자 페이지 접속을 시도하였습니다.
+                                        {{$user->name}} 님은 권환이 없는 사용자로 관리자 페이지 접속을 시도하였습니다.
                                         접속 기록은 운영자에게 통보됩니다.
+                                    </div>
+
+                                    <div class="text-center mt-4">
+                                        접속일자 : {{ date('Y-m-d H:i:s') }}
                                     </div>
                                 </div>
                             </div>

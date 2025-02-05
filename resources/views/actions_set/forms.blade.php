@@ -5,26 +5,32 @@
             <span class="d-none d-md-block">정보</span>
         </x-navtab-link>
 
-        <fieldset>
-            <legend class="px-2 text-xs">Argument</legend>
-            <x-form-hor>
-                <x-form-label>타이틀</x-form-label>
-                <x-form-item>
-                    {!! xInputText()
-                        ->setWire('model.defer',"forms.title")
-                    !!}
-                </x-form-item>
-            </x-form-hor>
+        <x-form-hor>
+            <x-form-label>타이틀</x-form-label>
+            <x-form-item>
+                {!! xInputText()
+                    ->setWire('model.defer',"forms.title")
+                !!}
+            </x-form-item>
+        </x-form-hor>
 
-            <x-form-hor>
-                <x-form-label>서브타이틀</x-form-label>
-                <x-form-item>
-                    {!! xTextarea()
-                        ->setWire('model.defer',"forms.subtitle")
-                    !!}
-                </x-form-item>
-            </x-form-hor>
-        </fieldset>
+        <x-form-hor>
+            <x-form-label>description</x-form-label>
+            <x-form-item>
+                {!! xTextarea()
+                    ->setWire('model.defer',"forms.description")
+                !!}
+            </x-form-item>
+        </x-form-hor>
+
+        <x-form-hor>
+            <x-form-label>keyword</x-form-label>
+            <x-form-item>
+                {!! xTextarea()
+                    ->setWire('model.defer',"forms.keyword")
+                !!}
+            </x-form-item>
+        </x-form-hor>
 
         <fieldset>
             <legend class="px-2 text-xs">Blade Resource</legend>
@@ -119,64 +125,7 @@
             <span class="d-none d-md-block">권환</span>
         </x-navtab-link>
 
-        <x-form-hor>
-            <x-form-label>Role</x-form-label>
-            <x-form-item>
-                {!! xCheckbox()
-                    ->setWire('model.defer',"forms.role")
-                !!}
-                <div>사용자 Role권한을 적용합니다.</div>
-            </x-form-item>
-        </x-form-hor>
-
-        {{-- role 테이블 선택--}}
-        @php
-            $roles = DB::table("roles")->get();
-        @endphp
-        <table class="table">
-            <thead>
-                <tr>
-                    <th >Name</th>
-                    <th width='100'>Permit</th>
-                    <th width='100'>Create</th>
-                    <th width='100'>Read</th>
-                    <th width='100'>Update</th>
-                    <th width='100'>Delete</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($roles as $item)
-                <tr >
-                    <td>{{$item->name}}</td>
-                    <td width='100'>
-                        {!! xCheckbox()
-                            ->setWire('model.defer',"forms.roles.".$item->name.".permit")
-                        !!}
-                    </td>
-                    <td width='100'>
-                        {!! xCheckbox()
-                            ->setWire('model.defer',"forms.roles.".$item->name.".create")
-                        !!}
-                    </td>
-                    <td width='100'>
-                        {!! xCheckbox()
-                            ->setWire('model.defer',"forms.roles.".$item->name.".read")
-                        !!}
-                    </td>
-                    <td width='100'>
-                        {!! xCheckbox()
-                            ->setWire('model.defer',"forms.roles.".$item->name.".update")
-                        !!}
-                    </td>
-                    <td width='100'>
-                        {!! xCheckbox()
-                            ->setWire('model.defer',"forms.roles.".$item->name.".delete")
-                        !!}
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
+        @includeIf("jiny-admin::actions_set.permit")
 
     </x-navtab-item>
 

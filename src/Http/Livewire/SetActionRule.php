@@ -269,7 +269,7 @@ class SetActionRule extends Component
             $layouts = DB::table('site_layouts')->get();
             $this->layouts = [];
             foreach($layouts as $item) {
-                $tag = $item->tag;
+                $tag = _getValue($item->tag);
                 $this->layouts[$tag] []= $item;
             }
 

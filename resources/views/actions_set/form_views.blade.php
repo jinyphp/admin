@@ -1,8 +1,8 @@
-<x-flex>
-    <div class="flex-fill">
+<x-flex class="gap-2">
+    {{-- <div class="flex-fill">
         <h2>화면 단위 설정</h2>
         <p>컨트롤러에 적용된 화면을 변경할 수 있습니다. 입력값은 라라벨의 blade 경로 입니다.</p>
-    </div>
+    </div> --}}
     <div class="flex-fill">
         <div class="mb-3">
             <label class="form-label">Layout</label>

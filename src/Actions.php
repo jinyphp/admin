@@ -2,31 +2,30 @@
 namespace Jiny\Admin;
 
 use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Route;
 
 class Actions
 {
     private static $Instance;
 
     public $uri;
+    public $filename;
     public $data=[];
 
     /**
      * 싱글턴 인스턴스를 생성합니다.
      */
-    public static function instance()
+    public static function instance($path=null)
     {
         if (!isset(self::$Instance)) {
             // 자기 자신의 인스턴스를 생성합니다.
             $obj = new self();
 
             $obj->uri = Request::path();
-            $obj->load();
-            // $path = $obj->path();
-            // $data = json_file_decode($path);
-            // $obj->data = $data;
-            // foreach($data as $key => $item) {
-            //     $obj->$key = $item;
-            // }
+            //$uri = Route::current()->uri;
+            //dd($uri);
+            //dd($obj->uri);
+            $obj->load($path);
 
             self::$Instance = $obj;
 
@@ -47,14 +46,20 @@ class Actions
         } else {
             $path .= str_replace('/', DIRECTORY_SEPARATOR, $this->uri);
             $path .= ".json";
+            $this->filename = $path;
             return $path;
         }
     }
 
-    public function load()
+    public function load($path)
     {
-        $path = $this->path();
         //dump($path);
+        if(!$path) {
+            $path = $this->path();
+        }
+
+        $this->filename = $path;
+
         $this->data = json_file_decode($path);
 
         return $this;
@@ -92,5 +97,19 @@ class Actions
         }
 
         return $this->data;
+    }
+
+    public function widgets($key=null)
+    {
+        if(isset($this->data['widgets'])) {
+            if($key) {
+                return $this->data['widgets'][$key];
+            }
+
+            return $this->data['widgets'];
+        }
+
+        $this->data['widgets'] = [];
+        return [];
     }
 }
