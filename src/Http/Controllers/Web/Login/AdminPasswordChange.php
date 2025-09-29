@@ -187,7 +187,7 @@ class AdminPasswordChange extends Controller
     {
         return [
             'viewPaths' => [
-                'change_form' => 'jiny-admin::Site.Login.password_change',
+                'change_form' => 'jiny-admin::web.login.password_change',
             ],
             'routes' => [
                 'login' => 'admin.login',

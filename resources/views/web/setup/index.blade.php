@@ -23,13 +23,29 @@
 </head>
 <body class="bg-gray-50">
     <div class="min-h-screen flex flex-col justify-center py-12 sm:px-6 lg:px-8">
-        <div class="sm:mx-auto sm:w-full sm:max-w-2xl">
+        {{-- <div class="sm:mx-auto sm:w-full sm:max-w-2xl">
             <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
                 @jiny/admin 초기 설정
             </h2>
             <p class="mt-2 text-center text-sm text-gray-600">
                 관리자 시스템을 설정하는 과정입니다
             </p>
+        </div> --}}
+        <div class="text-center mb-8">
+                <div
+                    class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-blue-100 dark:bg-blue-900 mb-4">
+                    <svg class="h-8 w-8 text-blue-600 dark:text-blue-400" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                </div>
+                <h2 class="text-3xl font-extrabold text-gray-900 dark:text-white mb-2">@jiny/admin 초기 설정</h2>
+                <p class="text-base text-gray-600 dark:text-gray-400">
+                    관리자 시스템을 설정하는 과정입니다
+                </p>
         </div>
 
         <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-2xl">
@@ -85,6 +101,11 @@
                     @endif
                 </div>
             </div>
+        </div>
+
+        <div class="mt-6 text-xs text-gray-400 text-center">
+                <p>본 로그인은 관리자 전용입니다. 무단 사용 시 법적 처벌을 받을 수 있습니다.</p>
+                <p class="mt-1">© 2025 Jiny Admin. All rights reserved.</p>
         </div>
     </div>
 
@@ -144,12 +165,12 @@
                     </div>
                 </div>
             `;
-            
+
             const existingAlert = document.querySelector('.bg-red-50');
             if (existingAlert) {
                 existingAlert.remove();
             }
-            
+
             document.getElementById('step-content').appendChild(alertDiv);
         }
 
@@ -168,12 +189,12 @@
                     </div>
                 </div>
             `;
-            
+
             const existingAlert = document.querySelector('.bg-green-50');
             if (existingAlert) {
                 existingAlert.remove();
             }
-            
+
             document.getElementById('step-content').appendChild(alertDiv);
         }
     </script>

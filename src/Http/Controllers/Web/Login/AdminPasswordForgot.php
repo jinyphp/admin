@@ -9,6 +9,6 @@ class AdminPasswordForgot extends Controller
 {
     public function __invoke(Request $request)
     {
-        return view('jiny-admin::Site.Login.password-forgot');
+        return view('jiny-admin::web.login.password-forgot');
     }
 }

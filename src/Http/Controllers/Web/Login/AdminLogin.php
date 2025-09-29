@@ -136,7 +136,7 @@ class AdminLogin extends Controller
     private function getDefaultConfiguration()
     {
         return [
-            'viewPath' => 'jiny-admin::Site.Login.login',
+            'viewPath' => 'jiny-admin::web.login.login',
             'routes' => [
                 'dashboard' => 'admin.dashboard',
                 'login' => 'admin.login',

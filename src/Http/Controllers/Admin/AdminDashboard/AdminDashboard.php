@@ -213,6 +213,12 @@ class AdminDashboard extends Controller
             'environment' => app()->environment(),
         ];
 
+        // jsonData 변수를 명시적으로 추가 (블레이드 템플릿에서 사용)
+        $data['jsonData'] = $this->jsonData;
+
+        // JSON 파일 경로 추가 (편집 가능하도록)
+        $data['jsonPath'] = __DIR__ . '/AdminDashboard.json';
+
         return view('jiny-admin::admin.admin_dashboard.dashboard', $data);
     }
 

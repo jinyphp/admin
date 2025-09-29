@@ -165,9 +165,9 @@ class Admin2FA extends Controller
     {
         return [
             'viewPaths' => [
-                'challenge' => 'jiny-admin::Site.Login.2fa_challenge',
-                'setup' => 'jiny-admin::Site.Login.2fa_setup',
-                'recovery' => 'jiny-admin::Site.Login.2fa_recovery',
+                'challenge' => 'jiny-admin::web.login.2fa_challenge',
+                'setup' => 'jiny-admin::web.login.2fa_setup',
+                'recovery' => 'jiny-admin::web.login.2fa_recovery',
             ],
             'routes' => [
                 'challenge' => 'admin.2fa.challenge',

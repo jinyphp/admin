@@ -1,37 +1,19 @@
 @extends($jsonData['template']['layout'] ?? 'jiny-admin::layouts.admin')
 
 @section('content')
-<div class="min-h-screen bg-gray-50">
 
-    <!-- 헤더 -->
-    <div class="bg-white shadow-sm border-b">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="py-4">
-                <div class="flex items-center justify-between">
-                    <div>
-                        <h1 class="text-2xl font-bold text-gray-900">{{ $title }}</h1>
-                        <p class="mt-1 text-sm text-gray-500">{{ $subtitle }}</p>
-                    </div>
-                    <div class="flex items-center space-x-4">
-                        <div class="flex items-center space-x-2 text-xs text-gray-500">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                            </svg>
-                            <span>마지막 업데이트: {{ now()->format('H:i:s') }}</span>
-                        </div>
-                        <button onclick="location.reload()" class="p-2 rounded-lg hover:bg-gray-100 transition-colors" title="새로고침">
-                            <svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<div class="w-full">
 
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        <!-- 알림 및 경고 섹션 -->
+    {{-- AdminDashTitle 컴포넌트로 타이틀 표시 --}}
+    @livewire('jiny-admin::admin-dash-title', [
+        'jsonData' => $jsonData,
+        'jsonPath' => $jsonPath ?? null,
+        'editable' => true
+    ])
+
+    <div class="px-4 sm:px-6 lg:px-8">
+
+    <!-- 알림 및 경고 섹션 -->
         @if($alerts ?? false)
         <div class="mb-6 space-y-3">
             @foreach($alerts as $alert)
@@ -65,101 +47,124 @@
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-8">
             <!-- 전체 사용자 -->
             <a href="{{ route('admin.users') }}" class="block">
-                <div class="bg-white rounded-lg p-5 shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer">
-                    <div class="flex flex-col items-center text-center">
-                        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-3">
+                <div class="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer min-h-[100px]">
+
+                    <div class="flex items-start space-x-3">
+                        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
                             <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
                             </svg>
                         </div>
-                        <h3 class="text-xs font-medium text-gray-600 mb-2">전체 사용자</h3>
-                        <p class="text-2xl font-bold text-gray-900">{{ number_format($stats['total_users']) }}</p>
-                        <p class="text-xs text-gray-500 mt-2">관리자: {{ $stats['admin_users'] }}명</p>
+                        <div class="flex-1">
+                            <h3 class="text-xs font-medium text-gray-600">전체 사용자</h3>
+                            <p class="text-xl font-bold text-gray-900 mt-1">{{ number_format($stats['total_users']) }}</p>
+
+                        </div>
                     </div>
+                    <p class="text-xs text-gray-500 mt-2">관리자: {{ $stats['admin_users'] }}명</p>
                 </div>
             </a>
 
             <!-- 활성 세션 -->
             <a href="{{ route('admin.user.sessions') }}" class="block">
-                <div class="bg-white rounded-lg p-5 shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer relative">
+                <div class="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer relative min-h-[100px]">
                     <span class="absolute top-3 right-3 flex h-2 w-2">
                         <span class="animate-ping absolute inline-flex h-2 w-2 rounded-full bg-green-400 opacity-75"></span>
                         <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
                     </span>
-                    <div class="flex flex-col items-center text-center">
-                        <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-3">
+                    <div class="flex items-start space-x-3">
+                        <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
                             <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                             </svg>
                         </div>
-                        <h3 class="text-xs font-medium text-gray-600 mb-2">활성 세션</h3>
-                        <p class="text-2xl font-bold text-gray-900">{{ number_format($stats['active_sessions']) }}</p>
-                        <p class="text-xs text-green-600 mt-2">실시간 접속 중</p>
+                        <div class="flex-1">
+                            <h3 class="text-xs font-medium text-gray-600">활성 세션</h3>
+                            <p class="text-xl font-bold text-gray-900 mt-1">{{ number_format($stats['active_sessions']) }}</p>
+
+                        </div>
                     </div>
+                    <p class="text-xs text-green-600 mt-2">실시간 접속 중</p>
                 </div>
             </a>
 
             <!-- 오늘 로그인 -->
             <a href="{{ route('admin.user.logs') }}" class="block">
-                <div class="bg-white rounded-lg p-5 shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer">
-                    <div class="flex flex-col items-center text-center">
-                        <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-3">
+                <div class="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer min-h-[100px]">
+
+                    <div class="flex items-start space-x-3">
+                        <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center flex-shrink-0">
                             <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"></path>
                             </svg>
                         </div>
-                        <h3 class="text-xs font-medium text-gray-600 mb-2">오늘 로그인</h3>
-                        <p class="text-2xl font-bold text-gray-900">{{ number_format($stats['today_logins']) }}</p>
-                        <p class="text-xs text-gray-500 mt-2">{{ now()->format('m월 d일') }}</p>
+                        <div class="flex-1">
+                            <h3 class="text-xs font-medium text-gray-600">오늘 로그인</h3>
+                            <p class="text-xl font-bold text-gray-900 mt-1">{{ number_format($stats['today_logins']) }}</p>
+
+                        </div>
                     </div>
+                    <p class="text-xs text-gray-500 mt-2">{{ now()->format('m월 d일') }}</p>
                 </div>
             </a>
 
             <!-- 2FA 사용률 -->
             <a href="{{ route('admin.user.2fa') }}" class="block">
-                <div class="bg-white rounded-lg p-5 shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer">
-                    <div class="flex flex-col items-center text-center">
-                        <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-3">
+                <div class="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer min-h-[100px]">
+
+                    <div class="flex items-start space-x-3">
+                        <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
                             <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
                             </svg>
                         </div>
-                        <h3 class="text-xs font-medium text-gray-600 mb-2">2FA 보안</h3>
-                        <p class="text-2xl font-bold text-purple-600">{{ $security['two_factor_percentage'] }}%</p>
-                        <p class="text-xs text-gray-500 mt-2">{{ $security['two_factor_enabled'] }}명 중</p>
+                        <div class="flex-1">
+                            <h3 class="text-xs font-medium text-gray-600">2FA 보안</h3>
+                            <p class="text-xl font-bold text-purple-600 mt-1">{{ $security['two_factor_percentage'] }}%</p>
+
+                        </div>
                     </div>
+                    <p class="text-xs text-gray-500 mt-2">{{ $security['two_factor_enabled'] }}명 사용</p>
                 </div>
             </a>
 
             <!-- 이메일 발송 -->
             <a href="{{ route('admin.mail.logs') }}" class="block">
-                <div class="bg-white rounded-lg p-5 shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer">
-                    <div class="flex flex-col items-center text-center">
-                        <div class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center mb-3">
+                <div class="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer min-h-[100px]">
+
+                    <div class="flex items-start space-x-3">
+                        <div class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center flex-shrink-0">
                             <svg class="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
                             </svg>
                         </div>
-                        <h3 class="text-xs font-medium text-gray-600 mb-2">오늘 이메일</h3>
-                        <p class="text-2xl font-bold text-gray-900">{{ number_format($stats['emails_today'] ?? 0) }}</p>
-                        <p class="text-xs text-gray-500 mt-2">발송 완료</p>
+                        <div class="flex-1">
+                            <h3 class="text-xs font-medium text-gray-600">오늘 이메일</h3>
+                            <p class="text-xl font-bold text-gray-900 mt-1">{{ number_format($stats['emails_today'] ?? 0) }}</p>
+
+                        </div>
                     </div>
+                    <p class="text-xs text-gray-500 mt-2">발송 완료</p>
                 </div>
             </a>
 
             <!-- SMS 발송 -->
             <a href="{{ route('admin.sms.send') }}" class="block">
-                <div class="bg-white rounded-lg p-5 shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer">
-                    <div class="flex flex-col items-center text-center">
-                        <div class="w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center mb-3">
+                <div class="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer min-h-[100px]">
+
+                    <div class="flex items-start space-x-3">
+                        <div class="w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center flex-shrink-0">
                             <svg class="w-6 h-6 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
                             </svg>
                         </div>
-                        <h3 class="text-xs font-medium text-gray-600 mb-2">오늘 SMS</h3>
-                        <p class="text-2xl font-bold text-gray-900">{{ number_format($stats['sms_today'] ?? 0) }}</p>
-                        <p class="text-xs text-gray-500 mt-2">발송 완료</p>
+                        <div class="flex-1">
+                            <h3 class="text-xs font-medium text-gray-600">오늘 SMS</h3>
+                            <p class="text-xl font-bold text-gray-900 mt-1">{{ number_format($stats['sms_today'] ?? 0) }}</p>
+
+                        </div>
                     </div>
+                    <p class="text-xs text-gray-500 mt-2">발송 완료</p>
                 </div>
             </a>
         </div>
@@ -559,8 +564,20 @@
             </div>
         </div>
         @endif
+
     </div>
+
+
+
+
 </div>
+{{--
+<div class="min-h-screen">
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+
+    </div>
+</div> --}}
 
 @push('scripts')
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

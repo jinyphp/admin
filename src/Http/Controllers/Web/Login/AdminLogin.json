@@ -3,7 +3,7 @@
     "description": "관리자 로그인 페이지 설정",
     "version": "1.0.0",
     
-    "viewPath": "jiny-admin::Site.Login.login",
+    "viewPath": "jiny-admin::web.login.login",
     
     "routes": {
         "dashboard": "admin.dashboard",

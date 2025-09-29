@@ -23,23 +23,13 @@
 <body class="h-full">
     <div class="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div class="max-w-md w-full space-y-8">
-            <div>
-                <div class="mx-auto h-12 w-12 flex items-center justify-center rounded-full bg-blue-100">
-                    <svg class="h-6 w-6 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                    </svg>
-                </div>
-                <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
-                    관리자 비밀번호 찾기
-                </h2>
+
+            <div class="text-center mb-6">
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-1">비밀번호 재설정 안내</h3>
             </div>
-            
+
             <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
                 <div class="text-center">
-                    <svg class="mx-auto h-12 w-12 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                    <h3 class="mt-4 text-lg font-medium text-gray-900">비밀번호 재설정 안내</h3>
                     <div class="mt-4 text-sm text-gray-600">
                         <p>관리자 계정은 보안상의 이유로</p>
                         <p>일반적인 비밀번호 찾기 기능을 제공하지 않습니다.</p>
@@ -63,9 +53,10 @@
                     </div>
                 </div>
             </div>
-            
-            <div class="text-center text-sm text-gray-600">
-                <p>© 2025 Jiny Admin. All rights reserved.</p>
+
+             <div class="mt-6 text-xs text-gray-400 text-center">
+                <p>본 로그인은 관리자 전용입니다. 무단 사용 시 법적 처벌을 받을 수 있습니다.</p>
+                <p class="mt-1">© 2025 Jiny Admin. All rights reserved.</p>
             </div>
         </div>
     </div>

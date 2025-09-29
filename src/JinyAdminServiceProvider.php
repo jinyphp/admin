@@ -281,6 +281,7 @@ class JinyAdminServiceProvider extends ServiceProvider
                 Livewire::component('jiny-admin::admin-notification', \Jiny\Admin\Http\Livewire\AdminNotification::class);
                 Livewire::component('jiny-admin::admin-table-setting', \Jiny\Admin\Http\Livewire\AdminTableSetting::class);
                 Livewire::component('jiny-admin::admin-header-with-settings', \Jiny\Admin\Http\Livewire\AdminHeaderWithSettings::class);
+                Livewire::component('jiny-admin::admin-dash-title', \Jiny\Admin\Http\Livewire\AdminDashTitle::class);
 
                 // ========================================
                 // 설정 드로어 컴포넌트
