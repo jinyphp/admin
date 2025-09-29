@@ -17,7 +17,7 @@
     },
     "table": {
         "name": "admin_ip_logs",
-        "model": "\\Jiny\\Admin\\App\\Models\\AdminIptracking",
+        "model": "\\Jiny\\Admin\\Models\\AdminIptracking",
         "primaryKey": "id",
         "timestamps": true,
         "softDeletes": false,

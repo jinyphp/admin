@@ -14,7 +14,7 @@
     },
     "table": {
         "name": "admin_user_sessions",
-        "model": "\\Jiny\\Admin\\App\\Models\\AdminUserSession",
+        "model": "\\Jiny\\Admin\\Models\\AdminUserSession",
         "primaryKey": "id",
         "timestamps": true,
         "softDeletes": false,

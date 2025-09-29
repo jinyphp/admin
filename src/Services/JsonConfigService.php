@@ -1,6 +1,6 @@
 <?php
 
-namespace Jiny\admin\App\Services;
+namespace Jiny\Admin\Services;
 
 class JsonConfigService
 {

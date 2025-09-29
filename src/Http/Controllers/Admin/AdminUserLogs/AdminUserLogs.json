@@ -14,7 +14,7 @@
     },
     "table": {
         "name": "admin_user_logs",
-        "model": "\\Jiny\\Admin\\App\\Models\\AdminUserLog",
+        "model": "\\Jiny\\Admin\\Models\\AdminUserLog",
         "primaryKey": "id",
         "timestamps": true,
         "softDeletes": false,

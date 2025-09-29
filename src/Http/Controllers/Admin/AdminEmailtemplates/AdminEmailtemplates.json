@@ -17,7 +17,7 @@
     },
     "table": {
         "name": "admin_email_templates",
-        "model": "\\Jiny\\Admin\\App\\Models\\AdminEmailTemplate",
+        "model": "\\Jiny\\Admin\\Models\\AdminEmailTemplate",
         "primaryKey": "id",
         "timestamps": true,
         "softDeletes": false,

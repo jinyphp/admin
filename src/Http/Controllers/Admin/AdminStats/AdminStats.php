@@ -7,7 +7,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Jiny\Admin\Models\AdminUserLog;
 use Jiny\Admin\Models\AdminUserSession;
-use Jiny\admin\App\Services\JsonConfigService;
+use Jiny\Admin\Services\JsonConfigService;
 use Jiny\Admin\Models\User;
 
 /**

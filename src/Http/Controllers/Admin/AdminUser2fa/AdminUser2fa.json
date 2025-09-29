@@ -18,7 +18,7 @@
     },
     "table": {
         "name": "users",
-        "model": "\\Jiny\\Admin\\App\\Models\\User",
+        "model": "\\Jiny\\Admin\\Models\\User",
         "primaryKey": "id",
         "timestamps": true,
         "softDeletes": false,

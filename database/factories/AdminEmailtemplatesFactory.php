@@ -6,7 +6,7 @@ use Jiny\Admin\Models\AdminEmailtemplates;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\Jiny\Admin\App\Models\AdminEmailtemplates>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\Jiny\Admin\Models\AdminEmailtemplates>
  */
 class AdminEmailtemplatesFactory extends Factory
 {

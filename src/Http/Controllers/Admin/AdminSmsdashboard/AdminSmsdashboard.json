@@ -11,7 +11,7 @@
     },
     "table": {
         "name": "admin_sms_dashboard",
-        "model": "\\Jiny\\Admin\\App\\Models\\AdminSmsdashboard",
+        "model": "\\Jiny\\Admin\\Models\\AdminSmsdashboard",
         "primaryKey": "id",
         "timestamps": false,
         "softDeletes": false

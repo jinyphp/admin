@@ -5,7 +5,7 @@ namespace Jiny\Admin\Http\Controllers\Admin\AdminSmsProvider;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Jiny\admin\App\Services\JsonConfigService;
+use Jiny\Admin\Services\JsonConfigService;
 
 /**
  * admin 수정 컨트롤러
@@ -251,11 +251,11 @@ class AdminSmsProviderEdit extends Controller
         }
         
         // 활동 로그 기록
-        if (class_exists('\Jiny\Admin\App\Models\AdminUserLogs')) {
+        if (class_exists('\Jiny\Admin\Models\AdminUserLogs')) {
             // ID 가져오기
             $id = request()->route('id') ?? null;
             
-            \Jiny\Admin\App\Models\AdminUserLogs::create([
+            \Jiny\Admin\Models\AdminUserLogs::create([
                 'user_id' => auth()->id(),
                 'action' => 'update',
                 'target_type' => 'sms_provider',

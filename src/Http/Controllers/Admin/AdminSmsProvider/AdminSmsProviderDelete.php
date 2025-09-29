@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
-use Jiny\admin\App\Services\JsonConfigService;
+use Jiny\Admin\Services\JsonConfigService;
 
 /**
  * admin 삭제 컨트롤러

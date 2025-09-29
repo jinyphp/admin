@@ -17,7 +17,7 @@
     },
     "table": {
         "name": "admin_email_tracking",
-        "model": "\\Jiny\\Admin\\App\\Models\\AdminEmailTracking",
+        "model": "\\Jiny\\Admin\\Models\\AdminEmailTracking",
         "primaryKey": "id",
         "timestamps": true,
         "softDeletes": false,

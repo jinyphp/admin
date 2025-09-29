@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Jiny\Admin\Models\User;
-use Jiny\admin\App\Services\JsonConfigService;
+use Jiny\Admin\Services\JsonConfigService;
 use PragmaRX\Google2FA\Google2FA;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 

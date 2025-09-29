@@ -5,7 +5,7 @@ namespace Jiny\Admin\Http\Controllers\Admin\AdminSmsProvider;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Jiny\admin\App\Services\JsonConfigService;
+use Jiny\Admin\Services\JsonConfigService;
 
 /**
  * admin 생성 컨트롤러

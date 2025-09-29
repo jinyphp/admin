@@ -5,7 +5,7 @@ namespace Jiny\Admin\Http\Controllers\Admin\AdminUser2fa;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Jiny\Admin\Models\User;
-use Jiny\admin\App\Services\JsonConfigService;
+use Jiny\Admin\Services\JsonConfigService;
 use Jiny\Admin\Services\TwoFactorAuthService;
 use Jiny\Admin\Services\NotificationService;
 

@@ -14,7 +14,7 @@
     },
     "table": {
         "name": "admin_captcha_logs",
-        "model": "\\Jiny\\Admin\\App\\Models\\AdminCaptchaLog",
+        "model": "\\Jiny\\Admin\\Models\\AdminCaptchaLog",
         "primaryKey": "id",
         "timestamps": true,
         "softDeletes": false,

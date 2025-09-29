@@ -17,7 +17,7 @@
     },
     "table": {
         "name": "{{tableName}}",
-        "model": "\\Jiny\\Admin\\App\\Models\\{{modelName}}",
+        "model": "\\Jiny\\Admin\\Models\\{{modelName}}",
         "primaryKey": "id",
         "timestamps": true,
         "softDeletes": {{softDeletes}},

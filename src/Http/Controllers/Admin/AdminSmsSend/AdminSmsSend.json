@@ -17,7 +17,7 @@
     },
     "table": {
         "name": "admin_sms_sends",
-        "model": "\\Jiny\\Admin\\App\\Models\\AdminSmsSend",
+        "model": "\\Jiny\\Admin\\Models\\AdminSmsSend",
         "primaryKey": "id",
         "timestamps": true,
         "softDeletes": false,

@@ -5,7 +5,7 @@ namespace Jiny\Admin\Http\Controllers\Admin\AdminUsers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Jiny\admin\App\Services\JsonConfigService;
+use Jiny\Admin\Services\JsonConfigService;
 
 /**
  * 사용자 관리 메인 컨트롤러 (목록/인덱스 페이지)

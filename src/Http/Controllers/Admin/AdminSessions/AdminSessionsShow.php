@@ -4,7 +4,7 @@ namespace Jiny\Admin\Http\Controllers\Admin\AdminSessions;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Jiny\admin\App\Services\JsonConfigService;
+use Jiny\Admin\Services\JsonConfigService;
 
 /**
  * AdminSessionsShow Controller
@@ -27,7 +27,7 @@ class AdminSessionsShow extends Controller
     public function __invoke(Request $request, $id)
     {
         // Eloquent 모델로 데이터 조회 (관계 포함)
-        $session = \Jiny\Admin\App\Models\AdminUserSession::with('user')->find($id);
+        $session = \Jiny\Admin\Models\AdminUserSession::with('user')->find($id);
 
         if (! $session) {
             $redirectUrl = isset($this->jsonData['route']['name'])
@@ -151,7 +151,7 @@ class AdminSessionsShow extends Controller
         }
 
         try {
-            $session = \Jiny\Admin\App\Models\AdminUserSession::find($id);
+            $session = \Jiny\Admin\Models\AdminUserSession::find($id);
 
             if (! $session) {
                 session()->flash('error', '세션을 찾을 수 없습니다.');
@@ -178,7 +178,7 @@ class AdminSessionsShow extends Controller
             $session->save();
 
             // 로그 기록
-            \Jiny\Admin\App\Models\AdminUserLog::log('session_terminated', auth()->user(), [
+            \Jiny\Admin\Models\AdminUserLog::log('session_terminated', auth()->user(), [
                 'terminated_session_id' => $session->session_id,
                 'terminated_user_id' => $session->user_id,
                 'terminated_user_email' => $session->user->email ?? 'Unknown',
@@ -213,7 +213,7 @@ class AdminSessionsShow extends Controller
         }
 
         try {
-            $session = \Jiny\Admin\App\Models\AdminUserSession::find($id);
+            $session = \Jiny\Admin\Models\AdminUserSession::find($id);
 
             if (! $session) {
                 session()->flash('error', '세션을 찾을 수 없습니다.');
@@ -234,7 +234,7 @@ class AdminSessionsShow extends Controller
                 $session->save();
 
                 // 로그 기록
-                \Jiny\Admin\App\Models\AdminUserLog::log('session_regenerated', auth()->user(), [
+                \Jiny\Admin\Models\AdminUserLog::log('session_regenerated', auth()->user(), [
                     'old_session_id' => $oldSessionId,
                     'new_session_id' => $newSessionId,
                     'ip_address' => request()->ip(),
@@ -268,7 +268,7 @@ class AdminSessionsShow extends Controller
     {
         // 각 세션에 대해 검증
         foreach ($ids as $id) {
-            $session = \Jiny\Admin\App\Models\AdminUserSession::find($id);
+            $session = \Jiny\Admin\Models\AdminUserSession::find($id);
 
             if ($session && $session->session_id === session()->getId()) {
                 return '현재 사용 중인 세션은 삭제할 수 없습니다.';
@@ -277,9 +277,9 @@ class AdminSessionsShow extends Controller
 
         // 삭제 로그 기록
         foreach ($ids as $id) {
-            $session = \Jiny\Admin\App\Models\AdminUserSession::find($id);
+            $session = \Jiny\Admin\Models\AdminUserSession::find($id);
             if ($session) {
-                \Jiny\Admin\App\Models\AdminUserLog::log('session_deleted', auth()->user(), [
+                \Jiny\Admin\Models\AdminUserLog::log('session_deleted', auth()->user(), [
                     'deleted_session_id' => $session->session_id,
                     'deleted_user_id' => $session->user_id,
                     'deleted_user_email' => $session->user->email ?? 'Unknown',

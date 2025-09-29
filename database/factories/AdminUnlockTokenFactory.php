@@ -12,7 +12,7 @@ use Illuminate\Support\Str;
  * 
  * 테스트를 위한 잠금 해제 토큰 데이터를 생성합니다.
  * 
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\Jiny\Admin\App\Models\AdminUnlockToken>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\Jiny\Admin\Models\AdminUnlockToken>
  */
 class AdminUnlockTokenFactory extends Factory
 {

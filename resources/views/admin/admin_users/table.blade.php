@@ -255,7 +255,7 @@
                 </td>
                 <td class="px-3 py-2.5 whitespace-nowrap">
                     @php
-                        $user = \Jiny\Admin\App\Models\User::find($item->id);
+                        $user = \Jiny\Admin\Models\User::find($item->id);
                         $passwordStatus = $user ? $user->password_expiry_status : 'active';
                         $daysUntilExpiry = $user ? $user->days_until_password_expiry : null;
                     @endphp

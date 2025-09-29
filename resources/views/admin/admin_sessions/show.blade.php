@@ -245,7 +245,7 @@
     </div>
     <div class="p-4">
         @php
-            $logs = \Jiny\Admin\App\Models\AdminUserLog::where('user_id', $data['user_id'])
+            $logs = \Jiny\Admin\Models\AdminUserLog::where('user_id', $data['user_id'])
                 ->where('session_id', $data['session_id'])
                 ->orderBy('created_at', 'desc')
                 ->limit(10)

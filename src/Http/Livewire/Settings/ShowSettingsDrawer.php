@@ -3,7 +3,7 @@
 namespace Jiny\Admin\Http\Livewire\Settings;
 
 use Illuminate\Support\Facades\File;
-use Jiny\admin\App\Services\JsonConfigService;
+use Jiny\Admin\Services\JsonConfigService;
 use Livewire\Component;
 
 /**

@@ -4,7 +4,7 @@ namespace Jiny\Admin\Http\Controllers\Admin\AdminUsertype;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Jiny\admin\App\Services\JsonConfigService;
+use Jiny\Admin\Services\JsonConfigService;
 
 class AdminUsertype extends Controller
 {

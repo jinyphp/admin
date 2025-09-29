@@ -7,7 +7,7 @@
                 name="provider_id">
             <option value="">기본 제공업체 사용</option>
             @php
-                $providers = \Jiny\Admin\App\Models\AdminSmsProvider::where('is_active', true)
+                $providers = \Jiny\Admin\Models\AdminSmsProvider::where('is_active', true)
                     ->orderBy('priority', 'desc')
                     ->get();
             @endphp

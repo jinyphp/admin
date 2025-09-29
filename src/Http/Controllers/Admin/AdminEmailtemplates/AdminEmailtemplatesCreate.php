@@ -133,7 +133,7 @@ class AdminEmailTemplatesCreate extends Controller
             // 중복 체크 및 유니크한 slug 생성
             $originalSlug = $slug;
             $count = 1;
-            while (\Jiny\Admin\App\Models\AdminEmailTemplate::where('slug', $slug)->exists()) {
+            while (\Jiny\Admin\Models\AdminEmailTemplate::where('slug', $slug)->exists()) {
                 $slug = $originalSlug . '-' . $count;
                 $count++;
             }

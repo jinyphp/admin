@@ -17,7 +17,7 @@
     },
     "table": {
         "name": "admin_email_logs",
-        "model": "\\Jiny\\Admin\\App\\Models\\AdminEmailLog",
+        "model": "\\Jiny\\Admin\\Models\\AdminEmailLog",
         "primaryKey": "id",
         "timestamps": true,
         "softDeletes": false,

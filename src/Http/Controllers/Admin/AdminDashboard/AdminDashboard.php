@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 use Jiny\Admin\Models\AdminPasswordLog;
 use Jiny\Admin\Models\AdminUserLog;
 use Jiny\Admin\Models\AdminUserSession;
-use Jiny\admin\App\Services\JsonConfigService;
+use Jiny\Admin\Services\JsonConfigService;
 
 /**
  * 관리자 대시보드 컨트롤러

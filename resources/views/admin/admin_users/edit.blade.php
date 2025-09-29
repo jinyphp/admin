@@ -119,7 +119,7 @@
                 <h4 class="text-xs font-medium text-gray-700">2차 인증 (2FA)</h4>
                 @if(isset($form['id']))
                     @php
-                        $user = \Jiny\Admin\App\Models\User::find($form['id']);
+                        $user = \Jiny\Admin\Models\User::find($form['id']);
                     @endphp
                     @if($user && $user->two_factor_enabled)
                         <p class="text-[10px] text-green-600 mt-0.5">

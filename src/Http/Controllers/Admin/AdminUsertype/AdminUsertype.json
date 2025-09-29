@@ -18,7 +18,7 @@
     },
     "table": {
         "name": "admin_user_types",
-        "model": "\\Jiny\\Admin\\App\\Models\\AdminUsertype",
+        "model": "\\Jiny\\Admin\\Models\\AdminUsertype",
         "primaryKey": "id",
         "timestamps": true,
         "softDeletes": false,

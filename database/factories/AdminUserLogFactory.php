@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\Jiny\Admin\App\Models\AdminUserLog>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\Jiny\Admin\Models\AdminUserLog>
  */
 class AdminUserLogFactory extends Factory
 {

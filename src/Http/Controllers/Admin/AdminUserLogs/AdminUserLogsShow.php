@@ -5,7 +5,7 @@ namespace Jiny\Admin\Http\Controllers\Admin\AdminUserLogs;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Jiny\Admin\Models\AdminUserLog;
-use Jiny\admin\App\Services\JsonConfigService;
+use Jiny\Admin\Services\JsonConfigService;
 
 /**
  * AdminUserLogs Show Controller
