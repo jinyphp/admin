@@ -1,0 +1,320 @@
+{
+    "title": "SMS 제공업체 관리",
+    "subtitle": "SMS 발송을 위한 제공업체 설정 관리",
+    "description": "Vonage, Twilio 등 SMS 발송 업체의 API 키와 설정을 관리합니다.",
+    "route": {
+        "name": "admin.sms.provider",
+        "prefix": "admin/sms/provider",
+        "actions": {
+            "index": "index",
+            "create": "create",
+            "store": "store",
+            "show": "show",
+            "edit": "edit",
+            "update": "update",
+            "destroy": "destroy"
+        }
+    },
+    "table": {
+        "name": "admin_sms_providers",
+        "model": "\\Jiny\\Admin\\App\\Models\\AdminSmsProvider",
+        "primaryKey": "id",
+        "timestamps": true,
+        "softDeletes": false,
+        "where": {
+            "default": [],
+            "conditions": []
+        },
+        "casts": {
+            "config": "array",
+            "is_active": "boolean",
+            "is_default": "boolean"
+        }
+    },
+    "template": {
+        "layout": "jiny-admin::layouts.admin",
+        "index": "jiny-admin::template.index",
+        "show": "jiny-admin::template.show",
+        "create": "jiny-admin::template.create",
+        "edit": "jiny-admin::template.edit"
+    },
+    "index": {
+        "tableLayoutPath": "jiny-admin::template.livewire.admin-table",
+        "tablePath": "jiny-admin::admin.admin_sms_provider.table",
+        "searchLayoutPath": "jiny-admin::template.livewire.admin-search",
+        "searchFormPath": "jiny-admin::admin.admin_sms_provider.search",
+        "paging": 20,
+        "searchable": [
+            "provider_name",
+            "description",
+            "from_number"
+        ],
+        "sortable": [
+            "id",
+            "provider_name",
+            "is_active",
+            "is_default",
+            "priority",
+            "sent_count",
+            "last_used_at",
+            "created_at"
+        ],
+        "filterable": [
+            "is_active",
+            "is_default"
+        ],
+        "heading": {
+            "title": "SMS 제공업체 목록",
+            "description": "등록된 SMS 발송 업체를 관리합니다."
+        },
+        "features": {
+            "enableCreate": true,
+            "enableDelete": true,
+            "enableEdit": true,
+            "enableSearch": true,
+            "enableSort": true,
+            "enablePagination": true,
+            "enableBulkActions": true,
+            "enableExport": false,
+            "enableImport": false,
+            "enableStatusToggle": true,
+            "enableSettingsDrawer": true
+        },
+        "pagination": {
+            "perPage": "10",
+            "perPageOptions": [10, 25, 50, 100]
+        },
+        "sorting": {
+            "default": "priority",
+            "direction": "desc"
+        },
+        "search": {
+            "placeholder": "제공업체명, 발신번호 검색...",
+            "debounce": 300
+        },
+        "filters": {
+            "is_active": {
+                "label": "활성화 상태",
+                "options": {
+                    "": "전체",
+                    "1": "활성",
+                    "0": "비활성"
+                }
+            },
+            "is_default": {
+                "label": "기본 업체",
+                "options": {
+                    "": "전체",
+                    "1": "기본",
+                    "0": "일반"
+                }
+            }
+        },
+        "table": {
+            "columns": {
+                "checkbox": {
+                    "visible": true,
+                    "width": "50px"
+                },
+                "id": {
+                    "label": "ID",
+                    "visible": true,
+                    "sortable": true,
+                    "width": "80px"
+                },
+                "provider_name": {
+                    "label": "제공업체",
+                    "visible": true,
+                    "sortable": true,
+                    "searchable": true
+                },
+                "from_number": {
+                    "label": "발신번호",
+                    "visible": true,
+                    "searchable": true
+                },
+                "is_active": {
+                    "label": "활성화",
+                    "visible": true,
+                    "sortable": true,
+                    "toggleable": true
+                },
+                "is_default": {
+                    "label": "기본",
+                    "visible": true,
+                    "sortable": true,
+                    "toggleable": true
+                },
+                "sent_count": {
+                    "label": "발송건수",
+                    "visible": true,
+                    "sortable": true,
+                    "responsive": "md"
+                },
+                "balance": {
+                    "label": "잔액",
+                    "visible": true,
+                    "responsive": "lg",
+                    "format": "currency"
+                },
+                "last_used_at": {
+                    "label": "마지막 사용",
+                    "visible": true,
+                    "sortable": true,
+                    "responsive": "md",
+                    "format": "Y-m-d H:i"
+                },
+                "actions": {
+                    "label": "작업",
+                    "visible": true,
+                    "width": "150px"
+                }
+            }
+        }
+    },
+    "create": {
+        "buttonText": "새 제공업체 추가",
+        "heading": {
+            "title": "SMS 제공업체 등록",
+            "description": "새로운 SMS 발송 업체를 등록합니다."
+        },
+        "enableContinueCreate": true,
+        "enableListButton": true,
+        "enableSettingsDrawer": true,
+        "createLayoutPath": "jiny-admin::template.livewire.admin-create",
+        "formPath": "jiny-admin::admin.admin_sms_provider.create",
+        "formLayout": "vertical"
+    },
+    "edit": {
+        "heading": {
+            "title": "SMS 제공업체 수정",
+            "description": "제공업체 정보를 수정합니다."
+        },
+        "enableDelete": true,
+        "enableListButton": true,
+        "enableDetailButton": true,
+        "enableSettingsDrawer": true,
+        "editLayoutPath": "jiny-admin::template.livewire.admin-edit",
+        "formPath": "jiny-admin::admin.admin_sms_provider.edit",
+        "formLayout": "vertical"
+    },
+    "show": {
+        "heading": {
+            "title": "SMS 제공업체 상세",
+            "description": "제공업체 정보를 확인합니다."
+        },
+        "enableEdit": true,
+        "enableDelete": true,
+        "enableCreate": true,
+        "enableListButton": true,
+        "enableSettingsDrawer": true,
+        "showLayoutPath": "jiny-admin::template.livewire.admin-show",
+        "showPath": "jiny-admin::admin.admin_sms_provider.show",
+        "display": {
+            "datetimeFormat": "Y-m-d H:i:s",
+            "booleanLabels": {
+                "true": "활성",
+                "false": "비활성"
+            }
+        }
+    },
+    "destroy": {
+        "enableSoftDelete": false,
+        "enableTransaction": true,
+        "requireConfirmation": true,
+        "confirmation": {
+            "message": "이 제공업체를 삭제하시겠습니까?"
+        },
+        "messages": {
+            "success": "제공업체가 삭제되었습니다.",
+            "error": "삭제 중 오류가 발생했습니다: %s",
+            "confirmRequired": "삭제 확인이 필요합니다."
+        }
+    },
+    "store": {
+        "enableTransaction": true,
+        "defaults": {
+            "is_active": false,
+            "is_default": false,
+            "priority": 0,
+            "sent_count": 0
+        },
+        "fillable": [
+            "provider_name",
+            "api_key",
+            "api_secret",
+            "from_number",
+            "from_name",
+            "config",
+            "is_active",
+            "is_default",
+            "priority",
+            "description"
+        ],
+        "messages": {
+            "success": "제공업체가 등록되었습니다.",
+            "error": "등록 중 오류가 발생했습니다.",
+            "continueSuccess": "제공업체가 등록되었습니다. 계속 추가할 수 있습니다."
+        },
+        "validation": {
+            "rules": {
+                "provider_name": "required|string|max:255",
+                "api_key": "required|string|max:255",
+                "api_secret": "required|string|max:255",
+                "from_number": "nullable|string|max:20",
+                "from_name": "nullable|string|max:50",
+                "description": "nullable|string",
+                "is_active": "boolean",
+                "is_default": "boolean",
+                "priority": "nullable|integer"
+            },
+            "messages": {
+                "provider_name.required": "제공업체명은 필수입니다.",
+                "api_key.required": "API 키는 필수입니다.",
+                "api_secret.required": "API 시크릿은 필수입니다."
+            }
+        }
+    },
+    "update": {
+        "enableTransaction": true,
+        "trackChanges": true,
+        "redirects": {
+            "success": "show",
+            "error": "edit"
+        },
+        "fillable": [
+            "provider_name",
+            "api_key",
+            "api_secret",
+            "from_number",
+            "from_name",
+            "config",
+            "is_active",
+            "is_default",
+            "priority",
+            "description"
+        ],
+        "messages": {
+            "success": "제공업체 정보가 수정되었습니다.",
+            "error": "수정 중 오류가 발생했습니다."
+        },
+        "validation": {
+            "rules": {
+                "provider_name": "required|string|max:255",
+                "api_key": "required|string|max:255",
+                "api_secret": "required|string|max:255",
+                "from_number": "nullable|string|max:20",
+                "from_name": "nullable|string|max:50",
+                "description": "nullable|string",
+                "is_active": "boolean",
+                "is_default": "boolean",
+                "priority": "nullable|integer"
+            },
+            "messages": {
+                "provider_name.required": "제공업체명은 필수입니다.",
+                "api_key.required": "API 키는 필수입니다.",
+                "api_secret.required": "API 시크릿은 필수입니다."
+            }
+        }
+    }
+}

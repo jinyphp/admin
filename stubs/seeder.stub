@@ -1,0 +1,66 @@
+<?php
+
+namespace Database\Seeders;
+
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
+
+class Admin{{Feature}}Seeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     */
+    public function run(): void
+    {
+        $now = Carbon::now();
+        
+        // Sample data for {{feature}}
+        $data = [
+            [
+                'title' => '첫 번째 {{Feature}}',
+                'description' => '{{Feature}} 기능 테스트를 위한 첫 번째 샘플 데이터입니다.',
+                'enable' => true,
+                'pos' => 1,
+                'created_at' => $now,
+                'updated_at' => $now,
+            ],
+            [
+                'title' => '두 번째 {{Feature}}',
+                'description' => '{{Feature}} 기능 테스트를 위한 두 번째 샘플 데이터입니다.',
+                'enable' => true,
+                'pos' => 2,
+                'created_at' => $now,
+                'updated_at' => $now,
+            ],
+            [
+                'title' => '비활성화된 {{Feature}}',
+                'description' => '비활성화 상태를 테스트하기 위한 {{Feature}} 데이터입니다.',
+                'enable' => false,
+                'pos' => 3,
+                'created_at' => $now,
+                'updated_at' => $now,
+            ],
+            [
+                'title' => '네 번째 {{Feature}}',
+                'description' => '추가 테스트를 위한 {{Feature}} 샘플 데이터입니다.',
+                'enable' => true,
+                'pos' => 4,
+                'created_at' => $now,
+                'updated_at' => $now,
+            ],
+            [
+                'title' => '다섯 번째 {{Feature}}',
+                'description' => '페이지네이션 테스트를 위한 {{Feature}} 데이터입니다.',
+                'enable' => true,
+                'pos' => 5,
+                'created_at' => $now,
+                'updated_at' => $now,
+            ],
+        ];
+        
+        DB::table('{{table}}')->insert($data);
+        
+        $this->command->info('Admin{{Feature}} seeder executed successfully.');
+    }
+}

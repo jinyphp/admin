@@ -1,0 +1,281 @@
+{
+    "controllerClass": "\\Jiny\\Admin\\App\\Http\\Controllers\\Admin\\AdminUsertype\\AdminUsertype",
+    "title": "관리자 회원 등급",
+    "subtitle": "관리자 권한 등급을 관리합니다",
+    "description": "Usertype management system with CRUD operations.",
+    "route": {
+        "name": "admin.user.type",
+        "prefix": "admin.user.type",
+        "actions": {
+            "index": "index",
+            "create": "create",
+            "store": "store",
+            "show": "show",
+            "edit": "edit",
+            "update": "update",
+            "destroy": "destroy"
+        }
+    },
+    "table": {
+        "name": "admin_user_types",
+        "model": "\\Jiny\\Admin\\App\\Models\\AdminUsertype",
+        "primaryKey": "id",
+        "timestamps": true,
+        "softDeletes": false,
+        "where": {
+            "default": [],
+            "conditions": []
+        },
+        "casts": {
+            "enable": "boolean"
+        }
+    },
+    "template": {
+        "layout": "jiny-admin::layouts.admin",
+        "index": "jiny-admin::template.index",
+        "show": "jiny-admin::template.show",
+        "create": "jiny-admin::template.create",
+        "edit": "jiny-admin::template.edit"
+    },
+    "index": {
+        "tableLayoutPath": "jiny-admin::template.livewire.admin-table",
+        "tablePath": "jiny-admin::admin.admin_usertype.table",
+        "searchLayoutPath": "jiny-admin::template.livewire.admin-search",
+        "searchFormPath": "jiny-admin::admin.admin_usertype.search",
+        "searchable": [
+            "title",
+            "description"
+        ],
+        "sortable": [
+            "id",
+            "title",
+            "enable",
+            "pos",
+            "created_at",
+            "updated_at"
+        ],
+        "filterable": [
+            "enable"
+        ],
+        "heading": {
+            "title": "관리자 유형 목록",
+            "description": "다양한 관리자의 유형을 관리자 합니다."
+        },
+        "features": {
+            "enableCreate": true,
+            "enableDelete": true,
+            "enableEdit": true,
+            "enableSearch": true,
+            "enableSort": true,
+            "enablePagination": true,
+            "enableBulkActions": true,
+            "enableExport": false,
+            "enableImport": false,
+            "enableStatusToggle": true,
+            "enableSettingsDrawer": true
+        },
+        "pagination": {
+            "perPage": 20,
+            "perPageOptions": [
+                10,
+                25,
+                50,
+                100
+            ]
+        },
+        "sorting": {
+            "default": "created_at",
+            "direction": "desc"
+        },
+        "search": {
+            "placeholder": "Search usertypes...",
+            "debounce": 300
+        },
+        "filters": {
+            "enable": {
+                "label": "Status",
+                "options": {
+                    "": "All",
+                    "1": "Enabled",
+                    "0": "Disabled"
+                }
+            }
+        },
+        "table": {
+            "columns": {
+                "checkbox": {
+                    "visible": true,
+                    "width": "50px"
+                },
+                "id": {
+                    "label": "ID",
+                    "visible": true,
+                    "sortable": true,
+                    "width": "80px"
+                },
+                "title": {
+                    "label": "Title",
+                    "visible": true,
+                    "sortable": true,
+                    "searchable": true
+                },
+                "description": {
+                    "label": "Description",
+                    "visible": true,
+                    "responsive": "lg",
+                    "truncate": 50
+                },
+                "enable": {
+                    "label": "Status",
+                    "visible": true,
+                    "sortable": true,
+                    "toggleable": true
+                },
+                "pos": {
+                    "label": "Position",
+                    "visible": true,
+                    "sortable": true,
+                    "responsive": "md"
+                },
+                "created_at": {
+                    "label": "Created",
+                    "visible": true,
+                    "sortable": true,
+                    "responsive": "md",
+                    "format": "Y-m-d"
+                },
+                "actions": {
+                    "label": "Actions",
+                    "visible": true,
+                    "width": "150px"
+                }
+            }
+        }
+    },
+    "create": {
+        "buttonText": "새 사용자 유형 추가",
+        "heading": {
+            "title": "Create New Usertype",
+            "description": "Add a new usertype to the system"
+        },
+        "enableContinueCreate": true,
+        "enableListButton": true,
+        "enableSettingsDrawer": true,
+        "createLayoutPath": "jiny-admin::template.livewire.admin-create",
+        "formPath": "jiny-admin::admin.admin_usertype.create",
+        "formLayout": "vertical"
+    },
+    "edit": {
+        "heading": {
+            "title": "Edit Usertype",
+            "description": "Update usertype information"
+        },
+        "enableDelete": true,
+        "enableListButton": true,
+        "enableDetailButton": true,
+        "enableSettingsDrawer": true,
+        "editLayoutPath": "jiny-admin::template.livewire.admin-edit",
+        "formPath": "jiny-admin::admin.admin_usertype.edit",
+        "formLayout": "vertical"
+    },
+    "show": {
+        "heading": {
+            "title": "Usertype Details",
+            "description": "View usertype information"
+        },
+        "enableEdit": true,
+        "enableDelete": true,
+        "enableCreate": true,
+        "enableListButton": true,
+        "enableSettingsDrawer": true,
+        "showLayoutPath": "jiny-admin::template.livewire.admin-show",
+        "showPath": "jiny-admin::admin.admin_usertype.show",
+        "display": {
+            "datetimeFormat": "Y-m-d H:i:s",
+            "booleanLabels": {
+                "true": "Enabled",
+                "false": "Disabled"
+            }
+        }
+    },
+    "destroy": {
+        "enableSoftDelete": false,
+        "enableTransaction": true,
+        "requireConfirmation": true,
+        "confirmation": {
+            "message": "Are you sure you want to delete this usertype?"
+        },
+        "messages": {
+            "success": "Usertype deleted successfully.",
+            "error": "Error deleting usertype: %s",
+            "confirmRequired": "Delete confirmation required."
+        }
+    },
+    "store": {
+        "enableTransaction": true,
+        "defaults": {
+            "enable": true,
+            "pos": 0
+        },
+        "fillable": [
+            "code",
+            "name",
+            "description",
+            "level",
+            "enable",
+            "pos"
+        ],
+        "messages": {
+            "success": "Usertype created successfully.",
+            "error": "Error creating usertype.",
+            "continueSuccess": "Usertype created. You can continue adding more."
+        },
+        "validation": {
+            "rules": {
+                "code": "required|string|max:50",
+                "name": "required|string|max:255",
+                "description": "nullable|string",
+                "level": "required|integer|min:0|max:100",
+                "enable": "boolean",
+                "pos": "nullable|integer"
+            },
+            "messages": {
+                "code.required": "Code is required.",
+                "name.required": "Name is required."
+            }
+        }
+    },
+    "update": {
+        "enableTransaction": true,
+        "trackChanges": true,
+        "redirects": {
+            "success": "show",
+            "error": "edit"
+        },
+        "fillable": [
+            "name",
+            "description",
+            "level",
+            "enable",
+            "pos"
+        ],
+        "messages": {
+            "success": "Usertype updated successfully.",
+            "error": "Error updating usertype."
+        },
+        "validation": {
+            "rules": {
+                "code": "required|string|max:50",
+                "name": "required|string|max:255",
+                "description": "nullable|string",
+                "level": "required|integer|min:0|max:100",
+                "enable": "boolean",
+                "pos": "nullable|integer"
+            },
+            "messages": {
+                "code.required": "Code is required.",
+                "name.required": "Name is required."
+            }
+        }
+    }
+}

@@ -1,0 +1,105 @@
+{
+    "controllerClass": "\\Jiny\\Admin\\App\\Http\\Controllers\\Admin\\AdminStats\\AdminStats",
+    "title": "사용자 통계",
+    "subtitle": "브라우저 및 기기 사용 분석",
+    "description": "Comprehensive statistics dashboard for browser, device, and user activity analysis",
+    "route": {
+        "name": "admin.user.stats",
+        "prefix": "admin/user/stats"
+    },
+    "template": {
+        "layout": "jiny-admin::layouts.admin",
+        "index": "jiny-admin::admin.admin_stats.index"
+    },
+    "features": {
+        "enableExport": true,
+        "enableRefresh": true,
+        "enableDateFilter": true,
+        "enablePrint": true
+    },
+    "periods": {
+        "default": "7days",
+        "options": {
+            "24hours": "최근 24시간",
+            "7days": "최근 7일",
+            "30days": "최근 30일",
+            "90days": "최근 90일"
+        }
+    },
+    "charts": {
+        "browser_usage": {
+            "type": "pie",
+            "title": "Browser Usage",
+            "colors": ["#4F46E5", "#10B981", "#F59E0B", "#EF4444", "#8B5CF6", "#EC4899"]
+        },
+        "operating_systems": {
+            "type": "donut",
+            "title": "Operating Systems",
+            "colors": ["#0EA5E9", "#22C55E", "#A855F7", "#F97316", "#6366F1"]
+        },
+        "device_types": {
+            "type": "bar",
+            "title": "Device Types",
+            "colors": ["#3B82F6", "#10B981", "#F59E0B"]
+        },
+        "peak_usage": {
+            "type": "line",
+            "title": "Peak Usage Times",
+            "color": "#4F46E5"
+        },
+        "login_methods": {
+            "type": "pie",
+            "title": "Login Methods",
+            "colors": ["#3B82F6", "#10B981"]
+        },
+        "trends": {
+            "type": "area",
+            "title": "Login Trends",
+            "color": "#4F46E5"
+        }
+    },
+    "display": {
+        "grid": {
+            "columns": "grid-cols-1 md:grid-cols-2 lg:grid-cols-4"
+        },
+        "cards": {
+            "shadow": "shadow-sm",
+            "rounded": "rounded-lg",
+            "padding": "p-6"
+        },
+        "icons": {
+            "browser": {
+                "chrome": "🌐",
+                "firefox": "🦊",
+                "safari": "🧭",
+                "edge": "🌊",
+                "opera": "🎭",
+                "unknown": "❓"
+            },
+            "device": {
+                "desktop": "🖥️",
+                "mobile": "📱",
+                "tablet": "📱",
+                "tv": "📺",
+                "watch": "⌚",
+                "unknown": "❓"
+            },
+            "os": {
+                "windows": "🪟",
+                "macos": "🍎",
+                "linux": "🐧",
+                "android": "🤖",
+                "ios": "📱",
+                "unknown": "❓"
+            }
+        }
+    },
+    "export": {
+        "formats": ["csv", "excel", "pdf"],
+        "filename": "user_statistics"
+    },
+    "refresh": {
+        "interval": 60000,
+        "auto": false
+    }
+}

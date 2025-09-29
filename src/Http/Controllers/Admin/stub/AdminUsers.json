@@ -1,0 +1,289 @@
+{
+    "title": "사용자 관리",
+    "subtitle": "시스템 사용자를 관리합니다",
+    "description": "User management system with CRUD operations.",
+    "route": {
+        "name": "admin.users",
+        "prefix": "admin.users",
+        "actions": {
+            "index": "index",
+            "create": "create",
+            "store": "store",
+            "show": "show",
+            "edit": "edit",
+            "update": "update",
+            "destroy": "destroy"
+        }
+    },
+    "table": {
+        "name": "users",
+        "model": "\\Jiny\\Admin\\App\\Models\\User",
+        "primaryKey": "id",
+        "timestamps": true,
+        "softDeletes": false,
+        "fillable": [
+            "name",
+            "email",
+            "password",
+            "isAdmin",
+            "utype"
+        ],
+        "guarded": ["id", "created_at", "updated_at"],
+        "hidden": ["password", "remember_token"],
+        "where": {
+            "default": [],
+            "conditions": []
+        },
+        "casts": {
+            "isAdmin": "boolean",
+            "email_verified_at": "datetime",
+            "created_at": "datetime:Y-m-d H:i:s",
+            "updated_at": "datetime:Y-m-d H:i:s"
+        }
+    },
+    "template": {
+        "layout": "jiny-admin::layouts.admin",
+        "index": "jiny-admin::template.index",
+        "show": "jiny-admin::template.show",
+        "create": "jiny-admin::template.create",
+        "edit": "jiny-admin::template.edit"
+    },
+    "index": {
+        "tableLayoutPath": "jiny-admin::template.livewire.admin-table",
+        "tablePath": "jiny-admin::admin.admin_users.table",
+        "searchLayoutPath": "jiny-admin::template.livewire.admin-search",
+        "searchFormPath": "jiny-admin::admin.admin_users.search",
+        "searchable": [
+            "name",
+            "email"
+        ],
+        "sortable": [
+            "id",
+            "name",
+            "email",
+            "isAdmin",
+            "utype",
+            "created_at",
+            "updated_at"
+        ],
+        "filterable": [
+            "isAdmin",
+            "utype"
+        ],
+        "heading": {
+            "title": "User List",
+            "description": "Manage system users..."
+        },
+        "features": {
+            "enableCreate": true,
+            "enableDelete": true,
+            "enableEdit": true,
+            "enableSearch": true,
+            "enableSort": true,
+            "enablePagination": true,
+            "enableBulkActions": true,
+            "enableExport": false,
+            "enableImport": false,
+            "enableStatusToggle": true,
+            "enableSettingsDrawer": true
+        },
+        "pagination": {
+            "perPage": 20,
+            "options": [10, 25, 50, 100]
+        },
+        "sorting": {
+            "default": "created_at",
+            "direction": "desc"
+        },
+        "search": {
+            "placeholder": "Search users...",
+            "debounce": 300
+        },
+        "filters": {
+            "isAdmin": {
+                "label": "Admin Status",
+                "options": {
+                    "": "All",
+                    "1": "Admin",
+                    "0": "Regular User"
+                }
+            },
+            "utype": {
+                "label": "User Type",
+                "options": {
+                    "": "All"
+                }
+            }
+        },
+        "table": {
+            "columns": {
+                "checkbox": {
+                    "visible": true,
+                    "width": "50px"
+                },
+                "id": {
+                    "label": "ID",
+                    "visible": true,
+                    "sortable": true,
+                    "width": "80px"
+                },
+                "name": {
+                    "label": "Name",
+                    "visible": true,
+                    "sortable": true,
+                    "searchable": true
+                },
+                "email": {
+                    "label": "Email",
+                    "visible": true,
+                    "sortable": true,
+                    "searchable": true
+                },
+                "isAdmin": {
+                    "label": "Admin",
+                    "visible": true,
+                    "sortable": true,
+                    "toggleable": true
+                },
+                "utype": {
+                    "label": "User Type",
+                    "visible": true,
+                    "sortable": true,
+                    "responsive": "md",
+                    "linkRoute": "admin.user.type"
+                },
+                "email_verified_at": {
+                    "label": "Verified",
+                    "visible": true,
+                    "responsive": "lg",
+                    "format": "Y-m-d"
+                },
+                "created_at": {
+                    "label": "Created",
+                    "visible": true,
+                    "sortable": true,
+                    "responsive": "md",
+                    "format": "Y-m-d"
+                },
+                "actions": {
+                    "label": "Actions",
+                    "visible": true,
+                    "width": "150px"
+                }
+            }
+        }
+    },
+    "create": {
+        "heading": {
+            "title": "Create New User",
+            "description": "Add a new user to the system"
+        },
+        "createLayoutPath": "jiny-admin::template.livewire.admin-create",
+        "formPath": "jiny-admin::admin.admin_users.create",
+        "formLayout": "vertical",
+        "buttonText": "새 사용자 추가",
+        "enableContinueCreate": true,
+        "enableListButton": true,
+        "enableSettingsDrawer": true
+
+    },
+    "edit": {
+        "heading": {
+            "title": "Edit User",
+            "description": "Update user information"
+        },
+        "enableDelete": true,
+        "enableListButton": true,
+        "enableDetailButton": true,
+        "enableSettingsDrawer": true,
+        "editLayoutPath": "jiny-admin::template.livewire.admin-edit",
+        "formPath": "jiny-admin::admin.admin_users.edit",
+        "formLayout": "vertical"
+    },
+    "show": {
+        "heading": {
+            "title": "User Details",
+            "description": "View user information"
+        },
+        "showLayoutPath": "jiny-admin::template.livewire.admin-show",
+        "showPath": "jiny-admin::admin.admin_users.show",
+        "enableEdit": true,
+        "enableDelete": true,
+        "enableCreate": true,
+        "enableListButton": true,
+        "enableSettingsDrawer": true,
+        "display": {
+            "datetimeFormat": "Y-m-d H:i:s",
+            "booleanLabels": {
+                "true": "Yes",
+                "false": "No"
+            }
+        }
+    },
+    "destroy": {
+        "enableSoftDelete": false,
+        "enableTransaction": true,
+        "requireConfirmation": true,
+        "confirmation": {
+            "message": "Are you sure you want to delete this user?"
+        },
+        "messages": {
+            "success": "User deleted successfully.",
+            "error": "Error deleting user: %s",
+            "confirmRequired": "Delete confirmation required."
+        }
+    },
+    "store": {
+        "enableTransaction": true,
+        "defaults": {
+            "isAdmin": false
+        },
+        "messages": {
+            "success": "User created successfully.",
+            "error": "Error creating user.",
+            "continueSuccess": "User created. You can continue adding more."
+        },
+        "validation": {
+            "rules": {
+                "name": "required|string|max:255",
+                "email": "required|email|unique:users,email",
+                "password": "required|string|min:8|confirmed",
+                "isAdmin": "boolean",
+                "utype": "nullable|string|exists:admin_user_types,code"
+            },
+            "messages": {
+                "name.required": "Name is required.",
+                "email.required": "Email is required.",
+                "email.unique": "This email is already registered.",
+                "password.required": "Password is required.",
+                "password.min": "Password must be at least 8 characters."
+            }
+        }
+    },
+    "update": {
+        "enableTransaction": true,
+        "trackChanges": true,
+        "redirects": {
+            "success": "show",
+            "error": "edit"
+        },
+        "messages": {
+            "success": "User updated successfully.",
+            "error": "Error updating user."
+        },
+        "validation": {
+            "rules": {
+                "name": "required|string|max:255",
+                "email": "required|email",
+                "password": "nullable|string|min:8|confirmed",
+                "isAdmin": "boolean",
+                "utype": "nullable|string|exists:admin_user_types,code"
+            },
+            "messages": {
+                "name.required": "Name is required.",
+                "email.required": "Email is required.",
+                "password.min": "Password must be at least 8 characters when provided."
+            }
+        }
+    }
+}

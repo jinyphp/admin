@@ -1,0 +1,307 @@
+{
+    "title": "이메일 추적 관리",
+    "subtitle": "이메일 열람 및 클릭 추적",
+    "description": "이메일 캠페인의 성과를 실시간으로 모니터링하고 분석합니다",
+    "route": {
+        "name": "admin.mail.tracking",
+        "prefix": "admin/mail/tracking",
+        "actions": {
+            "index": "index",
+            "create": "create",
+            "store": "store",
+            "show": "show",
+            "edit": "edit",
+            "update": "update",
+            "destroy": "destroy"
+        }
+    },
+    "table": {
+        "name": "admin_email_tracking",
+        "model": "\\Jiny\\Admin\\App\\Models\\AdminEmailTracking",
+        "primaryKey": "id",
+        "timestamps": true,
+        "softDeletes": false,
+        "fillable": [
+            "email_log_id", "event_type", "tracking_token", "link_url", "link_name",
+            "link_position", "ip_address", "user_agent", "device_type", "browser",
+            "os", "country_code", "city", "timezone", "metadata", "referrer",
+            "count", "tracked_at", "first_tracked_at"
+        ],
+        "guarded": ["id"],
+        "hidden": ["tracking_token"],
+        "where": {
+            "default": [],
+            "conditions": []
+        },
+        "casts": {
+            "metadata": "array",
+            "tracked_at": "datetime",
+            "first_tracked_at": "datetime"
+        }
+    },
+    "template": {
+        "layout": "jiny-admin::layouts.admin",
+        "index": "jiny-admin::template.index",
+        "show": "jiny-admin::template.show",
+        "create": "jiny-admin::template.create",
+        "edit": "jiny-admin::template.edit"
+    },
+    "index": {
+        "tableLayoutPath": "jiny-admin::template.livewire.admin-table",
+        "tablePath": "jiny-admin::admin.admin_emailtracking.table",
+        "searchLayoutPath": "jiny-admin::template.livewire.admin-search",
+        "searchFormPath": "jiny-admin::admin.admin_emailtracking.search",
+        "searchable": true,
+        "sortable": true,
+        "filterable": true,
+        "heading": {
+            "title": "이메일 추적 목록",
+            "description": "발송된 이메일의 열람 및 클릭 추적 데이터를 확인합니다"
+        },
+        "features": {
+            "enableCreate": false,
+            "enableDelete": true,
+            "enableEdit": false,
+            "enableSearch": true,
+            "enableSort": true,
+            "enablePagination": true,
+            "enableBulkActions": true,
+            "enableExport": true,
+            "enableImport": false,
+            "enableStatusToggle": false,
+            "enableSettingsDrawer": true
+        },
+        "pagination": {
+            "perPage": 20,
+            "options": [10, 20, 50, 100]
+        },
+        "sorting": {
+            "default": "tracked_at",
+            "direction": "desc"
+        },
+        "search": {
+            "placeholder": "이메일, IP, 이벤트 타입으로 검색...",
+            "debounce": 300
+        },
+        "filters": [
+            {
+                "key": "event_type",
+                "label": "이벤트 타입",
+                "type": "select",
+                "options": {
+                    "open": "열람",
+                    "click": "클릭",
+                    "bounce": "반송",
+                    "unsubscribe": "구독취소",
+                    "spam": "스팸신고"
+                }
+            },
+            {
+                "key": "device_type",
+                "label": "디바이스",
+                "type": "select",
+                "options": {
+                    "desktop": "데스크톱",
+                    "mobile": "모바일",
+                    "tablet": "태블릿"
+                }
+            },
+            {
+                "key": "date_range",
+                "label": "기간",
+                "type": "daterange"
+            }
+        ],
+        "table": {
+            "columns": [
+                {
+                    "key": "id",
+                    "label": "ID",
+                    "sortable": true,
+                    "visible": false
+                },
+                {
+                    "key": "email_log_id",
+                    "label": "이메일",
+                    "sortable": true,
+                    "searchable": true,
+                    "relation": "emailLog",
+                    "display": "emailLog.to_email"
+                },
+                {
+                    "key": "event_type",
+                    "label": "이벤트",
+                    "sortable": true,
+                    "searchable": true,
+                    "badge": true,
+                    "badgeColors": {
+                        "open": "bg-blue-100 text-blue-800",
+                        "click": "bg-green-100 text-green-800",
+                        "bounce": "bg-red-100 text-red-800",
+                        "unsubscribe": "bg-yellow-100 text-yellow-800",
+                        "spam": "bg-gray-100 text-gray-800"
+                    }
+                },
+                {
+                    "key": "link_url",
+                    "label": "클릭 링크",
+                    "sortable": false,
+                    "searchable": true,
+                    "truncate": 50,
+                    "showOnlyWhen": "event_type:click"
+                },
+                {
+                    "key": "device_type",
+                    "label": "디바이스",
+                    "sortable": true,
+                    "icon": true,
+                    "iconMap": {
+                        "desktop": "heroicon-o-computer-desktop",
+                        "mobile": "heroicon-o-device-phone-mobile",
+                        "tablet": "heroicon-o-device-tablet"
+                    }
+                },
+                {
+                    "key": "browser",
+                    "label": "브라우저",
+                    "sortable": true
+                },
+                {
+                    "key": "ip_address",
+                    "label": "IP 주소",
+                    "sortable": true,
+                    "searchable": true
+                },
+                {
+                    "key": "country_code",
+                    "label": "국가",
+                    "sortable": true,
+                    "flag": true
+                },
+                {
+                    "key": "city",
+                    "label": "도시",
+                    "sortable": true
+                },
+                {
+                    "key": "count",
+                    "label": "횟수",
+                    "sortable": true,
+                    "align": "center",
+                    "badge": true
+                },
+                {
+                    "key": "tracked_at",
+                    "label": "추적 시간",
+                    "sortable": true,
+                    "format": "datetime",
+                    "formatString": "Y-m-d H:i:s"
+                }
+            ]
+        }
+    },
+    "create": {
+        "heading": {
+            "title": "추적 데이터 생성",
+            "description": "새로운 추적 데이터를 수동으로 생성합니다"
+        },
+        "createLayoutPath": "jiny-admin::template.livewire.admin-create",
+        "formPath": "jiny-admin::admin.admin_emailtracking.create",
+        "formLayout": "vertical",
+        "buttonText": "추적 데이터 생성",
+        "enableContinueCreate": false,
+        "enableListButton": true,
+        "enableSettingsDrawer": false
+    },
+    "edit": {
+        "heading": {
+            "title": "추적 데이터 수정",
+            "description": "추적 데이터를 수정합니다"
+        },
+        "enableDelete": true,
+        "enableListButton": true,
+        "enableDetailButton": true,
+        "enableSettingsDrawer": false,
+        "editLayoutPath": "jiny-admin::template.livewire.admin-edit",
+        "formPath": "jiny-admin::admin.admin_emailtracking.edit",
+        "formLayout": "vertical"
+    },
+    "show": {
+        "heading": {
+            "title": "추적 상세 정보",
+            "description": "이메일 추적 데이터의 상세 정보를 확인합니다"
+        },
+        "showLayoutPath": "jiny-admin::template.livewire.admin-show",
+        "showPath": "jiny-admin::admin.admin_emailtracking.show",
+        "enableEdit": false,
+        "enableDelete": true,
+        "enableCreate": false,
+        "enableListButton": true,
+        "enableSettingsDrawer": false,
+        "display": {
+            "datetimeFormat": "Y-m-d H:i:s",
+            "booleanLabels": {
+                "true": "예",
+                "false": "아니오"
+            }
+        }
+    },
+    "destroy": {
+        "enableSoftDelete": false,
+        "enableTransaction": true,
+        "requireConfirmation": true,
+        "confirmation": {
+            "message": "이 추적 데이터를 삭제하시겠습니까?"
+        },
+        "messages": {
+            "success": "추적 데이터가 삭제되었습니다.",
+            "error": "추적 데이터 삭제 중 오류가 발생했습니다.",
+            "confirmRequired": "삭제 확인이 필요합니다."
+        }
+    },
+    "store": {
+        "enableTransaction": true,
+        "defaults": {},
+        "messages": {
+            "success": "추적 데이터가 생성되었습니다.",
+            "error": "추적 데이터 생성 중 오류가 발생했습니다.",
+            "continueSuccess": "추적 데이터가 생성되었습니다. 계속 생성하세요."
+        },
+        "validation": {
+            "rules": {
+                "email_log_id": "required|exists:admin_email_logs,id",
+                "event_type": "required|in:open,click,bounce,unsubscribe,spam",
+                "ip_address": "nullable|ip"
+            },
+            "messages": {
+                "email_log_id.required": "이메일 로그를 선택해주세요.",
+                "event_type.required": "이벤트 타입을 선택해주세요.",
+                "ip_address.ip": "유효한 IP 주소를 입력해주세요."
+            }
+        }
+    },
+    "update": {
+        "enableTransaction": true,
+        "trackChanges": true,
+        "redirects": {
+            "success": "show",
+            "error": "edit"
+        },
+        "messages": {
+            "success": "추적 데이터가 수정되었습니다.",
+            "error": "추적 데이터 수정 중 오류가 발생했습니다."
+        },
+        "validation": {
+            "rules": {
+                "email_log_id": "required|exists:admin_email_logs,id",
+                "event_type": "required|in:open,click,bounce,unsubscribe,spam",
+                "ip_address": "nullable|ip"
+            },
+            "messages": {
+                "email_log_id.required": "이메일 로그를 선택해주세요.",
+                "event_type.required": "이벤트 타입을 선택해주세요.",
+                "ip_address.ip": "유효한 IP 주소를 입력해주세요."
+            }
+        }
+    }
+}

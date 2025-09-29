@@ -1,0 +1,213 @@
+{
+    "title": "웹훅 채널 관리",
+    "subtitle": "웹훅 채널을 관리합니다",
+    "description": "Slack, Discord, Teams 등 다양한 웹훅 채널을 설정하고 관리합니다",
+    "route": {
+        "name": "admin.webhook.channels",
+        "prefix": "admin/webhook/channels"
+    },
+    "table": {
+        "name": "admin_webhook_channels",
+        "primaryKey": "id",
+        "timestamps": true,
+        "softDeletes": false
+    },
+    "template": {
+        "layout": "jiny-admin::layouts.admin",
+        "index": "jiny-admin::template.index",
+        "show": "jiny-admin::admin.admin_webhookchannels.show",
+        "create": "jiny-admin::admin.admin_webhookchannels.create",
+        "edit": "jiny-admin::admin.admin_webhookchannels.edit"
+    },
+    "index": {
+        "tableLayoutPath": "jiny-admin::template.livewire.admin-table",
+        "tablePath": "jiny-admin::admin.admin_webhookchannels.table",
+        "searchLayoutPath": "jiny-admin::template.livewire.admin-search",
+        "searchFormPath": "jiny-admin::admin.admin_webhookchannels.search",
+        "searchable": true,
+        "sortable": true,
+        "filterable": true,
+        "heading": {
+            "title": "웹훅 채널 목록",
+            "description": "등록된 웹훅 채널을 관리합니다"
+        },
+        "features": {
+            "enableCreate": true,
+            "enableDelete": true,
+            "enableEdit": true,
+            "enableSearch": true,
+            "enableSort": true,
+            "enablePagination": true,
+            "enableBulkActions": true,
+            "enableExport": false,
+            "enableImport": false,
+            "enableStatusToggle": true,
+            "enableSettingsDrawer": true
+        },
+        "pagination": {
+            "perPage": 10,
+            "options": [10, 25, 50, 100]
+        },
+        "sorting": {
+            "default": "priority",
+            "direction": "asc"
+        },
+        "search": {
+            "placeholder": "채널 이름, 타입, URL 검색...",
+            "debounce": 300
+        },
+        "filters": [
+            {
+                "field": "type",
+                "label": "타입",
+                "type": "select",
+                "options": {
+                    "": "전체",
+                    "slack": "Slack",
+                    "discord": "Discord",
+                    "teams": "Teams",
+                    "custom": "Custom"
+                }
+            },
+            {
+                "field": "is_active",
+                "label": "상태",
+                "type": "select",
+                "options": {
+                    "": "전체",
+                    "1": "활성",
+                    "0": "비활성"
+                }
+            }
+        ],
+        "table": {
+            "columns": [
+                {
+                    "field": "id",
+                    "label": "ID",
+                    "sortable": true,
+                    "width": "60px"
+                },
+                {
+                    "field": "name",
+                    "label": "채널 이름",
+                    "sortable": true,
+                    "searchable": true
+                },
+                {
+                    "field": "type",
+                    "label": "타입",
+                    "sortable": true,
+                    "searchable": true
+                },
+                {
+                    "field": "webhook_url",
+                    "label": "웹훅 URL",
+                    "truncate": 50
+                },
+                {
+                    "field": "is_active",
+                    "label": "상태",
+                    "sortable": true,
+                    "type": "boolean"
+                },
+                {
+                    "field": "priority",
+                    "label": "우선순위",
+                    "sortable": true,
+                    "width": "100px"
+                },
+                {
+                    "field": "created_at",
+                    "label": "생성일",
+                    "sortable": true,
+                    "type": "datetime",
+                    "format": "Y-m-d H:i"
+                }
+            ]
+        }
+    },
+    "create": {
+        "heading": {
+            "title": "새 웹훅 채널 추가",
+            "description": "새로운 웹훅 채널을 추가합니다"
+        },
+        "createLayoutPath": "jiny-admin::template.livewire.admin-create",
+        "formPath": "jiny-admin::admin.admin_webhookchannels.forms.create",
+        "formLayout": "vertical",
+        "buttonText": "채널 추가",
+        "enableContinueCreate": true,
+        "enableListButton": true,
+        "enableSettingsDrawer": true
+    },
+    "edit": {
+        "heading": {
+            "title": "웹훅 채널 수정",
+            "description": "웹훅 채널 정보를 수정합니다"
+        },
+        "enableDelete": true,
+        "enableListButton": true,
+        "enableDetailButton": true,
+        "enableSettingsDrawer": true,
+        "editLayoutPath": "jiny-admin::template.livewire.admin-edit",
+        "formPath": "jiny-admin::admin.admin_webhookchannels.forms.edit",
+        "formLayout": "vertical"
+    },
+    "show": {
+        "heading": {
+            "title": "웹훅 채널 상세",
+            "description": "웹훅 채널 상세 정보"
+        },
+        "showLayoutPath": "jiny-admin::template.livewire.admin-show",
+        "showPath": "jiny-admin::admin.admin_webhookchannels.show",
+        "enableEdit": true,
+        "enableDelete": true,
+        "enableCreate": true,
+        "enableListButton": true,
+        "enableSettingsDrawer": true,
+        "display": {
+            "datetimeFormat": "Y-m-d H:i:s",
+            "booleanLabels": {
+                "true": "활성",
+                "false": "비활성"
+            }
+        }
+    },
+    "destroy": {
+        "enableSoftDelete": false,
+        "enableTransaction": true,
+        "requireConfirmation": true,
+        "confirmation": {
+            "message": "정말로 이 웹훅 채널을 삭제하시겠습니까?"
+        },
+        "messages": {
+            "success": "웹훅 채널이 삭제되었습니다.",
+            "error": "웹훅 채널 삭제 중 오류가 발생했습니다.",
+            "confirmRequired": "삭제 확인이 필요합니다."
+        }
+    },
+    "store": {
+        "enableTransaction": true,
+        "defaults": {
+            "is_active": true,
+            "priority": 0
+        },
+        "messages": {
+            "success": "웹훅 채널이 생성되었습니다.",
+            "error": "웹훅 채널 생성 중 오류가 발생했습니다.",
+            "continueSuccess": "웹훅 채널이 생성되었습니다. 계속해서 추가할 수 있습니다."
+        }
+    },
+    "update": {
+        "enableTransaction": true,
+        "trackChanges": true,
+        "redirects": {
+            "success": "show",
+            "error": "edit"
+        },
+        "messages": {
+            "success": "웹훅 채널이 수정되었습니다.",
+            "error": "웹훅 채널 수정 중 오류가 발생했습니다."
+        }
+    }
+}

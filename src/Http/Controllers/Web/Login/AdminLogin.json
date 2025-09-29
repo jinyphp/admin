@@ -1,0 +1,22 @@
+{
+    "name": "관리자 로그인",
+    "description": "관리자 로그인 페이지 설정",
+    "version": "1.0.0",
+    
+    "viewPath": "jiny-admin::Site.Login.login",
+    
+    "routes": {
+        "dashboard": "admin.dashboard",
+        "login": "admin.login"
+    },
+    
+    "messages": {
+        "admin_required": "관리자 계정으로 로그인해주세요.",
+        "already_logged_in": "이미 로그인되어 있습니다."
+    },
+    
+    "settings": {
+        "auto_redirect": true,
+        "check_admin_type": true
+    }
+}

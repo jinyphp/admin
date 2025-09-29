@@ -1,0 +1,235 @@
+{
+    "title": "IP 추적 관리",
+    "subtitle": "IP별 로그인 시도 및 차단 관리",
+    "description": "관리자 로그인 시도를 IP별로 추적하고 차단을 관리합니다",
+    "route": {
+        "name": "admin.iptracking",
+        "prefix": "admin/iptracking",
+        "actions": {
+            "index": "index",
+            "create": "create",
+            "store": "store",
+            "show": "show",
+            "edit": "edit",
+            "update": "update",
+            "destroy": "destroy"
+        }
+    },
+    "table": {
+        "name": "admin_ip_logs",
+        "model": "\\Jiny\\Admin\\App\\Models\\AdminIptracking",
+        "primaryKey": "id",
+        "timestamps": true,
+        "softDeletes": false,
+        "fillable": ["ip_address", "attempts", "last_attempt_at", "last_success_at", "user_id", "is_blocked", "blocked_until", "metadata"],
+        "guarded": ["id"],
+        "hidden": [],
+        "where": {
+            "default": [],
+            "conditions": []
+        },
+        "casts": {
+            "is_blocked": "boolean",
+            "metadata": "array",
+            "last_attempt_at": "datetime",
+            "last_success_at": "datetime",
+            "blocked_until": "datetime"
+        }
+    },
+    "template": {
+        "layout": "jiny-admin::layouts.admin",
+        "index": "jiny-admin::template.index",
+        "show": "jiny-admin::template.show",
+        "create": "jiny-admin::template.create",
+        "edit": "jiny-admin::template.edit"
+    },
+    "index": {
+        "tableLayoutPath": "jiny-admin::template.livewire.admin-table",
+        "tablePath": "jiny-admin::admin.admin_iptracking.table",
+        "searchLayoutPath": "jiny-admin::template.livewire.admin-search",
+        "searchFormPath": "jiny-admin::admin.admin_iptracking.search",
+        "searchable": ["ip_address"],
+        "sortable": ["ip_address", "attempts", "last_attempt_at", "is_blocked"],
+        "filterable": ["is_blocked"],
+        "heading": {
+            "title": "IP 추적 관리",
+            "description": "IP별 로그인 시도 기록 및 차단 관리"
+        },
+        "features": {
+            "enableCreate": true,
+            "enableDelete": true,
+            "enableEdit": true,
+            "enableSearch": true,
+            "enableSort": true,
+            "enablePagination": true,
+            "enableBulkActions": true,
+            "enableExport": false,
+            "enableImport": false,
+            "enableStatusToggle": true,
+            "enableSettingsDrawer": true
+        },
+        "pagination": {
+            "perPage": 20,
+            "options": [10, 20, 50, 100]
+        },
+        "sorting": {
+            "default": "last_attempt_at",
+            "direction": "desc"
+        },
+        "search": {
+            "placeholder": "IP 주소 검색...",
+            "debounce": 300
+        },
+        "filters": {
+            "is_blocked": {
+                "label": "차단 상태",
+                "type": "select",
+                "options": {
+                    "": "전체",
+                    "1": "차단됨",
+                    "0": "정상"
+                }
+            }
+        },
+        "table": {
+            "columns": {
+                "ip_address": {
+                    "label": "IP 주소",
+                    "sortable": true,
+                    "visible": true
+                },
+                "attempts": {
+                    "label": "시도 횟수",
+                    "sortable": true,
+                    "visible": true
+                },
+                "is_blocked": {
+                    "label": "차단 상태",
+                    "sortable": true,
+                    "visible": true,
+                    "type": "boolean"
+                },
+                "blocked_until": {
+                    "label": "차단 해제 시간",
+                    "sortable": true,
+                    "visible": true,
+                    "format": "datetime"
+                },
+                "last_attempt_at": {
+                    "label": "마지막 시도",
+                    "sortable": true,
+                    "visible": true,
+                    "format": "datetime"
+                },
+                "last_success_at": {
+                    "label": "마지막 성공",
+                    "sortable": false,
+                    "visible": true,
+                    "format": "datetime"
+                }
+            }
+        }
+    },
+    "create": {
+        "heading": {
+            "title": "IP 차단 추가",
+            "description": "새로운 IP를 차단 목록에 추가합니다"
+        },
+        "createLayoutPath": "jiny-admin::template.livewire.admin-create",
+        "formPath": "jiny-admin::admin.admin_iptracking.create",
+        "formLayout": "vertical",
+        "buttonText": "IP 추가",
+        "enableContinueCreate": true,
+        "enableListButton": true,
+        "enableSettingsDrawer": true
+    },
+    "edit": {
+        "heading": {
+            "title": "IP 정보 수정",
+            "description": "IP 차단 정보를 수정합니다"
+        },
+        "enableDelete": true,
+        "enableListButton": true,
+        "enableDetailButton": true,
+        "enableSettingsDrawer": true,
+        "editLayoutPath": "jiny-admin::template.livewire.admin-edit",
+        "formPath": "jiny-admin::admin.admin_iptracking.edit",
+        "formLayout": "vertical"
+    },
+    "show": {
+        "heading": {
+            "title": "IP 상세 정보",
+            "description": "IP 추적 상세 정보를 확인합니다"
+        },
+        "showLayoutPath": "jiny-admin::template.livewire.admin-show",
+        "showPath": "jiny-admin::admin.admin_iptracking.show",
+        "enableEdit": true,
+        "enableDelete": true,
+        "enableCreate": true,
+        "enableListButton": true,
+        "enableSettingsDrawer": true,
+        "display": {
+            "datetimeFormat": "Y-m-d H:i:s",
+            "booleanLabels": {
+                "true": "차단됨",
+                "false": "정상"
+            }
+        }
+    },
+    "destroy": {
+        "enableSoftDelete": false,
+        "enableTransaction": true,
+        "requireConfirmation": true,
+        "confirmation": {
+            "message": "이 IP 기록을 삭제하시겠습니까?"
+        },
+        "messages": {
+            "success": "IP 기록이 삭제되었습니다",
+            "error": "IP 기록 삭제 중 오류가 발생했습니다",
+            "confirmRequired": "삭제 확인이 필요합니다"
+        }
+    },
+    "store": {
+        "enableTransaction": true,
+        "defaults": {
+            "attempts": 0,
+            "is_blocked": false
+        },
+        "messages": {
+            "success": "IP가 추가되었습니다",
+            "error": "IP 추가 중 오류가 발생했습니다",
+            "continueSuccess": "IP가 추가되었습니다. 계속 추가할 수 있습니다"
+        },
+        "validation": {
+            "rules": {
+                "ip_address": "required|ip|unique:admin_ip_attempts,ip_address"
+            },
+            "messages": {
+                "ip_address.required": "IP 주소를 입력해주세요",
+                "ip_address.ip": "올바른 IP 주소 형식이 아닙니다",
+                "ip_address.unique": "이미 등록된 IP 주소입니다"
+            }
+        }
+    },
+    "update": {
+        "enableTransaction": true,
+        "trackChanges": true,
+        "redirects": {
+            "success": "show",
+            "error": "edit"
+        },
+        "messages": {
+            "success": "IP 정보가 업데이트되었습니다",
+            "error": "IP 정보 업데이트 중 오류가 발생했습니다"
+        },
+        "validation": {
+            "rules": {
+                "ip_address": "required|ip"
+            },
+            "messages": {
+                "ip_address.required": "IP 주소를 입력해주세요",
+                "ip_address.ip": "올바른 IP 주소 형식이 아닙니다"
+            }
+        }
+    }
+}

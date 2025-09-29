@@ -1,0 +1,49 @@
+{
+    "controllerClass": "\\Jiny\\Admin\\App\\Http\\Controllers\\Admin\\AdminDashboard\\AdminDashboard",
+    "title": "관리자 대시보드",
+    "subtitle": "시스템 전체 현황을 한눈에 확인하세요",
+    "description": "Admin dashboard with real-time monitoring and statistics",
+    "route": {
+        "name": "admin.dashboard",
+        "prefix": "admin/dashboard"
+    },
+    "template": {
+        "layout": "jiny-admin::layouts.admin"
+    },
+    "widgets": {
+        "stats": {
+            "enabled": true,
+            "position": "top",
+            "columns": 4
+        },
+        "activities": {
+            "enabled": true,
+            "limit": 10,
+            "position": "left"
+        },
+        "sessions": {
+            "enabled": true,
+            "limit": 5,
+            "position": "right"
+        },
+        "security": {
+            "enabled": true,
+            "position": "right"
+        },
+        "charts": {
+            "login_trend": {
+                "enabled": true,
+                "type": "line",
+                "hours": 24
+            },
+            "browser_stats": {
+                "enabled": true,
+                "type": "doughnut"
+            }
+        }
+    },
+    "refresh": {
+        "enabled": true,
+        "interval": 60000
+    }
+}

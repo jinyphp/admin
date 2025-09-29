@@ -1,0 +1,188 @@
+{
+    "controllerClass": "\\Jiny\\Admin\\App\\Http\\Controllers\\Admin\\AdminUserLogs\\AdminUserLogs",
+    "title": "사용자 활동 로그",
+    "subtitle": "사용자 인증 활동 모니터링",
+    "description": "User activity logging system for authentication events.",
+    "route": {
+        "name": "admin.user.logs",
+        "prefix": "admin.user.logs",
+        "actions": {
+            "index": "index",
+            "show": "show",
+            "destroy": "destroy"
+        }
+    },
+    "table": {
+        "name": "admin_user_logs",
+        "model": "\\Jiny\\Admin\\App\\Models\\AdminUserLog",
+        "primaryKey": "id",
+        "timestamps": true,
+        "softDeletes": false,
+        "where": {
+            "default": [],
+            "conditions": []
+        },
+        "casts": {
+            "details": "array",
+            "logged_at": "datetime"
+        }
+    },
+    "template": {
+        "layout": "jiny-admin::layouts.admin",
+        "index": "jiny-admin::template.index",
+        "show": "jiny-admin::template.show"
+    },
+    "index": {
+        "tableLayoutPath": "jiny-admin::template.livewire.admin-table",
+        "tablePath": "jiny-admin::admin.admin_user_logs.table",
+        "searchLayoutPath": "jiny-admin::template.livewire.admin-search",
+        "searchFormPath": "jiny-admin::admin.admin_user_logs.search",
+        "searchable": [
+            "email",
+            "name",
+            "action",
+            "ip_address"
+        ],
+        "sortable": [
+            "id",
+            "email",
+            "action",
+            "logged_at",
+            "created_at"
+        ],
+        "filterable": [
+            "action"
+        ],
+        "heading": {
+            "title": "User Activity Logs",
+            "description": "Monitor user authentication activities"
+        },
+        "features": {
+            "enableCreate": false,
+            "enableDelete": true,
+            "enableEdit": false,
+            "enableSearch": true,
+            "enableSort": true,
+            "enablePagination": true,
+            "enableBulkActions": true,
+            "enableExport": true,
+            "enableImport": false,
+            "enableStatusToggle": false,
+            "enableSettingsDrawer": true
+        },
+        "pagination": {
+            "perPage": 20,
+            "perPageOptions": [10, 20, 50, 100]
+        },
+        "sorting": {
+            "default": "logged_at",
+            "direction": "desc"
+        },
+        "search": {
+            "placeholder": "Search by email, name, action, or IP...",
+            "debounce": 300
+        },
+        "filters": {
+            "action": {
+                "label": "Action Type",
+                "options": {
+                    "": "All Actions",
+                    "login": "Login",
+                    "logout": "Logout",
+                    "failed_login": "Failed Login"
+                }
+            }
+        },
+        "table": {
+            "columns": {
+                "checkbox": {
+                    "visible": true,
+                    "width": "50px"
+                },
+                "id": {
+                    "label": "ID",
+                    "visible": true,
+                    "sortable": true,
+                    "width": "80px"
+                },
+                "email": {
+                    "label": "Email",
+                    "visible": true,
+                    "sortable": true,
+                    "searchable": true
+                },
+                "name": {
+                    "label": "Name",
+                    "visible": true,
+                    "responsive": "md"
+                },
+                "action": {
+                    "label": "Action",
+                    "visible": true,
+                    "sortable": true,
+                    "badge": true,
+                    "badgeColors": {
+                        "login": "green",
+                        "logout": "blue",
+                        "failed_login": "red"
+                    }
+                },
+                "ip_address": {
+                    "label": "IP Address",
+                    "visible": true,
+                    "responsive": "lg"
+                },
+                "user_agent": {
+                    "label": "Browser",
+                    "visible": false,
+                    "responsive": "xl",
+                    "truncate": 50
+                },
+                "logged_at": {
+                    "label": "Time",
+                    "visible": true,
+                    "sortable": true,
+                    "format": "Y-m-d H:i:s"
+                },
+                "actions": {
+                    "label": "Actions",
+                    "visible": true,
+                    "width": "100px"
+                }
+            }
+        }
+    },
+    "show": {
+        "heading": {
+            "title": "Log Details",
+            "description": "View detailed log information"
+        },
+        "enableEdit": false,
+        "enableDelete": true,
+        "enableCreate": false,
+        "enableListButton": true,
+        "enableSettingsDrawer": true,
+        "showLayoutPath": "jiny-admin::template.livewire.admin-show",
+        "showPath": "jiny-admin::admin.admin_user_logs.show",
+        "display": {
+            "datetimeFormat": "Y-m-d H:i:s",
+            "booleanLabels": {
+                "true": "Yes",
+                "false": "No"
+            }
+        }
+    },
+    "destroy": {
+        "enableSoftDelete": false,
+        "enableTransaction": true,
+        "requireConfirmation": true,
+        "confirmation": {
+            "message": "Are you sure you want to delete this log entry?"
+        },
+        "messages": {
+            "success": "Log entry deleted successfully.",
+            "error": "Error deleting log entry: %s",
+            "confirmRequired": "Delete confirmation required."
+        }
+    }
+}

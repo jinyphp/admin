@@ -1,0 +1,540 @@
+{
+    "title": "이메일 발송 기록",
+    "subtitle": "이메일 발송 내역 및 상태 관리",
+    "description": "이메일 발송 로그 시스템으로 발송 상태, 열람, 클릭 추적을 제공합니다.",
+    "route": {
+        "name": "admin.mail.logs",
+        "prefix": "admin\/mail\/logs",
+        "actions": {
+            "index": "index",
+            "create": "create",
+            "edit": "edit",
+            "show": "show",
+            "send": "send",
+            "resend": "resend",
+            "destroy": "destroy"
+        }
+    },
+    "table": {
+        "name": "admin_email_logs",
+        "model": "\\Jiny\\Admin\\App\\Models\\AdminEmailLog",
+        "primaryKey": "id",
+        "timestamps": true,
+        "softDeletes": false,
+        "fillable": [
+            "template_id",
+            "user_id",
+            "to_email",
+            "to_name",
+            "from_email",
+            "from_name",
+            "subject",
+            "body",
+            "status",
+            "error_message",
+            "sent_at",
+            "opened_at",
+            "clicked_at",
+            "open_count",
+            "click_count",
+            "ip_address",
+            "user_agent",
+            "metadata"
+        ],
+        "guarded": [
+            "id",
+            "created_at",
+            "updated_at"
+        ],
+        "hidden": [],
+        "where": {
+            "default": [],
+            "conditions": []
+        },
+        "casts": {
+            "metadata": "json",
+            "sent_at": "datetime",
+            "opened_at": "datetime",
+            "clicked_at": "datetime",
+            "created_at": "datetime",
+            "updated_at": "datetime"
+        }
+    },
+    "template": {
+        "layout": "jiny-admin::layouts.admin",
+        "index": "jiny-admin::template.index",
+        "show": "jiny-admin::template.show",
+        "create": "jiny-admin::template.create",
+        "edit": "jiny-admin::template.edit"
+    },
+    "index": {
+        "tableLayoutPath": "jiny-admin::admin.admin_email_logs.table-wrapper",
+        "tablePath": "jiny-admin::admin.admin_email_logs.table",
+        "searchLayoutPath": "jiny-admin::template.livewire.admin-search",
+        "searchFormPath": "jiny-admin::admin.admin_email_logs.search",
+        "searchable": [
+            "to_email",
+            "subject"
+        ],
+        "sortable": [
+            "id",
+            "to_email",
+            "subject",
+            "status",
+            "sent_at",
+            "created_at"
+        ],
+        "filterable": [
+            "status",
+            "template_id"
+        ],
+        "heading": {
+            "title": "이메일 발송 기록",
+            "description": "이메일 발송 내역을 확인하고 관리합니다"
+        },
+        "features": {
+            "enableCreate": true,
+            "enableDelete": true,
+            "enableEdit": true,
+            "enableSearch": true,
+            "enableSort": true,
+            "enablePagination": true,
+            "enableBulkActions": true,
+            "enableExport": true,
+            "enableImport": false,
+            "enableStatusToggle": false,
+            "enableSettingsDrawer": true
+        },
+        "pagination": {
+            "perPage": 20,
+            "options": [
+                10,
+                25,
+                50,
+                100
+            ]
+        },
+        "sorting": {
+            "default": "created_at",
+            "direction": "desc"
+        },
+        "search": {
+            "placeholder": "이메일 주소 또는 제목 검색...",
+            "debounce": 300
+        },
+        "filters": {
+            "status": {
+                "label": "상태",
+                "options": {
+                    "": "전체",
+                    "pending": "대기중",
+                    "processing": "처리중",
+                    "sent": "발송완료",
+                    "failed": "실패",
+                    "bounced": "반송",
+                    "opened": "열람",
+                    "clicked": "클릭"
+                }
+            },
+            "date_range": {
+                "label": "기간",
+                "type": "daterange",
+                "options": {
+                    "today": "오늘",
+                    "yesterday": "어제",
+                    "last_7_days": "최근 7일",
+                    "last_30_days": "최근 30일",
+                    "this_month": "이번 달",
+                    "last_month": "지난 달"
+                }
+            }
+        },
+        "table": {
+            "columns": {
+                "checkbox": {
+                    "visible": true,
+                    "width": "50px"
+                },
+                "id": {
+                    "label": "ID",
+                    "visible": true,
+                    "sortable": true,
+                    "width": "80px"
+                },
+                "to_email": {
+                    "label": "수신자",
+                    "visible": true,
+                    "sortable": true,
+                    "searchable": true
+                },
+                "subject": {
+                    "label": "제목",
+                    "visible": true,
+                    "sortable": true,
+                    "searchable": true,
+                    "truncate": 50
+                },
+                "template": {
+                    "label": "템플릿",
+                    "visible": true,
+                    "responsive": "lg"
+                },
+                "status": {
+                    "label": "상태",
+                    "visible": true,
+                    "sortable": true,
+                    "badge": {
+                        "pending": "secondary",
+                        "processing": "info",
+                        "sent": "success",
+                        "failed": "danger",
+                        "bounced": "warning",
+                        "opened": "primary",
+                        "clicked": "success"
+                    }
+                },
+                "sent_at": {
+                    "label": "발송시간",
+                    "visible": true,
+                    "sortable": true,
+                    "responsive": "md",
+                    "format": "Y-m-d H:i"
+                },
+                "open_count": {
+                    "label": "열람",
+                    "visible": true,
+                    "responsive": "lg",
+                    "width": "80px"
+                },
+                "actions": {
+                    "label": "작업",
+                    "visible": true,
+                    "width": "150px",
+                    "buttons": {
+                        "show": {
+                            "label": "상세",
+                            "icon": "eye",
+                            "class": "btn-sm btn-info"
+                        },
+                        "resend": {
+                            "label": "재발송",
+                            "icon": "arrow-path",
+                            "class": "btn-sm btn-warning",
+                            "condition": "status:failed,bounced"
+                        },
+                        "delete": {
+                            "label": "삭제",
+                            "icon": "trash",
+                            "class": "btn-sm btn-danger"
+                        }
+                    }
+                }
+            }
+        },
+        "stats": {
+            "enabled": true,
+            "cards": [
+                {
+                    "label": "오늘 발송",
+                    "query": "today_sent",
+                    "icon": "paper-airplane",
+                    "color": "primary"
+                },
+                {
+                    "label": "발송 성공률",
+                    "query": "success_rate",
+                    "icon": "check-circle",
+                    "color": "success",
+                    "suffix": "%"
+                },
+                {
+                    "label": "열람률",
+                    "query": "open_rate",
+                    "icon": "eye",
+                    "color": "info",
+                    "suffix": "%"
+                },
+                {
+                    "label": "실패",
+                    "query": "failed_count",
+                    "icon": "x-circle",
+                    "color": "danger"
+                }
+            ]
+        }
+    },
+    "show": {
+        "heading": {
+            "title": "이메일 발송 상세",
+            "description": "이메일 발송 상세 정보를 확인합니다"
+        },
+        "showLayoutPath": "jiny-admin::template.livewire.admin-show",
+        "showPath": "jiny-admin::admin.admin_email_logs.show",
+        "enableEdit": true,
+        "enableDelete": true,
+        "enableListButton": true,
+        "enableSettingsDrawer": true,
+        "enableResend": true,
+        "display": {
+            "datetimeFormat": "Y-m-d H:i:s",
+            "sections": [
+                {
+                    "title": "기본 정보",
+                    "fields": [
+                        "id",
+                        "to_email",
+                        "to_name",
+                        "subject",
+                        "template_id"
+                    ]
+                },
+                {
+                    "title": "발송 정보",
+                    "fields": [
+                        "from_email",
+                        "from_name",
+                        "status",
+                        "sent_at",
+                        "error_message"
+                    ]
+                },
+                {
+                    "title": "추적 정보",
+                    "fields": [
+                        "opened_at",
+                        "open_count",
+                        "clicked_at",
+                        "click_count",
+                        "ip_address",
+                        "user_agent"
+                    ]
+                },
+                {
+                    "title": "메타데이터",
+                    "fields": [
+                        "metadata",
+                        "created_at",
+                        "updated_at"
+                    ]
+                }
+            ],
+            "dateFormat": "Y-m-d H:i:s",
+            "booleanLabels": {
+                "true": "Enabled",
+                "false": "Disabled"
+            }
+        },
+        "settingsDrawer": {
+            "enableFieldToggle": true,
+            "enableDateFormat": true,
+            "enableSectionToggle": true
+        }
+    },
+    "destroy": {
+        "enableSoftDelete": false,
+        "enableTransaction": true,
+        "requireConfirmation": true,
+        "confirmation": {
+            "message": "이 이메일 로그를 삭제하시겠습니까?"
+        },
+        "messages": {
+            "success": "이메일 로그가 삭제되었습니다.",
+            "error": "이메일 로그 삭제 중 오류가 발생했습니다: %s",
+            "confirmRequired": "삭제 확인이 필요합니다."
+        }
+    },
+    "resend": {
+        "enableTransaction": true,
+        "requireConfirmation": true,
+        "confirmation": {
+            "message": "이 이메일을 재발송하시겠습니까?"
+        },
+        "messages": {
+            "success": "이메일이 재발송되었습니다.",
+            "error": "이메일 재발송 중 오류가 발생했습니다: %s",
+            "notAllowed": "이 이메일은 재발송할 수 없습니다."
+        },
+        "allowedStatuses": [
+            "failed",
+            "bounced"
+        ]
+    },
+    "create": {
+        "heading": {
+            "title": "새 메일 작성",
+            "description": "새로운 이메일을 작성하고 발송합니다"
+        },
+        "createLayoutPath": "jiny-admin::template.livewire.admin-create",
+        "createFormPath": "jiny-admin::admin.admin_email_logs.create",
+        "formPath": "jiny-admin::admin.admin_email_logs.create",
+        "enableTemplateSelector": true,
+        "enableSaveDraft": true,
+        "enableDirectSend": true,
+        "enableTestSend": true,
+        "fields": {
+            "to_email": {
+                "label": "받는 사람 이메일",
+                "type": "email",
+                "required": true,
+                "placeholder": "example@email.com",
+                "validation": "required|email"
+            },
+            "to_name": {
+                "label": "받는 사람 이름",
+                "type": "text",
+                "required": false,
+                "placeholder": "홍길동"
+            },
+            "from_email": {
+                "label": "보내는 사람 이메일",
+                "type": "email",
+                "required": false,
+                "placeholder": "noreply@company.com",
+                "default": "config:mail.from.address"
+            },
+            "from_name": {
+                "label": "보내는 사람 이름",
+                "type": "text",
+                "required": false,
+                "placeholder": "회사명",
+                "default": "config:mail.from.name"
+            },
+            "subject": {
+                "label": "제목",
+                "type": "text",
+                "required": true,
+                "placeholder": "이메일 제목을 입력하세요"
+            },
+            "body": {
+                "label": "내용",
+                "type": "wysiwyg",
+                "required": true,
+                "placeholder": "이메일 내용을 작성하세요",
+                "editor": "tinymce"
+            },
+            "template_id": {
+                "label": "템플릿 선택",
+                "type": "select",
+                "required": false,
+                "options": "model:AdminEmailTemplate:id,name:is_active=1"
+            }
+        },
+        "buttons": {
+            "saveDraft": {
+                "label": "임시저장",
+                "class": "btn-secondary"
+            },
+            "testSend": {
+                "label": "테스트 발송",
+                "class": "btn-info"
+            },
+            "send": {
+                "label": "발송",
+                "class": "btn-primary"
+            }
+        },
+        "messages": {
+            "success": "이메일이 성공적으로 작성되었습니다.",
+            "sent": "이메일이 발송되었습니다.",
+            "draftSaved": "임시저장되었습니다.",
+            "testSent": "테스트 이메일이 발송되었습니다.",
+            "error": "이메일 작성 중 오류가 발생했습니다: %s"
+        }
+    },
+    "edit": {
+        "heading": {
+            "title": "메일 수정",
+            "description": "이메일을 수정합니다"
+        },
+        "editLayoutPath": "jiny-admin::template.livewire.admin-edit",
+        "editFormPath": "jiny-admin::admin.admin_email_logs.edit",
+        "formPath": "jiny-admin::admin.admin_email_logs.edit",
+        "onlyEditableStatuses": [
+            "pending"
+        ],
+        "enableDirectSend": true,
+        "fields": {
+            "to_email": {
+                "label": "받는 사람 이메일",
+                "type": "email",
+                "required": true,
+                "editable": "status:pending"
+            },
+            "to_name": {
+                "label": "받는 사람 이름",
+                "type": "text",
+                "required": false,
+                "editable": "status:pending"
+            },
+            "from_email": {
+                "label": "보내는 사람 이메일",
+                "type": "email",
+                "required": false,
+                "editable": "status:pending"
+            },
+            "from_name": {
+                "label": "보내는 사람 이름",
+                "type": "text",
+                "required": false,
+                "editable": "status:pending"
+            },
+            "subject": {
+                "label": "제목",
+                "type": "text",
+                "required": true,
+                "editable": "status:pending"
+            },
+            "body": {
+                "label": "내용",
+                "type": "wysiwyg",
+                "required": true,
+                "editable": "status:pending",
+                "editor": "tinymce"
+            },
+            "status": {
+                "label": "상태",
+                "type": "select",
+                "readonly": true,
+                "options": {
+                    "pending": "대기중",
+                    "processing": "처리중",
+                    "sent": "발송완료",
+                    "failed": "실패",
+                    "bounced": "반송"
+                }
+            }
+        },
+        "buttons": {
+            "save": {
+                "label": "저장",
+                "class": "btn-primary"
+            },
+            "send": {
+                "label": "발송",
+                "class": "btn-success",
+                "condition": "status:pending"
+            }
+        },
+        "messages": {
+            "success": "이메일이 수정되었습니다.",
+            "sent": "이메일이 발송되었습니다.",
+            "error": "이메일 수정 중 오류가 발생했습니다: %s",
+            "notEditable": "이 상태의 이메일은 수정할 수 없습니다."
+        }
+    },
+    "send": {
+        "enableTransaction": true,
+        "requireConfirmation": true,
+        "confirmation": {
+            "message": "이 이메일을 발송하시겠습니까?"
+        },
+        "messages": {
+            "success": "이메일이 발송되었습니다.",
+            "error": "이메일 발송 중 오류가 발생했습니다: %s",
+            "notAllowed": "대기중 상태의 이메일만 발송할 수 있습니다."
+        },
+        "allowedStatuses": [
+            "pending"
+        ]
+    }
+}

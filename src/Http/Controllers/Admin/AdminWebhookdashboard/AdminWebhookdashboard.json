@@ -1,0 +1,170 @@
+{
+    "title": "웹훅 대시보드",
+    "subtitle": "웹훅 발송 현황 및 통계",
+    "description": "{{description}}",
+    "route": {
+        "name": "admin.{{routeName}}",
+        "prefix": "admin/{{routePrefix}}",
+        "actions": {
+            "index": "index",
+            "create": "create",
+            "store": "store",
+            "show": "show",
+            "edit": "edit",
+            "update": "update",
+            "destroy": "destroy"
+        }
+    },
+    "table": {
+        "name": "{{tableName}}",
+        "model": "\\Jiny\\Admin\\App\\Models\\{{modelName}}",
+        "primaryKey": "id",
+        "timestamps": true,
+        "softDeletes": {{softDeletes}},
+        "fillable": {{fillable}},
+        "guarded": {{guarded}},
+        "hidden": {{hidden}},
+        "where": {
+            "default": [],
+            "conditions": []
+        },
+        "casts": {{casts}}
+    },
+    "template": {
+        "layout": "jiny-admin::layouts.admin",
+        "index": "jiny-admin::template.index",
+        "show": "jiny-admin::template.show",
+        "create": "jiny-admin::template.create",
+        "edit": "jiny-admin::template.edit"
+    },
+    "index": {
+        "tableLayoutPath": "jiny-admin::template.livewire.admin-table",
+        "tablePath": "jiny-{{moduleLC}}::admin.{{viewPath}}.table",
+        "searchLayoutPath": "jiny-admin::template.livewire.admin-search",
+        "searchFormPath": "jiny-{{moduleLC}}::admin.{{viewPath}}.search",
+        "searchable": {{searchable}},
+        "sortable": {{sortable}},
+        "filterable": {{filterable}},
+        "heading": {
+            "title": "{{indexTitle}}",
+            "description": "{{indexDescription}}"
+        },
+        "features": {
+            "enableCreate": true,
+            "enableDelete": true,
+            "enableEdit": true,
+            "enableSearch": true,
+            "enableSort": true,
+            "enablePagination": true,
+            "enableBulkActions": true,
+            "enableExport": false,
+            "enableImport": false,
+            "enableStatusToggle": true,
+            "enableSettingsDrawer": true
+        },
+        "pagination": {
+            "perPage": {{perPage}},
+            "options": {{perPageOptions}}
+        },
+        "sorting": {
+            "default": "{{sortDefault}}",
+            "direction": "{{sortDirection}}"
+        },
+        "search": {
+            "placeholder": "{{searchPlaceholder}}",
+            "debounce": 300
+        },
+        "filters": {{filters}},
+        "table": {
+            "columns": {{tableColumns}}
+        }
+    },
+    "create": {
+        "heading": {
+            "title": "{{createTitle}}",
+            "description": "{{createDescription}}"
+        },
+        "createLayoutPath": "jiny-admin::template.livewire.admin-create",
+        "formPath": "jiny-{{moduleLC}}::admin.{{viewPath}}.create",
+        "formLayout": "vertical",
+        "buttonText": "{{createButtonText}}",
+        "enableContinueCreate": true,
+        "enableListButton": true,
+        "enableSettingsDrawer": true
+    },
+    "edit": {
+        "heading": {
+            "title": "{{editTitle}}",
+            "description": "{{editDescription}}"
+        },
+        "enableDelete": true,
+        "enableListButton": true,
+        "enableDetailButton": true,
+        "enableSettingsDrawer": true,
+        "editLayoutPath": "jiny-admin::template.livewire.admin-edit",
+        "formPath": "jiny-{{moduleLC}}::admin.{{viewPath}}.edit",
+        "formLayout": "vertical"
+    },
+    "show": {
+        "heading": {
+            "title": "{{showTitle}}",
+            "description": "{{showDescription}}"
+        },
+        "showLayoutPath": "jiny-admin::template.livewire.admin-show",
+        "showPath": "jiny-{{moduleLC}}::admin.{{viewPath}}.show",
+        "enableEdit": true,
+        "enableDelete": true,
+        "enableCreate": true,
+        "enableListButton": true,
+        "enableSettingsDrawer": true,
+        "display": {
+            "datetimeFormat": "Y-m-d H:i:s",
+            "booleanLabels": {
+                "true": "{{booleanTrue}}",
+                "false": "{{booleanFalse}}"
+            }
+        }
+    },
+    "destroy": {
+        "enableSoftDelete": {{softDeletes}},
+        "enableTransaction": true,
+        "requireConfirmation": true,
+        "confirmation": {
+            "message": "{{deleteConfirmMessage}}"
+        },
+        "messages": {
+            "success": "{{deleteSuccessMessage}}",
+            "error": "{{deleteErrorMessage}}",
+            "confirmRequired": "{{deleteConfirmRequired}}"
+        }
+    },
+    "store": {
+        "enableTransaction": true,
+        "defaults": {{storeDefaults}},
+        "messages": {
+            "success": "{{storeSuccessMessage}}",
+            "error": "{{storeErrorMessage}}",
+            "continueSuccess": "{{storeContinueMessage}}"
+        },
+        "validation": {
+            "rules": {{storeValidationRules}},
+            "messages": {{storeValidationMessages}}
+        }
+    },
+    "update": {
+        "enableTransaction": true,
+        "trackChanges": true,
+        "redirects": {
+            "success": "show",
+            "error": "edit"
+        },
+        "messages": {
+            "success": "{{updateSuccessMessage}}",
+            "error": "{{updateErrorMessage}}"
+        },
+        "validation": {
+            "rules": {{updateValidationRules}},
+            "messages": {{updateValidationMessages}}
+        }
+    }
+}

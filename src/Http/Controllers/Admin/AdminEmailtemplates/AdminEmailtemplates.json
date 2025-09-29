@@ -1,0 +1,330 @@
+{
+    "title": "이메일 템플릿 관리",
+    "subtitle": "시스템 이메일 템플릿을 관리합니다",
+    "description": "이메일 템플릿 CRUD 관리 시스템.",
+    "route": {
+        "name": "admin.mail.templates",
+        "prefix": "admin/mail/templates",
+        "actions": {
+            "index": "index",
+            "create": "create",
+            "store": "store",
+            "show": "show",
+            "edit": "edit",
+            "update": "update",
+            "destroy": "destroy"
+        }
+    },
+    "table": {
+        "name": "admin_email_templates",
+        "model": "\\Jiny\\Admin\\App\\Models\\AdminEmailTemplate",
+        "primaryKey": "id",
+        "timestamps": true,
+        "softDeletes": false,
+        "fillable": [
+    "name",
+    "slug",
+    "subject",
+    "body",
+    "variables",
+    "type",
+    "category",
+    "is_active",
+    "status",
+    "priority",
+    "attachments",
+    "from_name",
+    "from_email",
+    "reply_to",
+    "cc",
+    "bcc",
+    "description",
+    "metadata"
+],
+        "guarded": [
+    "id",
+    "created_at",
+    "updated_at"
+],
+        "hidden": [],
+        "where": {
+            "default": [],
+            "conditions": []
+        },
+        "casts": {
+    "is_active": "boolean",
+    "status": "boolean",
+    "variables": "array",
+    "attachments": "array",
+    "cc": "array",
+    "bcc": "array",
+    "metadata": "array",
+    "created_at": "datetime",
+    "updated_at": "datetime"
+}
+    },
+    "template": {
+        "layout": "jiny-admin::layouts.admin",
+        "index": "jiny-admin::template.index",
+        "show": "jiny-admin::template.show",
+        "create": "jiny-admin::template.create",
+        "edit": "jiny-admin::template.edit"
+    },
+    "index": {
+        "tableLayoutPath": "jiny-admin::template.livewire.admin-table",
+        "tablePath": "jiny-admin::admin.admin_mail_templates.table",
+        "searchLayoutPath": "jiny-admin::template.livewire.admin-search",
+        "searchFormPath": "jiny-admin::admin.admin_mail_templates.search",
+        "searchable": [
+    "name",
+    "slug",
+    "subject",
+    "category",
+    "description"
+],
+        "sortable": [
+    "id",
+    "name",
+    "slug",
+    "subject",
+    "category",
+    "type",
+    "status",
+    "is_active",
+    "priority",
+    "created_at",
+    "updated_at"
+],
+        "filterable": [
+    "status"
+],
+        "heading": {
+            "title": "이메일 템플릿 목록",
+            "description": "Manage your adminemailtemplates"
+        },
+        "features": {
+            "enableCreate": true,
+            "enableDelete": true,
+            "enableEdit": true,
+            "enableSearch": true,
+            "enableSort": true,
+            "enablePagination": true,
+            "enableBulkActions": true,
+            "enableExport": false,
+            "enableImport": false,
+            "enableStatusToggle": true,
+            "enableSettingsDrawer": true
+        },
+        "pagination": {
+            "perPage": 20,
+            "options": [10,25,50,100]
+        },
+        "sorting": {
+            "default": "created_at",
+            "direction": "desc"
+        },
+        "search": {
+            "placeholder": "Search adminemailtemplates...",
+            "debounce": 300
+        },
+        "filters": {
+    "status": {
+        "label": "Status",
+        "options": {
+            "": "All",
+            "1": "Active",
+            "0": "Inactive"
+        }
+    }
+},
+        "table": {
+            "columns": {
+    "checkbox": {
+        "visible": true,
+        "width": "50px"
+    },
+    "id": {
+        "label": "ID",
+        "visible": true,
+        "sortable": true,
+        "width": "80px"
+    },
+    "name": {
+        "label": "Name",
+        "visible": true,
+        "sortable": true,
+        "searchable": true
+    },
+    "description": {
+        "label": "Description",
+        "visible": true,
+        "responsive": "lg",
+        "truncate": 50
+    },
+    "status": {
+        "label": "Status",
+        "visible": true,
+        "sortable": true,
+        "toggleable": true
+    },
+    "created_at": {
+        "label": "Created",
+        "visible": true,
+        "sortable": true,
+        "responsive": "md",
+        "format": "Y-m-d"
+    },
+    "actions": {
+        "label": "Actions",
+        "visible": true,
+        "width": "150px"
+    }
+}
+        }
+    },
+    "create": {
+        "heading": {
+            "title": "새 이메일 템플릿 생성",
+            "description": "Add a new adminemailtemplates to the system"
+        },
+        "createLayoutPath": "jiny-admin::template.livewire.admin-create",
+        "formPath": "jiny-admin::admin.admin_mail_templates.create",
+        "formLayout": "vertical",
+        "buttonText": "Add New AdminEmailTemplates",
+        "enableContinueCreate": true,
+        "enableListButton": true,
+        "enableSettingsDrawer": true
+    },
+    "edit": {
+        "heading": {
+            "title": "Edit AdminEmailTemplates",
+            "description": "Update adminemailtemplates information"
+        },
+        "enableDelete": true,
+        "enableListButton": true,
+        "enableDetailButton": true,
+        "enableSettingsDrawer": true,
+        "editLayoutPath": "jiny-admin::template.livewire.admin-edit",
+        "formPath": "jiny-admin::admin.admin_mail_templates.edit",
+        "formLayout": "vertical"
+    },
+    "show": {
+        "heading": {
+            "title": "AdminEmailTemplates Details",
+            "description": "View adminemailtemplates information"
+        },
+        "showLayoutPath": "jiny-admin::template.livewire.admin-show",
+        "showPath": "jiny-admin::admin.admin_mail_templates.show",
+        "enableEdit": true,
+        "enableDelete": true,
+        "enableCreate": true,
+        "enableListButton": true,
+        "enableSettingsDrawer": true,
+        "display": {
+            "datetimeFormat": "Y-m-d H:i:s",
+            "booleanLabels": {
+                "true": "Yes",
+                "false": "No"
+            }
+        }
+    },
+    "destroy": {
+        "enableSoftDelete": false,
+        "enableTransaction": true,
+        "requireConfirmation": true,
+        "confirmation": {
+            "message": "Are you sure you want to delete this adminemailtemplates?"
+        },
+        "messages": {
+            "success": "AdminEmailTemplates deleted successfully.",
+            "error": "Error deleting adminemailtemplates: %s",
+            "confirmRequired": "Delete confirmation required."
+        }
+    },
+    "store": {
+        "enableTransaction": true,
+        "defaults": {
+    "status": true,
+    "is_active": true,
+    "type": "html",
+    "priority": 0
+},
+        "messages": {
+            "success": "이메일 템플릿이 성공적으로 생성되었습니다.",
+            "error": "이메일 템플릿 생성 중 오류가 발생했습니다.",
+            "continueSuccess": "이메일 템플릿이 생성되었습니다. 계속해서 추가할 수 있습니다."
+        },
+        "validation": {
+            "rules": {
+    "name": "required|string|max:255",
+    "slug": "required|string|max:255|unique:admin_email_templates,slug",
+    "subject": "required|string|max:500",
+    "body": "required|string",
+    "type": "required|in:html,text,markdown",
+    "category": "nullable|string|max:100",
+    "status": "boolean",
+    "is_active": "boolean",
+    "priority": "integer|min:-10|max:10",
+    "from_name": "nullable|string|max:255",
+    "from_email": "nullable|email|max:255",
+    "reply_to": "nullable|email|max:255",
+    "variables": "nullable|json",
+    "description": "nullable|string"
+},
+            "messages": {
+    "name.required": "템플릿 이름은 필수입니다.",
+    "name.max": "템플릿 이름은 255자를 초과할 수 없습니다.",
+    "slug.required": "Slug는 필수입니다.",
+    "slug.unique": "이미 사용 중인 Slug입니다.",
+    "subject.required": "제목은 필수입니다.",
+    "body.required": "메일 내용은 필수입니다.",
+    "type.in": "올바른 타입을 선택해주세요.",
+    "from_email.email": "올바른 이메일 형식을 입력해주세요.",
+    "reply_to.email": "올바른 이메일 형식을 입력해주세요.",
+    "variables.json": "올바른 JSON 형식을 입력해주세요."
+}
+        }
+    },
+    "update": {
+        "enableTransaction": true,
+        "trackChanges": true,
+        "redirects": {
+            "success": "show",
+            "error": "edit"
+        },
+        "messages": {
+            "success": "이메일 템플릿이 성공적으로 업데이트되었습니다.",
+            "error": "이메일 템플릿 업데이트 중 오류가 발생했습니다."
+        },
+        "validation": {
+            "rules": {
+    "name": "required|string|max:255",
+    "slug": "required|string|max:255|unique:admin_email_templates,slug,{id}",
+    "subject": "required|string|max:500",
+    "body": "required|string",
+    "type": "required|in:html,text,markdown",
+    "category": "nullable|string|max:100",
+    "status": "boolean",
+    "is_active": "boolean",
+    "priority": "integer|min:-10|max:10",
+    "from_name": "nullable|string|max:255",
+    "from_email": "nullable|email|max:255",
+    "reply_to": "nullable|email|max:255",
+    "variables": "nullable|json",
+    "description": "nullable|string"
+},
+            "messages": {
+    "name.required": "템플릿 이름은 필수입니다.",
+    "name.max": "템플릿 이름은 255자를 초과할 수 없습니다.",
+    "slug.required": "Slug는 필수입니다.",
+    "slug.unique": "이미 사용 중인 Slug입니다.",
+    "subject.required": "제목은 필수입니다.",
+    "body.required": "메일 내용은 필수입니다.",
+    "type.in": "올바른 타입을 선택해주세요.",
+    "from_email.email": "올바른 이메일 형식을 입력해주세요.",
+    "reply_to.email": "올바른 이메일 형식을 입력해주세요.",
+    "variables.json": "올바른 JSON 형식을 입력해주세요."
+}
+        }
+    }
+}

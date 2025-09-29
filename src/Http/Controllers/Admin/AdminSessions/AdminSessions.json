@@ -1,0 +1,215 @@
+{
+    "controllerClass": "\\Jiny\\Admin\\App\\Http\\Controllers\\Admin\\AdminSessions\\AdminSessions",
+    "title": "사용자 세션 관리",
+    "subtitle": "활성 세션 모니터링 및 관리",
+    "description": "현재 로그인된 사용자 세션을 관리합니다.",
+    "route": {
+        "name": "admin.user.sessions",
+        "prefix": "admin/user/sessions",
+        "actions": {
+            "index": "index",
+            "show": "show",
+            "terminate": "terminate"
+        }
+    },
+    "table": {
+        "name": "admin_user_sessions",
+        "model": "\\Jiny\\Admin\\App\\Models\\AdminUserSession",
+        "primaryKey": "id",
+        "timestamps": true,
+        "softDeletes": false,
+        "where": {
+            "default": [],
+            "conditions": []
+        },
+        "casts": {
+            "is_active": "boolean",
+            "two_factor_used": "boolean",
+            "last_activity": "datetime",
+            "login_at": "datetime"
+        }
+    },
+    "template": {
+        "layout": "jiny-admin::layouts.admin",
+        "index": "jiny-admin::template.index",
+        "show": "jiny-admin::template.show"
+    },
+    "index": {
+        "tableLayoutPath": "jiny-admin::template.livewire.admin-table",
+        "tablePath": "jiny-admin::admin.admin_sessions.table",
+        "searchLayoutPath": "jiny-admin::template.livewire.admin-search",
+        "searchFormPath": "jiny-admin::admin.admin_sessions.search",
+        "searchable": [
+            "user.name",
+            "user.email",
+            "ip_address"
+        ],
+        "sortable": [
+            "id",
+            "user_id",
+            "last_activity",
+            "login_at"
+        ],
+        "filterable": [
+            "is_active",
+            "two_factor_used"
+        ],
+        "heading": {
+            "title": "활성 세션 목록",
+            "description": "현재 시스템에 로그인된 사용자 세션을 관리합니다"
+        },
+        "features": {
+            "enableCreate": false,
+            "enableDelete": false,
+            "enableEdit": false,
+            "enableSearch": true,
+            "enableSort": true,
+            "enablePagination": true,
+            "enableBulkActions": true,
+            "enableExport": false,
+            "enableImport": false,
+            "enableStatusToggle": false,
+            "enableSettingsDrawer": true
+        },
+        "pagination": {
+            "perPage": 10,
+            "perPageOptions": [10, 20, 50, 100]
+        },
+        "sorting": {
+            "default": "last_activity",
+            "direction": "desc"
+        },
+        "search": {
+            "placeholder": "세션 검색 (이름, 이메일, IP)...",
+            "debounce": 300
+        },
+        "filters": {
+            "is_active": {
+                "label": "상태",
+                "options": {
+                    "": "전체",
+                    "1": "활성",
+                    "0": "비활성"
+                }
+            },
+            "two_factor_used": {
+                "label": "2FA",
+                "options": {
+                    "": "전체",
+                    "1": "사용",
+                    "0": "미사용"
+                }
+            }
+        },
+        "table": {
+            "columns": {
+                "checkbox": {
+                    "visible": true,
+                    "width": "50px"
+                },
+                "id": {
+                    "label": "ID",
+                    "visible": true,
+                    "sortable": true,
+                    "width": "60px"
+                },
+                "user": {
+                    "label": "사용자",
+                    "visible": true,
+                    "sortable": true,
+                    "searchable": true
+                },
+                "ip_address": {
+                    "label": "IP 주소",
+                    "visible": true,
+                    "sortable": false,
+                    "searchable": true
+                },
+                "browser": {
+                    "label": "브라우저",
+                    "visible": true,
+                    "sortable": false
+                },
+                "platform": {
+                    "label": "플랫폼",
+                    "visible": true,
+                    "sortable": false
+                },
+                "two_factor_used": {
+                    "label": "2FA",
+                    "visible": true,
+                    "sortable": true
+                },
+                "login_at": {
+                    "label": "로그인 시간",
+                    "visible": true,
+                    "sortable": true,
+                    "format": "Y-m-d H:i"
+                },
+                "last_activity": {
+                    "label": "마지막 활동",
+                    "visible": true,
+                    "sortable": true,
+                    "format": "Y-m-d H:i"
+                },
+                "is_active": {
+                    "label": "상태",
+                    "visible": true,
+                    "sortable": true
+                },
+                "actions": {
+                    "label": "작업",
+                    "visible": true,
+                    "width": "100px"
+                }
+            }
+        }
+    },
+    "show": {
+        "heading": {
+            "title": "세션 상세 정보",
+            "description": "세션 상세 정보를 확인합니다"
+        },
+        "enableEdit": false,
+        "enableDelete": true,
+        "enableCreate": false,
+        "enableListButton": true,
+        "enableSettingsDrawer": false,
+        "showLayoutPath": "jiny-admin::template.livewire.admin-show",
+        "showPath": "jiny-admin::admin.admin_sessions.show",
+        "display": {
+            "datetimeFormat": "Y-m-d H:i:s",
+            "booleanLabels": {
+                "true": "활성",
+                "false": "비활성"
+            }
+        }
+    },
+    "delete": {
+        "enableTransaction": true,
+        "requireConfirmation": true,
+        "confirmation": {
+            "title": "세션 종료",
+            "message": "이 세션을 종료하시겠습니까?",
+            "confirmText": "세션 종료",
+            "cancelText": "취소"
+        },
+        "messages": {
+            "success": "세션이 종료되었습니다.",
+            "error": "세션 종료 중 오류가 발생했습니다: %s",
+            "confirmRequired": "세션 종료 확인이 필요합니다."
+        }
+    },
+    "terminate": {
+        "enableTransaction": true,
+        "requireConfirmation": true,
+        "confirmation": {
+            "message": "이 세션을 종료하시겠습니까?"
+        },
+        "messages": {
+            "success": "세션이 종료되었습니다.",
+            "error": "세션 종료 중 오류가 발생했습니다: %s",
+            "confirmRequired": "세션 종료 확인이 필요합니다."
+        }
+    }
+}
