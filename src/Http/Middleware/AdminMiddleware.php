@@ -66,10 +66,10 @@ class AdminMiddleware
 {
     /**
      * 로그인 라우트 이름
-     * 
+     *
      * @var string
      */
-    private string $loginRoute = 'admin.login';
+    private string $loginRoute = '/admin/login';
     
     /**
      * 로그인 처리 라우트 이름
@@ -97,7 +97,7 @@ class AdminMiddleware
     public function handle(Request $request, Closure $next, ?string $requiredType = null): Response
     {
         // STEP 1: 로그인 페이지 예외 처리
-        if ($request->routeIs($this->loginRoute, $this->loginPostRoute)) {
+        if ($request->path() === ltrim($this->loginRoute, '/') || $request->routeIs($this->loginPostRoute)) {
             return $next($request);
         }
 
@@ -145,7 +145,7 @@ class AdminMiddleware
         }
 
         // 일반 요청인 경우 로그인 페이지로 리다이렉트
-        return redirect()->route($this->loginRoute);
+        return redirect($this->loginRoute);
     }
 
     /**
@@ -212,7 +212,7 @@ class AdminMiddleware
         // 접근하려던 URL을 세션에 저장 (로그인 후 리다이렉트용)
         session()->put('url.intended', $request->url());
 
-        return redirect()->route($this->loginRoute);
+        return redirect($this->loginRoute);
     }
     
     /**
