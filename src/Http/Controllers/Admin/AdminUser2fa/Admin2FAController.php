@@ -90,7 +90,7 @@ class Admin2FAController extends Controller
             // 세션에 백업 코드 저장 (한 번만 표시)
             session()->flash('backup_codes', $backupCodes);
             
-            return redirect()->route('admin.user.2fa.show', $userId)
+            return redirect()->route('admin.system.user.2fa.show', $userId)
                 ->with('success', 'SMS 2FA가 성공적으로 활성화되었습니다.');
         }
 
@@ -129,7 +129,7 @@ class Admin2FAController extends Controller
             // 세션에 백업 코드 저장 (한 번만 표시)
             session()->flash('backup_codes', $backupCodes);
             
-            return redirect()->route('admin.user.2fa.show', $userId)
+            return redirect()->route('admin.system.user.2fa.show', $userId)
                 ->with('success', '이메일 2FA가 성공적으로 활성화되었습니다.');
         }
 

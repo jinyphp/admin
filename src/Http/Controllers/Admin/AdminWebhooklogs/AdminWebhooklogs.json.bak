@@ -1,0 +1,150 @@
+{
+    "title": "웹훅 로그",
+    "subtitle": "웹훅 발송 로그를 확인합니다",
+    "description": "웹훅 발송 이력과 상태를 모니터링합니다",
+    "route": {
+        "name": "admin.webhook.logs",
+        "prefix": "admin/webhook/logs"
+    },
+    "table": {
+        "name": "admin_webhook_logs",
+        "primaryKey": "id",
+        "timestamps": true,
+        "softDeletes": false
+    },
+    "template": {
+        "layout": "jiny-admin::layouts.admin",
+        "index": "jiny-admin::template.index",
+        "show": "jiny-admin::admin.admin_webhooklogs.show"
+    },
+    "index": {
+        "tableLayoutPath": "jiny-admin::template.livewire.admin-table",
+        "tablePath": "jiny-admin::admin.admin_webhooklogs.table",
+        "searchLayoutPath": "jiny-admin::template.livewire.admin-search",
+        "searchFormPath": "jiny-admin::admin.admin_webhooklogs.search",
+        "searchable": true,
+        "sortable": true,
+        "filterable": true,
+        "heading": {
+            "title": "웹훅 발송 로그",
+            "description": "웹훅 발송 이력을 확인합니다"
+        },
+        "features": {
+            "enableCreate": false,
+            "enableDelete": true,
+            "enableEdit": false,
+            "enableSearch": true,
+            "enableSort": true,
+            "enablePagination": true,
+            "enableBulkActions": true,
+            "enableExport": false,
+            "enableImport": false,
+            "enableStatusToggle": false,
+            "enableSettingsDrawer": true
+        },
+        "pagination": {
+            "perPage": 20,
+            "options": [20, 50, 100, 200]
+        },
+        "sorting": {
+            "default": "created_at",
+            "direction": "desc"
+        },
+        "search": {
+            "placeholder": "채널, 메시지 검색...",
+            "debounce": 300
+        },
+        "filters": [
+            {
+                "field": "status",
+                "label": "상태",
+                "type": "select",
+                "options": {
+                    "": "전체",
+                    "pending": "대기중",
+                    "sent": "성공",
+                    "failed": "실패"
+                }
+            }
+        ],
+        "table": {
+            "columns": [
+                {
+                    "field": "id",
+                    "label": "ID",
+                    "sortable": true,
+                    "width": "60px"
+                },
+                {
+                    "field": "channel_name",
+                    "label": "채널",
+                    "sortable": true,
+                    "searchable": true
+                },
+                {
+                    "field": "message",
+                    "label": "메시지",
+                    "searchable": true,
+                    "truncate": 100
+                },
+                {
+                    "field": "status",
+                    "label": "상태",
+                    "sortable": true
+                },
+                {
+                    "field": "error_message",
+                    "label": "에러",
+                    "truncate": 50
+                },
+                {
+                    "field": "sent_at",
+                    "label": "발송시간",
+                    "sortable": true,
+                    "type": "datetime",
+                    "format": "Y-m-d H:i:s"
+                },
+                {
+                    "field": "created_at",
+                    "label": "생성시간",
+                    "sortable": true,
+                    "type": "datetime",
+                    "format": "Y-m-d H:i:s"
+                }
+            ]
+        }
+    },
+    "show": {
+        "heading": {
+            "title": "웹훅 로그 상세",
+            "description": "웹훅 로그 상세 정보"
+        },
+        "showLayoutPath": "jiny-admin::template.livewire.admin-show",
+        "showPath": "jiny-admin::admin.admin_webhooklogs.show",
+        "enableEdit": false,
+        "enableDelete": true,
+        "enableCreate": false,
+        "enableListButton": true,
+        "enableSettingsDrawer": true,
+        "display": {
+            "datetimeFormat": "Y-m-d H:i:s",
+            "booleanLabels": {
+                "true": "예",
+                "false": "아니오"
+            }
+        }
+    },
+    "destroy": {
+        "enableSoftDelete": false,
+        "enableTransaction": true,
+        "requireConfirmation": true,
+        "confirmation": {
+            "message": "정말로 이 로그를 삭제하시겠습니까?"
+        },
+        "messages": {
+            "success": "로그가 삭제되었습니다.",
+            "error": "로그 삭제 중 오류가 발생했습니다.",
+            "confirmRequired": "삭제 확인이 필요합니다."
+        }
+    }
+}

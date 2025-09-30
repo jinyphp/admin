@@ -7,12 +7,11 @@
 
 @section('content')
 <div class="w-full px-4 sm:px-6 lg:px-8 py-4">
+
+
     {{--
-        페이지 헤더 섹션
-        페이지 제목, 설명, 새 템플릿 생성 버튼을 표시
-        설정 드로어 활성화 버튼 포함
+        페이지 설정 및 생성 버튼
     --}}
-    {{-- jsonData와 jsonPath를 직접 전달하여 컴포넌트에서 처리 --}}
     @livewire('jiny-admin::admin-header-with-settings', [
         'jsonData' => $jsonData,
         'jsonPath' => $jsonPath ?? null,

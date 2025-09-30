@@ -15,7 +15,7 @@
                 <p class="mt-1">로그의 무결성을 유지하기 위해 수정이 제한됩니다.</p>
             </div>
             <div class="mt-4">
-                <a href="{{ route('admin.captcha.logs') }}" 
+                <a href="{{ route('admin.system.captcha.logs') }}" 
                    class="text-xs font-medium text-red-800 hover:text-red-600">
                     ← CAPTCHA 로그 목록으로 돌아가기
                 </a>

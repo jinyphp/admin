@@ -17,7 +17,7 @@ class AdminEmailLogsResend extends Controller
         $log = \DB::table($tableName)->where('id', $id)->first();
         
         if (!$log) {
-            return redirect()->route('admin.mail.logs')
+            return redirect()->route('admin.system.mail.logs')
                 ->with('error', '이메일 로그를 찾을 수 없습니다.');
         }
         

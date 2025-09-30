@@ -170,7 +170,7 @@
                         @endif
                         
                         {{-- 수정 버튼 --}}
-                        <a href="{{ route('admin.sms.send.edit', $item->id) }}"
+                        <a href="{{ route('admin.system.sms.send.edit', $item->id) }}"
                            class="text-blue-600 hover:text-blue-900"
                            title="수정">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -179,7 +179,7 @@
                         </a>
                         
                         {{-- 상세보기 버튼 --}}
-                        <a href="{{ route('admin.sms.send.show', $item->id) }}"
+                        <a href="{{ route('admin.system.sms.send.show', $item->id) }}"
                            class="text-gray-600 hover:text-gray-900"
                            title="상세보기">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -3,7 +3,7 @@
     "subtitle": "이메일 발송 내역 및 상태 관리",
     "description": "이메일 발송 로그 시스템으로 발송 상태, 열람, 클릭 추적을 제공합니다.",
     "route": {
-        "name": "admin.mail.logs",
+        "name": "admin.system.mail.logs",
         "prefix": "admin\/mail\/logs",
         "actions": {
             "index": "index",

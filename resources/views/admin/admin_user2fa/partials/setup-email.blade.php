@@ -54,7 +54,7 @@
                     </p>
                 </div>
                 
-                <form action="{{ route('admin.user.2fa.verify-email', $user->id) }}" method="POST">
+                <form action="{{ route('admin.system.user.2fa.verify-email', $user->id) }}" method="POST">
                     @csrf
                     <input type="hidden" name="method" value="email">
                     

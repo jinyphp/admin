@@ -143,7 +143,7 @@
             Google Authenticator 앱에 표시된 6자리 코드를 입력하여 설정을 완료하세요
         </p>
         
-        <form action="{{ isset($isRegenerating) && $isRegenerating ? route('admin.user.2fa.confirm-regenerate', $user->id) : route('admin.user.2fa.store', $user->id) }}" method="POST">
+        <form action="{{ isset($isRegenerating) && $isRegenerating ? route('admin.system.user.2fa.confirm-regenerate', $user->id) : route('admin.system.user.2fa.store', $user->id) }}" method="POST">
             @csrf
             @if(!isset($isRegenerating) || !$isRegenerating)
                 <input type="hidden" name="secret" value="{{ $secret ?? '' }}">
@@ -192,7 +192,7 @@
         <p class="text-xs text-gray-600 dark:text-gray-400 mb-4">
             Google Authenticator를 사용하여 계정 보안을 강화하세요
         </p>
-        <form action="{{ route('admin.user.2fa.generate', $user->id) }}" method="POST">
+        <form action="{{ route('admin.system.user.2fa.generate', $user->id) }}" method="POST">
             @csrf
             <button type="submit" 
                     class="inline-flex items-center h-8 px-3 bg-blue-600 text-white text-xs font-medium rounded hover:bg-blue-700 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:ring-offset-1">
@@ -228,7 +228,7 @@
                             class="h-8 px-3 bg-gray-300 dark:bg-gray-600 text-gray-700 dark:text-gray-300 rounded text-xs font-medium hover:bg-gray-400 dark:hover:bg-gray-500 transition-colors">
                         취소
                     </button>
-                    <form action="{{ route('admin.user.2fa.regenerate-qr', $user->id) }}" method="POST" class="inline">
+                    <form action="{{ route('admin.system.user.2fa.regenerate-qr', $user->id) }}" method="POST" class="inline">
                         @csrf
                         <button type="submit" 
                                 class="h-8 px-3 bg-yellow-600 text-white rounded text-xs font-medium hover:bg-yellow-700 transition-colors">

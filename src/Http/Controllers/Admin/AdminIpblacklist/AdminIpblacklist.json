@@ -1,10 +1,10 @@
 {
     "title": "IP 블랙리스트 관리",
     "subtitle": "차단된 IP 주소를 관리합니다",
-    "description": "{{description}}",
+    "description": "보안 위험이 있는 IP 주소를 차단하여 시스템을 보호합니다. 단일 IP, IP 범위, CIDR 표기법을 지원합니다.",
     "route": {
-        "name": "admin.{{routeName}}",
-        "prefix": "admin/{{routePrefix}}",
+        "name": "admin.system.security.ip-blacklist",
+        "prefix": "admin/security/ip-blacklist",
         "actions": {
             "index": "index",
             "create": "create",
@@ -16,19 +16,24 @@
         }
     },
     "table": {
-        "name": "{{tableName}}",
-        "model": "\\Jiny\\Admin\\Models\\{{modelName}}",
+        "name": "admin_ip_blacklist",
+        "model": "\\Jiny\\Admin\\Models\\AdminIpBlacklist",
         "primaryKey": "id",
         "timestamps": true,
-        "softDeletes": {{softDeletes}},
-        "fillable": {{fillable}},
-        "guarded": {{guarded}},
-        "hidden": {{hidden}},
+        "softDeletes": false,
+        "fillable": ["ip_address", "type", "description", "is_active", "expires_at", "added_by"],
+        "guarded": ["id", "created_at", "updated_at"],
+        "hidden": [],
         "where": {
             "default": [],
             "conditions": []
         },
-        "casts": {{casts}}
+        "casts": {
+            "is_active": "boolean",
+            "expires_at": "datetime",
+            "created_at": "datetime",
+            "updated_at": "datetime"
+        }
     },
     "template": {
         "layout": "jiny-admin::layouts.admin",
@@ -39,15 +44,15 @@
     },
     "index": {
         "tableLayoutPath": "jiny-admin::template.livewire.admin-table",
-        "tablePath": "jiny-{{moduleLC}}::admin.{{viewPath}}.table",
+        "tablePath": "jiny-admin::admin.admin_ip_blacklist.table",
         "searchLayoutPath": "jiny-admin::template.livewire.admin-search",
-        "searchFormPath": "jiny-{{moduleLC}}::admin.{{viewPath}}.search",
-        "searchable": {{searchable}},
-        "sortable": {{sortable}},
-        "filterable": {{filterable}},
+        "searchFormPath": "jiny-admin::admin.admin_ip_blacklist.search",
+        "searchable": ["ip_address", "description"],
+        "sortable": ["id", "ip_address", "type", "is_active", "created_at"],
+        "filterable": ["type", "is_active"],
         "heading": {
-            "title": "{{indexTitle}}",
-            "description": "{{indexDescription}}"
+            "title": "IP 블랙리스트 목록",
+            "description": "차단된 IP 주소 목록을 확인하고 관리합니다"
         },
         "features": {
             "enableCreate": true,
@@ -63,55 +68,131 @@
             "enableSettingsDrawer": true
         },
         "pagination": {
-            "perPage": {{perPage}},
-            "options": {{perPageOptions}}
+            "perPage": 20,
+            "options": [10, 25, 50, 100]
         },
         "sorting": {
-            "default": "{{sortDefault}}",
-            "direction": "{{sortDirection}}"
+            "default": "created_at",
+            "direction": "desc"
         },
         "search": {
-            "placeholder": "{{searchPlaceholder}}",
+            "placeholder": "IP 주소 또는 설명 검색...",
             "debounce": 300
         },
-        "filters": {{filters}},
+        "filters": {
+            "type": {
+                "label": "IP 타입",
+                "options": {
+                    "": "전체",
+                    "single": "단일 IP",
+                    "range": "IP 범위",
+                    "cidr": "CIDR"
+                }
+            },
+            "is_active": {
+                "label": "상태",
+                "options": {
+                    "": "전체",
+                    "1": "활성",
+                    "0": "비활성"
+                }
+            }
+        },
         "table": {
-            "columns": {{tableColumns}}
+            "columns": {
+                "checkbox": {
+                    "visible": true,
+                    "width": "50px"
+                },
+                "id": {
+                    "label": "ID",
+                    "visible": true,
+                    "sortable": true,
+                    "width": "80px"
+                },
+                "ip_address": {
+                    "label": "IP 주소",
+                    "visible": true,
+                    "sortable": true,
+                    "searchable": true
+                },
+                "type": {
+                    "label": "타입",
+                    "visible": true,
+                    "sortable": true,
+                    "badge": {
+                        "single": "primary",
+                        "range": "info",
+                        "cidr": "warning"
+                    }
+                },
+                "description": {
+                    "label": "설명",
+                    "visible": true,
+                    "searchable": true,
+                    "truncate": 50
+                },
+                "is_active": {
+                    "label": "상태",
+                    "visible": true,
+                    "sortable": true,
+                    "toggleable": true
+                },
+                "expires_at": {
+                    "label": "만료일",
+                    "visible": true,
+                    "sortable": true,
+                    "format": "Y-m-d H:i",
+                    "responsive": "md"
+                },
+                "created_at": {
+                    "label": "생성일",
+                    "visible": true,
+                    "sortable": true,
+                    "format": "Y-m-d",
+                    "responsive": "lg"
+                },
+                "actions": {
+                    "label": "작업",
+                    "visible": true,
+                    "width": "150px"
+                }
+            }
         }
     },
     "create": {
         "heading": {
-            "title": "{{createTitle}}",
-            "description": "{{createDescription}}"
+            "title": "IP 블랙리스트 추가",
+            "description": "새로운 IP 주소를 블랙리스트에 추가합니다"
         },
         "createLayoutPath": "jiny-admin::template.livewire.admin-create",
-        "formPath": "jiny-{{moduleLC}}::admin.{{viewPath}}.create",
+        "formPath": "jiny-admin::admin.admin_ip_blacklist.create",
         "formLayout": "vertical",
-        "buttonText": "{{createButtonText}}",
+        "buttonText": "IP 블랙리스트 추가",
         "enableContinueCreate": true,
         "enableListButton": true,
         "enableSettingsDrawer": true
     },
     "edit": {
         "heading": {
-            "title": "{{editTitle}}",
-            "description": "{{editDescription}}"
+            "title": "IP 블랙리스트 수정",
+            "description": "블랙리스트 IP 정보를 수정합니다"
         },
         "enableDelete": true,
         "enableListButton": true,
         "enableDetailButton": true,
         "enableSettingsDrawer": true,
         "editLayoutPath": "jiny-admin::template.livewire.admin-edit",
-        "formPath": "jiny-{{moduleLC}}::admin.{{viewPath}}.edit",
+        "formPath": "jiny-admin::admin.admin_ip_blacklist.edit",
         "formLayout": "vertical"
     },
     "show": {
         "heading": {
-            "title": "{{showTitle}}",
-            "description": "{{showDescription}}"
+            "title": "IP 블랙리스트 상세",
+            "description": "블랙리스트 IP 상세 정보를 확인합니다"
         },
         "showLayoutPath": "jiny-admin::template.livewire.admin-show",
-        "showPath": "jiny-{{moduleLC}}::admin.{{viewPath}}.show",
+        "showPath": "jiny-admin::admin.admin_ip_blacklist.show",
         "enableEdit": true,
         "enableDelete": true,
         "enableCreate": true,
@@ -120,35 +201,49 @@
         "display": {
             "datetimeFormat": "Y-m-d H:i:s",
             "booleanLabels": {
-                "true": "{{booleanTrue}}",
-                "false": "{{booleanFalse}}"
+                "true": "활성",
+                "false": "비활성"
             }
         }
     },
     "destroy": {
-        "enableSoftDelete": {{softDeletes}},
+        "enableSoftDelete": false,
         "enableTransaction": true,
         "requireConfirmation": true,
         "confirmation": {
-            "message": "{{deleteConfirmMessage}}"
+            "message": "이 IP를 블랙리스트에서 제거하시겠습니까?"
         },
         "messages": {
-            "success": "{{deleteSuccessMessage}}",
-            "error": "{{deleteErrorMessage}}",
-            "confirmRequired": "{{deleteConfirmRequired}}"
+            "success": "IP 블랙리스트에서 제거되었습니다.",
+            "error": "IP 블랙리스트 제거 중 오류가 발생했습니다: %s",
+            "confirmRequired": "삭제 확인이 필요합니다."
         }
     },
     "store": {
         "enableTransaction": true,
-        "defaults": {{storeDefaults}},
+        "defaults": {
+            "is_active": true,
+            "type": "single"
+        },
         "messages": {
-            "success": "{{storeSuccessMessage}}",
-            "error": "{{storeErrorMessage}}",
-            "continueSuccess": "{{storeContinueMessage}}"
+            "success": "IP 블랙리스트에 추가되었습니다.",
+            "error": "IP 블랙리스트 추가 중 오류가 발생했습니다: %s",
+            "continueSuccess": "IP 블랙리스트에 추가되었습니다. 계속 추가하세요."
         },
         "validation": {
-            "rules": {{storeValidationRules}},
-            "messages": {{storeValidationMessages}}
+            "rules": {
+                "ip_address": "required|ip",
+                "type": "required|in:single,range,cidr",
+                "description": "required|string|max:255",
+                "is_active": "boolean",
+                "expires_at": "nullable|date|after:now"
+            },
+            "messages": {
+                "ip_address.required": "IP 주소를 입력해주세요.",
+                "ip_address.ip": "유효한 IP 주소를 입력해주세요.",
+                "type.required": "IP 타입을 선택해주세요.",
+                "description.required": "설명을 입력해주세요."
+            }
         }
     },
     "update": {
@@ -159,12 +254,23 @@
             "error": "edit"
         },
         "messages": {
-            "success": "{{updateSuccessMessage}}",
-            "error": "{{updateErrorMessage}}"
+            "success": "IP 블랙리스트가 수정되었습니다.",
+            "error": "IP 블랙리스트 수정 중 오류가 발생했습니다: %s"
         },
         "validation": {
-            "rules": {{updateValidationRules}},
-            "messages": {{updateValidationMessages}}
+            "rules": {
+                "ip_address": "required|ip",
+                "type": "required|in:single,range,cidr",
+                "description": "required|string|max:255",
+                "is_active": "boolean",
+                "expires_at": "nullable|date"
+            },
+            "messages": {
+                "ip_address.required": "IP 주소를 입력해주세요.",
+                "ip_address.ip": "유효한 IP 주소를 입력해주세요.",
+                "type.required": "IP 타입을 선택해주세요.",
+                "description.required": "설명을 입력해주세요."
+            }
         }
     }
 }

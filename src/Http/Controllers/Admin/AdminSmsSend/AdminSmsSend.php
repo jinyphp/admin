@@ -39,7 +39,7 @@ class AdminSmsSend extends Controller
         $settingsPath = $jsonPath; // settings drawer를 위한 경로
 
         // currentRoute 설정
-        $this->jsonData['currentRoute'] = $this->jsonData['route']['name'] ?? 'admin.sms_send';
+        $this->jsonData['currentRoute'] = $this->jsonData['route']['name'] ?? 'admin.system.sms_send';
         
         // 컨트롤러 클래스를 JSON 데이터에 추가
         $this->jsonData['controllerClass'] = get_class($this);

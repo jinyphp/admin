@@ -11,7 +11,7 @@ use Jiny\Admin\Models\AdminIpWhitelist as IpWhitelistModel;
 
 /**
  * IP 화이트리스트 메인 컨트롤러
- * 
+ *
  * IP 화이트리스트 목록을 관리하는 메인 컨트롤러입니다.
  * Single Action Controller 패턴을 따르며, __invoke 메소드를 통해 실행됩니다.
  */
@@ -22,7 +22,7 @@ class AdminIpWhitelist extends Controller
      * @var array|null
      */
     private $jsonData;
-    
+
     /**
      * 생성자 - JSON 설정 로드
      */
@@ -31,10 +31,10 @@ class AdminIpWhitelist extends Controller
         $jsonConfigService = new JsonConfigService;
         $this->jsonData = $jsonConfigService->loadFromControllerPath(__DIR__);
     }
-    
+
     /**
      * IP 화이트리스트 목록 페이지 표시
-     * 
+     *
      * @param Request $request
      * @return \Illuminate\View\View
      */
@@ -44,16 +44,19 @@ class AdminIpWhitelist extends Controller
         if (!$this->jsonData) {
             return response('Error: JSON 설정을 로드할 수 없습니다.', 500);
         }
-        
+
         // 템플릿 경로 확인
         if (!isset($this->jsonData['template']['index'])) {
             return response('Error: template.index 설정이 필요합니다.', 500);
         }
-        
+
         // 뷰 데이터 준비
         $jsonPath = __DIR__ . DIRECTORY_SEPARATOR . 'AdminIpWhitelist.json';
         $this->jsonData['controllerClass'] = get_class($this);
-        
+
+
+        // dd($this->jsonData);
+
         return view($this->jsonData['template']['index'], [
             'jsonData' => $this->jsonData,
             'jsonPath' => $jsonPath,
@@ -61,10 +64,10 @@ class AdminIpWhitelist extends Controller
             'controllerClass' => static::class
         ]);
     }
-    
+
     /**
      * Hook: 데이터 조회 전 실행
-     * 
+     *
      * @param mixed $wire Livewire 컴포넌트
      * @return false|mixed
      */
@@ -72,16 +75,16 @@ class AdminIpWhitelist extends Controller
     {
         // 현재 사용자의 IP 주소 표시
         $wire->currentUserIp = request()->ip();
-        
+
         // IP 화이트리스트 기능 활성화 상태 확인
         $wire->isWhitelistEnabled = config('setting.ip_whitelist.enabled', false);
-        
+
         return false; // false면 정상 진행
     }
-    
+
     /**
      * Hook: 데이터 조회 후 실행
-     * 
+     *
      * @param mixed $wire Livewire 컴포넌트
      * @param mixed $rows 조회된 데이터
      * @return mixed
@@ -101,7 +104,7 @@ class AdminIpWhitelist extends Controller
                 $row->status_class = 'active';
                 $row->status_text = '활성';
             }
-            
+
             // IP 타입별 표시 형식
             switch ($row->type) {
                 case 'range':
@@ -114,13 +117,13 @@ class AdminIpWhitelist extends Controller
                     $row->ip_display = $row->ip_address;
             }
         }
-        
+
         return $rows;
     }
-    
+
     /**
      * Hook: 테이블 헤더 커스터마이징
-     * 
+     *
      * @param mixed $wire Livewire 컴포넌트
      * @return array|null
      */
@@ -145,10 +148,10 @@ class AdminIpWhitelist extends Controller
             ]
         ];
     }
-    
+
     /**
      * Hook: 커스텀 액션 처리
-     * 
+     *
      * @param mixed $wire Livewire 컴포넌트
      * @param string $action 액션명
      * @param mixed $data 데이터
@@ -160,36 +163,36 @@ class AdminIpWhitelist extends Controller
             case 'cleanupExpired':
                 $this->cleanupExpiredIps($wire);
                 break;
-                
+
             case 'toggleStatus':
                 $this->toggleIpStatus($wire, $data);
                 break;
         }
     }
-    
+
     /**
      * 만료된 IP 정리
-     * 
+     *
      * @param mixed $wire Livewire 컴포넌트
      * @return void
      */
     private function cleanupExpiredIps($wire)
     {
         $count = IpWhitelistModel::expired()->delete();
-        
+
         session()->flash('notification', [
             'type' => 'success',
             'title' => '정리 완료',
             'message' => "{$count}개의 만료된 IP가 삭제되었습니다."
         ]);
-        
+
         // 캐시 초기화
         IpWhitelistModel::clearCache();
     }
-    
+
     /**
      * IP 활성화 상태 토글
-     * 
+     *
      * @param mixed $wire Livewire 컴포넌트
      * @param int $id IP ID
      * @return void
@@ -197,13 +200,13 @@ class AdminIpWhitelist extends Controller
     private function toggleIpStatus($wire, $id)
     {
         $ip = IpWhitelistModel::find($id);
-        
+
         if ($ip) {
             $ip->is_active = !$ip->is_active;
             $ip->save();
-            
+
             $status = $ip->is_active ? '활성화' : '비활성화';
-            
+
             session()->flash('notification', [
                 'type' => 'success',
                 'title' => '상태 변경',

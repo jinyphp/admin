@@ -10,10 +10,10 @@
     },
     
     "routes": {
-        "challenge": "admin.2fa.challenge",
-        "verify": "admin.2fa.verify",
-        "login": "admin.login",
-        "dashboard": "admin.dashboard"
+        "challenge": "admin.system.2fa.challenge",
+        "verify": "admin.system.2fa.verify",
+        "login": "admin.system.login",
+        "dashboard": "admin.system.dashboard"
     },
     
     "messages": {

@@ -3,7 +3,7 @@
     "subtitle": "이메일 열람 및 클릭 추적",
     "description": "이메일 캠페인의 성과를 실시간으로 모니터링하고 분석합니다",
     "route": {
-        "name": "admin.mail.tracking",
+        "name": "admin.system.mail.tracking",
         "prefix": "admin/mail/tracking",
         "actions": {
             "index": "index",

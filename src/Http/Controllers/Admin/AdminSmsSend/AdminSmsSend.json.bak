@@ -1,0 +1,243 @@
+{
+    "title": "SMS 발송 상세정보",
+    "subtitle": "SMS 메시지 발송 및 이력 관리",
+    "description": "SMS 메시지를 발송하고 발송 이력을 관리합니다.",
+    "route": {
+        "name": "admin.sms.send",
+        "prefix": "admin/sms/send",
+        "actions": {
+            "index": "index",
+            "create": "create",
+            "store": "store",
+            "show": "show",
+            "edit": "edit",
+            "update": "update",
+            "destroy": "destroy"
+        }
+    },
+    "table": {
+        "name": "admin_sms_sends",
+        "model": "\\Jiny\\Admin\\Models\\AdminSmsSend",
+        "primaryKey": "id",
+        "timestamps": true,
+        "softDeletes": false,
+        "where": {
+            "default": [],
+            "conditions": []
+        },
+        "casts": {
+            "response": "array",
+            "sent_at": "datetime",
+            "delivered_at": "datetime",
+            "failed_at": "datetime"
+        }
+    },
+    "template": {
+        "layout": "jiny-admin::layouts.admin",
+        "index": "jiny-admin::template.index",
+        "show": "jiny-admin::admin.admin_sms_send.show",
+        "create": "jiny-admin::template.create",
+        "edit": "jiny-admin::template.edit"
+    },
+    "index": {
+        "tableLayoutPath": "jiny-admin::template.livewire.admin-table",
+        "tablePath": "jiny-admin::admin.admin_sms_send.table",
+        "searchLayoutPath": "jiny-admin::template.livewire.admin-search",
+        "searchFormPath": "jiny-admin::admin.admin_sms_send.search",
+        "paging": 20,
+        "searchable": [
+            "to_number",
+            "message",
+            "message_id"
+        ],
+        "sortable": [
+            "id",
+            "to_number",
+            "status",
+            "sent_at",
+            "created_at"
+        ],
+        "filterable": [
+            "status",
+            "provider_id"
+        ],
+        "heading": {
+            "title": "SMS 발송 이력",
+            "description": "발송된 SMS 메시지 이력을 확인합니다."
+        },
+        "features": {
+            "enableCreate": true,
+            "enableDelete": true,
+            "enableEdit": true,
+            "enableSearch": true,
+            "enableSort": true,
+            "enablePagination": true,
+            "enableBulkActions": true,
+            "enableExport": true,
+            "enableImport": false,
+            "enableStatusToggle": false,
+            "enableSettingsDrawer": true
+        },
+        "pagination": {
+            "perPage": "20",
+            "perPageOptions": [10, 25, 50, 100]
+        },
+        "sorting": {
+            "default": "sent_at",
+            "direction": "desc"
+        },
+        "search": {
+            "placeholder": "수신번호, 메시지 검색...",
+            "debounce": 300
+        },
+        "filters": {
+            "status": {
+                "label": "상태",
+                "options": {
+                    "": "전체",
+                    "pending": "대기중",
+                    "sent": "발송완료",
+                    "delivered": "수신확인",
+                    "failed": "발송실패"
+                }
+            }
+        },
+        "table": {
+            "columns": {
+                "id": {
+                    "label": "ID",
+                    "visible": true,
+                    "sortable": true,
+                    "width": "80px"
+                },
+                "to_number": {
+                    "label": "수신번호",
+                    "visible": true,
+                    "sortable": true,
+                    "searchable": true
+                },
+                "message": {
+                    "label": "메시지",
+                    "visible": true,
+                    "truncate": 50,
+                    "searchable": true
+                },
+                "status": {
+                    "label": "상태",
+                    "visible": true,
+                    "sortable": true,
+                    "badge": true,
+                    "badgeColors": {
+                        "pending": "yellow",
+                        "sent": "blue",
+                        "delivered": "green",
+                        "failed": "red"
+                    }
+                },
+                "provider_name": {
+                    "label": "제공업체",
+                    "visible": true,
+                    "responsive": "md"
+                },
+                "cost": {
+                    "label": "비용",
+                    "visible": true,
+                    "format": "currency",
+                    "responsive": "lg"
+                },
+                "sent_at": {
+                    "label": "발송시간",
+                    "visible": true,
+                    "sortable": true,
+                    "format": "Y-m-d H:i",
+                    "responsive": "md"
+                },
+                "actions": {
+                    "label": "작업",
+                    "visible": true,
+                    "width": "100px"
+                }
+            }
+        }
+    },
+    "create": {
+        "buttonText": "SMS 발송",
+        "heading": {
+            "title": "SMS 발송",
+            "description": "SMS 메시지를 발송합니다."
+        },
+        "enableContinueCreate": true,
+        "enableListButton": true,
+        "enableSettingsDrawer": false,
+        "createLayoutPath": "jiny-admin::template.livewire.admin-create",
+        "formPath": "jiny-admin::admin.admin_sms_send.create",
+        "formLayout": "vertical"
+    },
+    "show": {
+        "heading": {
+            "title": "SMS 발송 상세",
+            "description": "SMS 발송 정보를 확인합니다."
+        },
+        "enableEdit": true,
+        "enableDelete": true,
+        "enableCreate": true,
+        "enableListButton": true,
+        "enableSettingsDrawer": false,
+        "showLayoutPath": "jiny-admin::template.livewire.admin-show",
+        "showPath": "jiny-admin::admin.admin_sms_send.show",
+        "display": {
+            "datetimeFormat": "Y-m-d H:i:s",
+            "booleanLabels": {
+                "true": "예",
+                "false": "아니오"
+            }
+        }
+    },
+    "edit": {
+        "heading": {
+            "title": "SMS 발송 수정",
+            "description": "SMS 발송 정보를 수정합니다."
+        },
+        "enableCreate": false,
+        "enableListButton": true,
+        "enableSettingsDrawer": false,
+        "editLayoutPath": "jiny-admin::template.livewire.admin-edit",
+        "formPath": "jiny-admin::admin.admin_sms_send.edit",
+        "formLayout": "vertical"
+    },
+    "delete": {
+        "enabled": true,
+        "requireConfirmation": true,
+        "confirmationMessage": "이 SMS 기록을 삭제하시겠습니까?",
+        "softDelete": false,
+        "batch": true,
+        "messages": {
+            "success": "SMS 기록이 삭제되었습니다.",
+            "error": "삭제 중 오류가 발생했습니다."
+        }
+    },
+    "store": {
+        "enableTransaction": false,
+        "fillable": [
+            "provider_id",
+            "to_number",
+            "from_number",
+            "message"
+        ],
+        "messages": {
+            "success": "SMS가 발송되었습니다.",
+            "error": "SMS 발송에 실패했습니다.",
+            "continueSuccess": "SMS가 발송되었습니다. 계속 발송할 수 있습니다."
+        },
+        "validation": {
+            "rules": {
+                "to_number": "required|string",
+                "message": "required|string"
+            },
+            "messages": {
+                "to_number.required": "수신번호는 필수입니다.",
+                "message.required": "메시지는 필수입니다."
+            }
+        }
+    }
+}

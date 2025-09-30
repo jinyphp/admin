@@ -2,9 +2,9 @@
     "controllerClass": "\\Jiny\\Admin\\App\\Http\\Controllers\\Admin\\AdminDashboard\\AdminDashboard",
     "title": "관리자 대시보드",
     "subtitle": "시스템 전체 현황을 한눈에 확인하세요",
-    "description": "Admin dashboard with real-time monitoring and statistics",
+    "description": "실시간 시스템 모니터링과 통계를 제공합니다. 사용자 활동, 보안 알림, 시스템 리소스 사용량 등 주요 지표를 시각화하여 표시합니다.",
     "route": {
-        "name": "admin.dashboard",
+        "name": "admin.system.dashboard",
         "prefix": "admin/dashboard"
     },
     "template": {

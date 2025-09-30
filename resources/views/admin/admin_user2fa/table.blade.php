@@ -112,7 +112,7 @@
                     {{ $item->id }}
                 </td>
                 <td class="px-3 py-2 whitespace-nowrap">
-                    <a href="{{ route('admin.user.2fa.show', $item->id) }}" 
+                    <a href="{{ route('admin.system.user.2fa.show', $item->id) }}" 
                        class="text-blue-600 hover:text-blue-800 text-xs font-medium hover:underline">
                         {{ $item->name ?? '-' }}
                     </a>
@@ -154,7 +154,7 @@
                 <td class="px-3 py-2 whitespace-nowrap text-center">
                     <div class="flex items-center justify-center space-x-1">
                         {{-- 상세보기 버튼 --}}
-                        <a href="{{ route('admin.user.2fa.show', $item->id) }}" 
+                        <a href="{{ route('admin.system.user.2fa.show', $item->id) }}" 
                            class="inline-flex items-center justify-center w-7 h-7 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded transition-colors"
                            title="상세보기">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -165,7 +165,7 @@
                         
                         @if($item->two_factor_enabled)
                             {{-- 2FA 관리 버튼 --}}
-                            <a href="{{ route('admin.user.2fa.edit', $item->id) }}" 
+                            <a href="{{ route('admin.system.user.2fa.edit', $item->id) }}" 
                                class="inline-flex items-center justify-center w-7 h-7 text-blue-500 hover:text-blue-700 hover:bg-blue-50 rounded transition-colors"
                                title="2FA 관리">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -185,7 +185,7 @@
                             </button>
                         @else
                             {{-- 2FA 설정 버튼 --}}
-                            <a href="{{ route('admin.user.2fa.edit', $item->id) }}" 
+                            <a href="{{ route('admin.system.user.2fa.edit', $item->id) }}" 
                                class="inline-flex items-center justify-center w-7 h-7 text-green-500 hover:text-green-700 hover:bg-green-50 rounded transition-colors"
                                title="2FA 설정">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

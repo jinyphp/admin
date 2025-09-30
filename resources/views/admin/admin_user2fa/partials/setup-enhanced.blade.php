@@ -131,7 +131,7 @@
                     ])
                 @else
                     <div class="text-center py-6">
-                        <form action="{{ route('admin.user.2fa.generate', $user->id) }}" method="POST">
+                        <form action="{{ route('admin.system.user.2fa.generate', $user->id) }}" method="POST">
                             @csrf
                             <input type="hidden" name="method" value="totp">
                             <button type="submit" 

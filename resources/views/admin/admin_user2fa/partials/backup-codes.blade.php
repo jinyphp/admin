@@ -191,7 +191,7 @@ ${codes.join('\n')}
             <p class="text-xs text-gray-500 dark:text-gray-400">
                 백업 코드가 생성되지 않았습니다.
             </p>
-            <form action="{{ route('admin.user.2fa.regenerate-backup', $user->id) }}" method="POST" class="mt-3">
+            <form action="{{ route('admin.system.user.2fa.regenerate-backup', $user->id) }}" method="POST" class="mt-3">
                 @csrf
                 <button type="submit" 
                         class="inline-flex items-center h-8 px-3 bg-blue-600 text-white text-xs font-medium rounded hover:bg-blue-700">

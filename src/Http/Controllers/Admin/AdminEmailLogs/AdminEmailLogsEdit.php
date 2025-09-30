@@ -232,7 +232,7 @@ class AdminEmailLogsEdit extends Controller
             $emailLog->markAsSent();
             
             session()->flash('success', $this->jsonData['send']['messages']['success'] ?? '이메일이 발송되었습니다.');
-            return redirect()->route('admin.mail.logs');
+            return redirect()->route('admin.system.mail.logs');
 
         } catch (\Exception $e) {
             $emailLog->markAsFailed($e->getMessage());

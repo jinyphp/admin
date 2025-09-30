@@ -89,7 +89,7 @@ class AdminUser2faEdit extends Controller
             // 세션에서 QR 코드 정보 삭제
             $this->twoFactorService->clearSession($user->id, ['secret', 'qr']);
             
-            return redirect()->route('admin.user.2fa.edit', $id)
+            return redirect()->route('admin.system.user.2fa.edit', $id)
                 ->with('info', 'QR 코드가 숨겨졌습니다.');
         }
 
@@ -103,7 +103,7 @@ class AdminUser2faEdit extends Controller
             'backup' => $setupData['backupCodes']
         ]);
 
-        return redirect()->route('admin.user.2fa.edit', $id)
+        return redirect()->route('admin.system.user.2fa.edit', $id)
             ->with('info', 'QR 코드와 백업 코드가 생성되었습니다. 인증 앱으로 QR 코드를 스캔하고 인증 코드를 입력해주세요.');
     }
 
@@ -116,7 +116,7 @@ class AdminUser2faEdit extends Controller
 
         // 2FA가 활성화되어 있지 않으면 설정 페이지로 리다이렉트
         if (!$user->two_factor_enabled) {
-            return redirect()->route('admin.user.2fa.edit', $id)
+            return redirect()->route('admin.system.user.2fa.edit', $id)
                 ->with('error', '2FA가 활성화되어 있지 않습니다.');
         }
 
@@ -136,7 +136,7 @@ class AdminUser2faEdit extends Controller
             $this->logActivity($user, 'qr_displayed', 'QR 코드가 재표시되었습니다');
         }
 
-        return redirect()->route('admin.user.2fa.edit', $id)
+        return redirect()->route('admin.system.user.2fa.edit', $id)
             ->with('warning', 'QR 코드가 표시되었습니다. 보안을 위해 사용 후 숨기기를 권장합니다.');
     }
 
@@ -153,7 +153,7 @@ class AdminUser2faEdit extends Controller
         if (method_exists($this, 'hookBeforeRegenerateQr')) {
             $result = $this->hookBeforeRegenerateQr($user);
             if ($result === false) {
-                return redirect()->route('admin.user.2fa.edit', $id)
+                return redirect()->route('admin.system.user.2fa.edit', $id)
                     ->with('error', 'QR 코드 재생성이 차단되었습니다.');
             }
         }
@@ -173,7 +173,7 @@ class AdminUser2faEdit extends Controller
             $this->hookAfterRegenerateQr($user, $setupData);
         }
 
-        return redirect()->route('admin.user.2fa.edit', $id)
+        return redirect()->route('admin.system.user.2fa.edit', $id)
             ->with('danger', 'QR 코드가 재생성되었습니다. 새 코드를 스캔하고 인증 코드를 입력하여 확인해주세요. 확인하지 않으면 기존 설정이 유지됩니다.');
     }
 
@@ -193,13 +193,13 @@ class AdminUser2faEdit extends Controller
         $sessionData = $this->twoFactorService->getFromSession($user->id, ['new_secret', 'regenerating']);
         
         if (!$sessionData['regenerating'] || !$sessionData['new_secret']) {
-            return redirect()->route('admin.user.2fa.edit', $id)
+            return redirect()->route('admin.system.user.2fa.edit', $id)
                 ->with('error', '재생성 세션이 만료되었습니다. 다시 시도해주세요.');
         }
 
         // 새 secret으로 인증 코드 확인
         if (!$this->twoFactorService->verifyCode($sessionData['new_secret'], $request->verification_code)) {
-            return redirect()->route('admin.user.2fa.edit', $id)
+            return redirect()->route('admin.system.user.2fa.edit', $id)
                 ->with('error', '인증 코드가 올바르지 않습니다.');
         }
 
@@ -230,7 +230,7 @@ class AdminUser2faEdit extends Controller
         $notificationService = app(NotificationService::class);
         $notificationService->notify2FAChanged($user->email, 'regenerated');
 
-        return redirect()->route('admin.user.2fa.edit', $id)
+        return redirect()->route('admin.system.user.2fa.edit', $id)
             ->with('success', 'QR 코드가 성공적으로 재생성되었습니다. 기존 설정은 더 이상 사용할 수 없습니다.');
     }
 
@@ -294,7 +294,7 @@ class AdminUser2faEdit extends Controller
 
         if (!$success) {
             // 인증 실패 시 세션 데이터 유지
-            return redirect()->route('admin.user.2fa.edit', $id)
+            return redirect()->route('admin.system.user.2fa.edit', $id)
                 ->with('error', '인증 코드가 올바르지 않습니다. 다시 시도해주세요.')
                 ->withInput();
         }
@@ -305,7 +305,7 @@ class AdminUser2faEdit extends Controller
         // 성공 시 세션 데이터 삭제
         $this->twoFactorService->clearSession($user->id);
 
-        return redirect()->route('admin.user.2fa.edit', $id)
+        return redirect()->route('admin.system.user.2fa.edit', $id)
             ->with('success', '2FA가 성공적으로 활성화되었습니다.');
     }
 
@@ -320,7 +320,7 @@ class AdminUser2faEdit extends Controller
         $backupCodes = $this->twoFactorService->regenerateBackupCodes($user);
         
         if (!$backupCodes) {
-            return redirect()->route('admin.user.2fa.edit', $id)
+            return redirect()->route('admin.system.user.2fa.edit', $id)
                 ->with('error', '2FA가 활성화되어 있지 않습니다.');
         }
 
@@ -329,7 +329,7 @@ class AdminUser2faEdit extends Controller
             'regenerated_backup_codes' => $backupCodes
         ]);
 
-        return redirect()->route('admin.user.2fa.edit', $id)
+        return redirect()->route('admin.system.user.2fa.edit', $id)
             ->with('success', '백업 코드가 재생성되었습니다. 새로운 코드를 안전한 곳에 보관하세요.');
     }
 
@@ -341,7 +341,7 @@ class AdminUser2faEdit extends Controller
         $user = User::findOrFail($id);
 
         if (!$user->two_factor_enabled) {
-            return redirect()->route('admin.user.2fa.edit', $id)
+            return redirect()->route('admin.system.user.2fa.edit', $id)
                 ->with('error', '2FA가 이미 비활성화되어 있습니다.');
         }
 
@@ -354,7 +354,7 @@ class AdminUser2faEdit extends Controller
         // 세션 데이터 삭제
         $this->twoFactorService->clearSession($user->id);
 
-        return redirect()->route('admin.user.2fa.edit', $id)
+        return redirect()->route('admin.system.user.2fa.edit', $id)
             ->with('success', '2FA가 비활성화되었습니다.');
     }
 
@@ -374,7 +374,7 @@ class AdminUser2faEdit extends Controller
         // 세션 데이터 삭제
         $this->twoFactorService->clearSession($user->id);
 
-        return redirect()->route('admin.user.2fa.index')
+        return redirect()->route('admin.system.user.2fa.index')
             ->with('success', $user->name.'님의 2FA가 강제로 비활성화되었습니다.');
     }
 

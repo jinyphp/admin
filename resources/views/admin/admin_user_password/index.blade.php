@@ -189,7 +189,7 @@
                             {{ $password->change_reason ?? '-' }}
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                            <a href="{{ route('admin.user.password.show', $password->id) }}" class="text-blue-600 hover:text-blue-900">
+                            <a href="{{ route('admin.system.user.password.show', $password->id) }}" class="text-blue-600 hover:text-blue-900">
                                 상세보기
                             </a>
                         </td>

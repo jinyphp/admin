@@ -3,7 +3,7 @@
     "subtitle": "SMS 발송을 위한 제공업체 설정 관리",
     "description": "Vonage, Twilio 등 SMS 발송 업체의 API 키와 설정을 관리합니다.",
     "route": {
-        "name": "admin.sms.provider",
+        "name": "admin.system.sms.provider",
         "prefix": "admin/sms/provider",
         "actions": {
             "index": "index",

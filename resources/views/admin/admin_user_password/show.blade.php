@@ -19,7 +19,7 @@
                                 {{ $data['user']->email ?? '' }}
                             </div>
                             @if(isset($data['user_id']))
-                                <a href="{{ route('admin.users.show', $data['user_id']) }}" 
+                                <a href="{{ route('admin.system.users.show', $data['user_id']) }}" 
                                    class="text-sm text-indigo-600 hover:text-indigo-900">
                                     사용자 상세보기 →
                                 </a>

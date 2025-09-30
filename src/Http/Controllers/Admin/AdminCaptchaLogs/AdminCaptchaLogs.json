@@ -4,8 +4,8 @@
     "subtitle": "CAPTCHA 인증 시도 로그 및 분석",
     "description": "시스템의 CAPTCHA 인증 시도를 모니터링하고 분석합니다",
     "route": {
-        "name": "admin.captcha.logs",
-        "prefix": "admin.user.captcha.logs",
+        "name": "admin.system.captcha.logs",
+        "prefix": "admin.system.user.captcha.logs",
         "actions": {
             "index": "index",
             "show": "show",

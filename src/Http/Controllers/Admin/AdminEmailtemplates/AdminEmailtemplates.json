@@ -3,7 +3,7 @@
     "subtitle": "시스템 이메일 템플릿을 관리합니다",
     "description": "이메일 템플릿 CRUD 관리 시스템.",
     "route": {
-        "name": "admin.mail.templates",
+        "name": "admin.system.mail.templates",
         "prefix": "admin/mail/templates",
         "actions": {
             "index": "index",

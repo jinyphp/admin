@@ -73,7 +73,7 @@
                     </div>
                 @endif
                 
-                <form action="{{ route('admin.user.2fa.generate', $user->id) }}" method="POST" class="inline">
+                <form action="{{ route('admin.system.user.2fa.generate', $user->id) }}" method="POST" class="inline">
                     @csrf
                     <button type="submit" 
                             class="inline-flex items-center h-8 px-3 border border-gray-300 dark:border-gray-600 text-xs font-medium rounded text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700">
@@ -102,7 +102,7 @@
                 </div>
                 
                 <div class="mt-3">
-                    <form action="{{ route('admin.user.2fa.show-qr', $user->id) }}" method="POST" class="inline">
+                    <form action="{{ route('admin.system.user.2fa.show-qr', $user->id) }}" method="POST" class="inline">
                         @csrf
                         <button type="submit" 
                                 class="inline-flex items-center h-8 px-3 border border-blue-600 dark:border-blue-500 text-xs font-medium rounded text-blue-700 dark:text-blue-300 bg-white dark:bg-gray-800 hover:bg-blue-50 dark:hover:bg-blue-900/30">
@@ -139,7 +139,7 @@
             </div>
             
             <div class="mt-3">
-                <form action="{{ route('admin.user.2fa.regenerate-backup', $user->id) }}" method="POST" class="inline">
+                <form action="{{ route('admin.system.user.2fa.regenerate-backup', $user->id) }}" method="POST" class="inline">
                     @csrf
                     <button type="submit" 
                             class="inline-flex items-center h-8 px-3 border border-yellow-600 dark:border-yellow-500 text-xs font-medium rounded text-yellow-700 dark:text-yellow-300 bg-white dark:bg-gray-800 hover:bg-yellow-50 dark:hover:bg-yellow-900/30">
@@ -206,7 +206,7 @@
                         class="h-8 px-3 bg-gray-300 dark:bg-gray-600 text-gray-700 dark:text-gray-300 rounded text-xs font-medium hover:bg-gray-400 dark:hover:bg-gray-500">
                     취소
                 </button>
-                <form action="{{ route('admin.user.2fa.disable', $user->id) }}" method="POST" class="inline">
+                <form action="{{ route('admin.system.user.2fa.disable', $user->id) }}" method="POST" class="inline">
                     @csrf
                     @method('DELETE')
                     <button type="submit" 

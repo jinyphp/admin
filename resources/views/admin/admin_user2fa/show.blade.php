@@ -52,7 +52,7 @@
                     {{-- 주요 액션 버튼 --}}
                     @if(!($data['two_factor_status']['enabled'] ?? false))
                     <div>
-                        <a href="{{ route('admin.user.2fa.edit', $data['user_id'] ?? $id ?? 1) }}"
+                        <a href="{{ route('admin.system.user.2fa.edit', $data['user_id'] ?? $id ?? 1) }}"
                            class="inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700">
                             <svg class="w-3.5 h-3.5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />

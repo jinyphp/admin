@@ -72,12 +72,12 @@
                 </td>
                 <td class="px-3 py-2.5 whitespace-nowrap">
                     @if($item->user_id)
-                        <a href="{{ route('admin.user.logs.show', $item->id) }}"
+                        <a href="{{ route('admin.system.user.logs.show', $item->id) }}"
                            class="text-xs text-blue-600 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300 font-medium hover:underline">
                             {{ $item->email }}
                         </a>
                     @else
-                        <a href="{{ route('admin.user.logs.show', $item->id) }}"
+                        <a href="{{ route('admin.system.user.logs.show', $item->id) }}"
                            class="text-xs text-gray-700 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-200 hover:underline">
                             {{ $item->email }}
                         </a>
@@ -85,7 +85,7 @@
                 </td>
                 <td class="px-3 py-2.5 whitespace-nowrap">
                     @if($item->user_id && $item->name)
-                        <a href="{{ route('admin.users.show', $item->user_id) }}"
+                        <a href="{{ route('admin.system.users.show', $item->user_id) }}"
                            class="text-xs text-blue-600 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300 font-medium hover:underline">
                             {{ $item->name }}
                         </a>
@@ -178,7 +178,7 @@
                 </td>
                 <td class="px-3 py-2.5 whitespace-nowrap text-right">
                     <div class="flex items-center justify-end space-x-1">
-                        <a href="{{ route('admin.user.logs.show', $item->id) }}"
+                        <a href="{{ route('admin.system.user.logs.show', $item->id) }}"
                            class="text-xs text-blue-600 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300 font-medium">보기</a>
                         <span class="text-gray-300 dark:text-gray-600">|</span>
                         <button wire:click="requestDeleteSingle({{ $item->id }})"

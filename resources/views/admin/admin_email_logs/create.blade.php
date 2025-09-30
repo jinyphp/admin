@@ -30,7 +30,7 @@
         @enderror
         
         @if(empty($templateList) || count($templateList) == 0)
-            <p class="mt-1 text-xs text-gray-500">* 등록된 템플릿이 없습니다. <a href="{{ route('admin.mail.templates.create') }}" class="text-blue-600 hover:text-blue-800">템플릿 생성하기</a></p>
+            <p class="mt-1 text-xs text-gray-500">* 등록된 템플릿이 없습니다. <a href="{{ route('admin.system.mail.templates.create') }}" class="text-blue-600 hover:text-blue-800">템플릿 생성하기</a></p>
         @endif
     </div>
     @endif

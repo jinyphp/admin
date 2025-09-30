@@ -2,9 +2,9 @@
     "controllerClass": "\\Jiny\\Admin\\App\\Http\\Controllers\\Admin\\AdminStats\\AdminStats",
     "title": "사용자 통계",
     "subtitle": "브라우저 및 기기 사용 분석",
-    "description": "Comprehensive statistics dashboard for browser, device, and user activity analysis",
+    "description": "브라우저, 기기 및 사용자 활동 분석을 위한 종합 통계 대시보드입니다. 실시간 사용자 데이터를 시각적으로 표시합니다.",
     "route": {
-        "name": "admin.user.stats",
+        "name": "admin.system.user.stats",
         "prefix": "admin/user/stats"
     },
     "template": {
@@ -29,32 +29,32 @@
     "charts": {
         "browser_usage": {
             "type": "pie",
-            "title": "Browser Usage",
+            "title": "브라우저 사용률",
             "colors": ["#4F46E5", "#10B981", "#F59E0B", "#EF4444", "#8B5CF6", "#EC4899"]
         },
         "operating_systems": {
             "type": "donut",
-            "title": "Operating Systems",
+            "title": "운영체제",
             "colors": ["#0EA5E9", "#22C55E", "#A855F7", "#F97316", "#6366F1"]
         },
         "device_types": {
             "type": "bar",
-            "title": "Device Types",
+            "title": "기기 유형",
             "colors": ["#3B82F6", "#10B981", "#F59E0B"]
         },
         "peak_usage": {
             "type": "line",
-            "title": "Peak Usage Times",
+            "title": "최대 사용 시간대",
             "color": "#4F46E5"
         },
         "login_methods": {
             "type": "pie",
-            "title": "Login Methods",
+            "title": "로그인 방법",
             "colors": ["#3B82F6", "#10B981"]
         },
         "trends": {
             "type": "area",
-            "title": "Login Trends",
+            "title": "로그인 동향"
             "color": "#4F46E5"
         }
     },

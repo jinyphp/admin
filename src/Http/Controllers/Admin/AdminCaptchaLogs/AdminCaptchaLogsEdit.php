@@ -20,7 +20,7 @@ class AdminCaptchaLogsEdit extends Controller
     {
         // CAPTCHA 로그는 시스템 로그이므로 수정 불가
         return redirect()
-            ->route('admin.captcha.logs')
+            ->route('admin.system.captcha.logs')
             ->with('error', 'CAPTCHA 로그는 시스템 로그이므로 수정할 수 없습니다.');
     }
 }

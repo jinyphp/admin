@@ -95,7 +95,7 @@
                 </td>
                 <td class="px-3 py-2.5 whitespace-nowrap">
                     @if($item->user_id)
-                        <a href="{{ route('admin.users.show', $item->user_id) }}"
+                        <a href="{{ route('admin.system.users.show', $item->user_id) }}"
                            class="text-xs text-blue-600 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300 font-medium hover:underline">
                             {{ $item->email }}
                         </a>
@@ -198,7 +198,7 @@
                             </button>
                             <span class="text-gray-300 dark:text-gray-600">|</span>
                         @endif
-                        <a href="{{ route('admin.user.password.logs.show', $item->id) }}"
+                        <a href="{{ route('admin.system.user.password.logs.show', $item->id) }}"
                            class="text-xs text-blue-600 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300 font-medium">보기</a>
                         @if($item->status !== 'blocked')
                             <span class="text-gray-300 dark:text-gray-600">|</span>

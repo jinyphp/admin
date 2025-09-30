@@ -27,7 +27,7 @@
                 @endif
             </div>
             <div>
-                {{-- <a href="{{ route('admin.user.sessions') }}"
+                {{-- <a href="{{ route('admin.system.user.sessions') }}"
                    class="inline-flex items-center px-3 py-1.5 border border-gray-300 text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50">
                     <svg class="w-3.5 h-3.5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
@@ -62,7 +62,7 @@
                     <div class="flex items-start">
                         <dt class="text-xs text-gray-500 w-28">사용자:</dt>
                         <dd class="text-xs text-gray-900 flex-1">
-                            <a href="{{ route('admin.users.show', $data['user_id']) }}"
+                            <a href="{{ route('admin.system.users.show', $data['user_id']) }}"
                                class="text-blue-600 hover:text-blue-800">
                                 {{ $data['user']['name'] }}
                             </a>
@@ -266,7 +266,7 @@
             </div>
 
             <div class="mt-3 pt-3 border-t">
-                <a href="{{ route('admin.user.logs', ['filter[session_id]' => $data['session_id']]) }}"
+                <a href="{{ route('admin.system.user.logs', ['filter[session_id]' => $data['session_id']]) }}"
                    class="text-xs text-blue-600 hover:text-blue-800">
                     이 세션의 모든 로그 보기 →
                 </a>

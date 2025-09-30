@@ -68,7 +68,7 @@
                                 </span>
                             @endif
                             <div>
-                                <a href="{{ route('admin.users.show', $item->user_id) }}" 
+                                <a href="{{ route('admin.system.users.show', $item->user_id) }}" 
                                    class="text-xs text-blue-600 hover:text-blue-800 font-medium">
                                     {{ $item->user->name }}
                                 </a>
@@ -174,7 +174,7 @@
                 </td>
                 <td class="px-3 py-2 whitespace-nowrap text-center">
                     <div class="flex items-center justify-center space-x-1">
-                        <a href="{{ route('admin.user.sessions.show', $item->id) }}" 
+                        <a href="{{ route('admin.system.user.sessions.show', $item->id) }}" 
                            class="inline-flex items-center justify-center w-7 h-7 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded transition-colors"
                            title="상세보기">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

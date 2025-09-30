@@ -3,7 +3,7 @@
     "subtitle": "웹훅 채널을 관리합니다",
     "description": "Slack, Discord, Teams 등 다양한 웹훅 채널을 설정하고 관리합니다",
     "route": {
-        "name": "admin.webhook.channels",
+        "name": "admin.system.webhook.channels",
         "prefix": "admin/webhook/channels"
     },
     "table": {

@@ -1,10 +1,10 @@
 {
     "title": "사용자 관리",
-    "subtitle": "시스템 사용자를 관리합니다",
-    "description": "User management system with CRUD operations.",
+    "subtitle": "시스템 사용자 계정을 통합 관리합니다",
+    "description": "시스템에 접근 가능한 사용자 계정을 생성, 수정, 삭제하고 권한을 설정합니다. 관리자 권한 부여, 이메일 인증, 비밀번호 관리 등의 기능을 포함합니다.",
     "route": {
-        "name": "admin.users",
-        "prefix": "admin.users",
+        "name": "admin.system.users",
+        "prefix": "admin.system.users",
         "actions": {
             "index": "index",
             "create": "create",
@@ -150,7 +150,7 @@
                     "visible": true,
                     "sortable": true,
                     "responsive": "md",
-                    "linkRoute": "admin.user.type"
+                    "linkRoute": "admin.system.user.type"
                 },
                 "email_verified_at": {
                     "label": "Verified",

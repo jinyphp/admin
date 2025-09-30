@@ -3,7 +3,7 @@
     "subtitle": "웹훅 발송 현황 및 통계",
     "description": "{{description}}",
     "route": {
-        "name": "admin.{{routeName}}",
+        "name": "admin.system.{{routeName}}",
         "prefix": "admin/{{routePrefix}}",
         "actions": {
             "index": "index",

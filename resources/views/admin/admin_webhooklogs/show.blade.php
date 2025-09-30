@@ -102,7 +102,7 @@
     {{-- 액션 버튼들 --}}
     <div class="bg-gray-50 px-4 py-4 sm:px-6">
         <div class="flex justify-end space-x-3">
-            <a href="{{ route('admin.webhook.logs') }}"
+            <a href="{{ route('admin.system.webhook.logs') }}"
                class="inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                 Back to List
             </a>

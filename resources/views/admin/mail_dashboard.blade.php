@@ -14,22 +14,22 @@
 
         {{-- 오른쪽: 액션 버튼들 --}}
         <div class="flex space-x-2">
-            <a href="{{ route('admin.mail.logs.create') }}" 
+            <a href="{{ route('admin.system.mail.logs.create') }}" 
                class="inline-flex items-center h-8 px-3 bg-blue-600 text-white text-xs font-medium rounded hover:bg-blue-700 focus:outline-none focus:ring-1 focus:ring-blue-500 transition-colors">
                 <svg class="w-3.5 h-3.5 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
                 </svg>
                 새 메일 작성
             </a>
-            <a href="{{ route('admin.mail.templates') }}" 
+            <a href="{{ route('admin.system.mail.templates') }}" 
                class="inline-flex items-center h-8 px-3 border border-gray-200 bg-white text-gray-700 text-xs font-medium rounded hover:bg-gray-50 focus:outline-none focus:ring-1 focus:ring-blue-500 transition-colors">
                 템플릿 관리
             </a>
-            <a href="{{ route('admin.mail.tracking') }}" 
+            <a href="{{ route('admin.system.mail.tracking') }}" 
                class="inline-flex items-center h-8 px-3 border border-gray-200 bg-white text-gray-700 text-xs font-medium rounded hover:bg-gray-50 focus:outline-none focus:ring-1 focus:ring-blue-500 transition-colors">
                 이메일 추적
             </a>
-            <a href="{{ route('admin.mail.setting') }}" 
+            <a href="{{ route('admin.system.mail.setting') }}" 
                class="inline-flex items-center h-8 px-3 border border-gray-200 bg-white text-gray-700 text-xs font-medium rounded hover:bg-gray-50 focus:outline-none focus:ring-1 focus:ring-blue-500 transition-colors">
                 메일 설정
             </a>
@@ -70,7 +70,7 @@
                     <p class="text-sm font-medium text-gray-600">대기중</p>
                     <p class="text-2xl font-bold text-gray-900">{{ number_format($pendingCount) }}</p>
                     @if($pendingCount > 0)
-                        <a href="{{ route('admin.mail.logs') }}?status=pending" class="text-xs text-blue-600 hover:text-blue-800 mt-1">
+                        <a href="{{ route('admin.system.mail.logs') }}?status=pending" class="text-xs text-blue-600 hover:text-blue-800 mt-1">
                             확인하기 →
                         </a>
                     @endif
@@ -90,7 +90,7 @@
                     <p class="text-sm font-medium text-gray-600">최근 실패 (24h)</p>
                     <p class="text-2xl font-bold text-gray-900">{{ number_format($recentFailures) }}</p>
                     @if($recentFailures > 0)
-                        <a href="{{ route('admin.mail.logs') }}?status=failed" class="text-xs text-red-600 hover:text-red-800 mt-1">
+                        <a href="{{ route('admin.system.mail.logs') }}?status=failed" class="text-xs text-red-600 hover:text-red-800 mt-1">
                             처리하기 →
                         </a>
                     @endif
@@ -118,7 +118,7 @@
                             열람률 {{ $openRateStats->open_rate ?? 0 }}%
                         </p>
                     @endif
-                    <a href="{{ route('admin.mail.tracking') }}" class="text-xs text-purple-600 hover:text-purple-800 mt-1">
+                    <a href="{{ route('admin.system.mail.tracking') }}" class="text-xs text-purple-600 hover:text-purple-800 mt-1">
                         상세보기 →
                     </a>
                 </div>
@@ -136,7 +136,7 @@
                 <div class="ml-4">
                     <p class="text-sm font-medium text-gray-600">활성 템플릿</p>
                     <p class="text-2xl font-bold text-gray-900">{{ number_format($activeTemplates) }}</p>
-                    <a href="{{ route('admin.mail.templates') }}" class="text-xs text-blue-600 hover:text-blue-800 mt-1">
+                    <a href="{{ route('admin.system.mail.templates') }}" class="text-xs text-blue-600 hover:text-blue-800 mt-1">
                         관리하기 →
                     </a>
                 </div>
@@ -273,7 +273,7 @@
         <div class="bg-white rounded-lg shadow">
             <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
                 <h2 class="text-lg font-medium text-gray-900">최근 발송 내역</h2>
-                <a href="{{ route('admin.mail.logs') }}" class="text-sm text-blue-600 hover:text-blue-800">
+                <a href="{{ route('admin.system.mail.logs') }}" class="text-sm text-blue-600 hover:text-blue-800">
                     전체보기 →
                 </a>
             </div>

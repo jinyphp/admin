@@ -188,7 +188,7 @@ class AdminSessionsShow extends Controller
             session()->flash('success', '세션이 성공적으로 종료되었습니다.');
 
             // 목록 페이지로 리다이렉트를 위해 특별한 플래그 반환
-            return ['redirect' => route('admin.user.sessions')];
+            return ['redirect' => route('admin.system.user.sessions')];
         } catch (\Exception $e) {
             \Log::error('Session termination failed: '.$e->getMessage());
             session()->flash('error', '세션 종료 중 오류가 발생했습니다.');

@@ -207,7 +207,7 @@
                 <td class="px-3 py-2.5 whitespace-nowrap text-right text-xs font-medium">
                     <div class="flex items-center justify-end space-x-1">
                         {{-- 보기 --}}
-                        <a href="{{ route('admin.mail.logs.show', $item->id) }}"
+                        <a href="{{ route('admin.system.mail.logs.show', $item->id) }}"
                            class="text-gray-600 hover:text-gray-900"
                            title="상세보기">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -218,7 +218,7 @@
                         
                         {{-- 수정 (대기중 상태인 경우만) --}}
                         @if($item->status === 'pending')
-                        <a href="{{ route('admin.mail.logs.edit', $item->id) }}"
+                        <a href="{{ route('admin.system.mail.logs.edit', $item->id) }}"
                            class="text-blue-600 hover:text-blue-900"
                            title="수정">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

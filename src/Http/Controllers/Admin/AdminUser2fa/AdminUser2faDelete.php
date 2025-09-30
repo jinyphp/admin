@@ -223,6 +223,6 @@ class AdminUser2faDelete extends Controller
             return route($this->jsonData['route'].'.index');
         }
 
-        return route('admin.user.2fa');
+        return route('admin.system.user.2fa');
     }
 }

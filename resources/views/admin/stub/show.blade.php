@@ -81,7 +81,7 @@
             <div class="space-y-4">
                 <div>
                     <label class="block text-xs font-medium text-gray-500 mb-1">
-                        <a href="{{ route('admin.user.type') }}" class="inline-flex items-center text-gray-500 hover:text-blue-600 transition-colors">
+                        <a href="{{ route('admin.system.user.type') }}" class="inline-flex items-center text-gray-500 hover:text-blue-600 transition-colors">
                             사용자 유형
                             <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
@@ -117,7 +117,7 @@
 
                 <div>
                     <label class="block text-xs font-medium text-gray-500 mb-1">
-                        <a href="{{ route('admin.user.logs') }}" class="inline-flex items-center text-gray-500 hover:text-blue-600 transition-colors">
+                        <a href="{{ route('admin.system.user.logs') }}" class="inline-flex items-center text-gray-500 hover:text-blue-600 transition-colors">
                             마지막 로그인
                             <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
@@ -126,7 +126,7 @@
                     </label>
                     <div class="text-sm text-gray-900">
                         @if($data['last_login_at'] ?? false)
-                            <a href="{{ route('admin.user.logs', ['user_id' => $data['id']]) }}" 
+                            <a href="{{ route('admin.system.user.logs', ['user_id' => $data['id']]) }}" 
                                class="inline-flex items-center text-blue-600 hover:text-blue-800 hover:underline transition-colors">
                                 {{ \Carbon\Carbon::parse($data['last_login_at'])->format('Y년 m월 d일 H:i') }}
                                 <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -226,7 +226,7 @@
             @endif
             
             {{-- 사용자 정보 수정 --}}
-            <a href="{{ route('admin.users.edit', $data['id']) }}"
+            <a href="{{ route('admin.system.users.edit', $data['id']) }}"
                class="inline-flex items-center px-3 py-1.5 border border-gray-300 text-xs font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                 <svg class="w-3.5 h-3.5 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
@@ -235,7 +235,7 @@
             </a>
             
             {{-- 활동 로그 보기 --}}
-            <a href="{{ route('admin.user.logs', ['user_id' => $data['id']]) }}"
+            <a href="{{ route('admin.system.user.logs', ['user_id' => $data['id']]) }}"
                class="inline-flex items-center px-3 py-1.5 border border-gray-300 text-xs font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                 <svg class="w-3.5 h-3.5 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
@@ -314,7 +314,7 @@
                                 비활성화
                             </span>
                         @endif
-                        <a href="{{ route('admin.user.2fa.edit', $data['id']) }}" 
+                        <a href="{{ route('admin.system.user.2fa.edit', $data['id']) }}" 
                            class="text-xs text-blue-600 hover:text-blue-800 hover:underline">
                             2FA 관리
                         </a>
@@ -533,7 +533,7 @@
                     @endif
                     
                     {{-- 비밀번호 로그 보기 --}}
-                    <a href="{{ route('admin.user.password.logs', ['email' => $data['email']]) }}"
+                    <a href="{{ route('admin.system.user.password.logs', ['email' => $data['email']]) }}"
                        class="inline-flex items-center px-3 py-1.5 border border-gray-300 text-xs font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                         <svg class="w-3.5 h-3.5 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
@@ -542,7 +542,7 @@
                     </a>
                     
                     {{-- 패스워드 관리 페이지 --}}
-                    <a href="{{ route('admin.user.password', ['user_id' => $data['id']]) }}"
+                    <a href="{{ route('admin.system.user.password', ['user_id' => $data['id']]) }}"
                        class="inline-flex items-center px-3 py-1.5 border border-blue-300 text-xs font-medium rounded-md text-blue-700 bg-blue-50 hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                         <svg class="w-3.5 h-3.5 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"></path>

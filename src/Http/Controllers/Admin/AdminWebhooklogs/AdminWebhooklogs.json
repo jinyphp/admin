@@ -3,7 +3,7 @@
     "subtitle": "웹훅 발송 로그를 확인합니다",
     "description": "웹훅 발송 이력과 상태를 모니터링합니다",
     "route": {
-        "name": "admin.webhook.logs",
+        "name": "admin.system.webhook.logs",
         "prefix": "admin/webhook/logs"
     },
     "table": {

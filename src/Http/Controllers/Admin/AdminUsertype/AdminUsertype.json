@@ -2,10 +2,10 @@
     "controllerClass": "\\Jiny\\Admin\\App\\Http\\Controllers\\Admin\\AdminUsertype\\AdminUsertype",
     "title": "관리자 회원 등급",
     "subtitle": "관리자 권한 등급을 관리합니다",
-    "description": "Usertype management system with CRUD operations.",
+    "description": "관리자 권한 등급 시스템을 관리합니다. 다양한 관리자 권한 레벨을 생성, 수정, 삭제할 수 있습니다.",
     "route": {
-        "name": "admin.user.type",
-        "prefix": "admin.user.type",
+        "name": "admin.system.user.type",
+        "prefix": "admin.system.user.type",
         "actions": {
             "index": "index",
             "create": "create",
@@ -59,7 +59,7 @@
         ],
         "heading": {
             "title": "관리자 유형 목록",
-            "description": "다양한 관리자의 유형을 관리자 합니다."
+            "description": "다양한 관리자의 유형을 관리합니다."
         },
         "features": {
             "enableCreate": true,
@@ -88,16 +88,16 @@
             "direction": "desc"
         },
         "search": {
-            "placeholder": "Search usertypes...",
+            "placeholder": "사용자 유형 검색...",
             "debounce": 300
         },
         "filters": {
             "enable": {
-                "label": "Status",
+                "label": "상태",
                 "options": {
-                    "": "All",
-                    "1": "Enabled",
-                    "0": "Disabled"
+                    "": "전체",
+                    "1": "활성",
+                    "0": "비활성"
                 }
             }
         },
@@ -114,38 +114,38 @@
                     "width": "80px"
                 },
                 "title": {
-                    "label": "Title",
+                    "label": "제목",
                     "visible": true,
                     "sortable": true,
                     "searchable": true
                 },
                 "description": {
-                    "label": "Description",
+                    "label": "설명",
                     "visible": true,
                     "responsive": "lg",
                     "truncate": 50
                 },
                 "enable": {
-                    "label": "Status",
+                    "label": "상태",
                     "visible": true,
                     "sortable": true,
                     "toggleable": true
                 },
                 "pos": {
-                    "label": "Position",
+                    "label": "위치",
                     "visible": true,
                     "sortable": true,
                     "responsive": "md"
                 },
                 "created_at": {
-                    "label": "Created",
+                    "label": "생성일",
                     "visible": true,
                     "sortable": true,
                     "responsive": "md",
                     "format": "Y-m-d"
                 },
                 "actions": {
-                    "label": "Actions",
+                    "label": "작업",
                     "visible": true,
                     "width": "150px"
                 }
@@ -155,8 +155,8 @@
     "create": {
         "buttonText": "새 사용자 유형 추가",
         "heading": {
-            "title": "Create New Usertype",
-            "description": "Add a new usertype to the system"
+            "title": "새 사용자 유형 생성",
+            "description": "시스템에 새로운 사용자 유형을 추가합니다"
         },
         "enableContinueCreate": true,
         "enableListButton": true,
@@ -167,8 +167,8 @@
     },
     "edit": {
         "heading": {
-            "title": "Edit Usertype",
-            "description": "Update usertype information"
+            "title": "사용자 유형 수정",
+            "description": "사용자 유형 정보를 수정합니다"
         },
         "enableDelete": true,
         "enableListButton": true,
@@ -180,8 +180,8 @@
     },
     "show": {
         "heading": {
-            "title": "Usertype Details",
-            "description": "View usertype information"
+            "title": "사용자 유형 상세",
+            "description": "사용자 유형 정보를 확인합니다"
         },
         "enableEdit": true,
         "enableDelete": true,
@@ -193,8 +193,8 @@
         "display": {
             "datetimeFormat": "Y-m-d H:i:s",
             "booleanLabels": {
-                "true": "Enabled",
-                "false": "Disabled"
+                "true": "활성",
+                "false": "비활성"
             }
         }
     },
@@ -203,12 +203,12 @@
         "enableTransaction": true,
         "requireConfirmation": true,
         "confirmation": {
-            "message": "Are you sure you want to delete this usertype?"
+            "message": "이 사용자 유형을 삭제하시겠습니까?"
         },
         "messages": {
-            "success": "Usertype deleted successfully.",
-            "error": "Error deleting usertype: %s",
-            "confirmRequired": "Delete confirmation required."
+            "success": "사용자 유형이 삭제되었습니다.",
+            "error": "사용자 유형 삭제 중 오류가 발생했습니다: %s",
+            "confirmRequired": "삭제 확인이 필요합니다."
         }
     },
     "store": {
@@ -226,9 +226,9 @@
             "pos"
         ],
         "messages": {
-            "success": "Usertype created successfully.",
-            "error": "Error creating usertype.",
-            "continueSuccess": "Usertype created. You can continue adding more."
+            "success": "사용자 유형이 생성되었습니다.",
+            "error": "사용자 유형 생성 중 오류가 발생했습니다.",
+            "continueSuccess": "사용자 유형이 생성되었습니다. 계속 추가할 수 있습니다."
         },
         "validation": {
             "rules": {
@@ -240,8 +240,8 @@
                 "pos": "nullable|integer"
             },
             "messages": {
-                "code.required": "Code is required.",
-                "name.required": "Name is required."
+                "code.required": "코드는 필수입니다.",
+                "name.required": "이름은 필수입니다."
             }
         }
     },
@@ -260,8 +260,8 @@
             "pos"
         ],
         "messages": {
-            "success": "Usertype updated successfully.",
-            "error": "Error updating usertype."
+            "success": "사용자 유형이 수정되었습니다.",
+            "error": "사용자 유형 수정 중 오류가 발생했습니다."
         },
         "validation": {
             "rules": {
@@ -273,8 +273,8 @@
                 "pos": "nullable|integer"
             },
             "messages": {
-                "code.required": "Code is required.",
-                "name.required": "Name is required."
+                "code.required": "코드는 필수입니다.",
+                "name.required": "이름은 필수입니다."
             }
         }
     }

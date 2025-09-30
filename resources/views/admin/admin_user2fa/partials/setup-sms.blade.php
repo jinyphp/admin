@@ -12,7 +12,7 @@
                     <p class="mt-2 text-xs text-yellow-700 dark:text-yellow-300">
                         SMS 2FA를 사용하려면 먼저 전화번호를 등록해야 합니다.
                     </p>
-                    <form action="{{ route('admin.user.profile.update-phone', $user->id) }}" method="POST" class="mt-3">
+                    <form action="{{ route('admin.system.user.profile.update-phone', $user->id) }}" method="POST" class="mt-3">
                         @csrf
                         <div class="flex items-end space-x-2">
                             <div class="flex-1">
@@ -49,7 +49,7 @@
                         <p class="text-xs text-gray-500 dark:text-gray-400">등록된 전화번호</p>
                         <p class="text-sm font-medium text-gray-900 dark:text-white">{{ $user->phone_number }}</p>
                     </div>
-                    <a href="{{ route('admin.user.profile.edit', $user->id) }}" 
+                    <a href="{{ route('admin.system.user.profile.edit', $user->id) }}" 
                        class="text-xs text-blue-600 hover:text-blue-800 dark:text-blue-400">
                         변경
                     </a>
@@ -85,7 +85,7 @@
                         </p>
                     </div>
                     
-                    <form action="{{ route('admin.user.2fa.verify-sms', $user->id) }}" method="POST">
+                    <form action="{{ route('admin.system.user.2fa.verify-sms', $user->id) }}" method="POST">
                         @csrf
                         <input type="hidden" name="method" value="sms">
                         

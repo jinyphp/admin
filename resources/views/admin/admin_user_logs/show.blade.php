@@ -87,7 +87,7 @@
                 <div>
                     <label class="block text-xs font-medium text-gray-500 dark:text-gray-400 mb-1">사용자 ID</label>
                     @if($data['user_id'])
-                        <a href="{{ route('admin.users.show', $data['user_id']) }}"
+                        <a href="{{ route('admin.system.users.show', $data['user_id']) }}"
                            class="text-sm font-semibold text-blue-600 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300 hover:underline">
                             {{ $data['user_id'] }} (프로필 보기)
                         </a>
@@ -99,7 +99,7 @@
                 <div>
                     <label class="block text-xs font-medium text-gray-500 dark:text-gray-400 mb-1">이메일</label>
                     @if($data['user_id'] && $data['email'])
-                        <a href="{{ route('admin.users.show', $data['user_id']) }}"
+                        <a href="{{ route('admin.system.users.show', $data['user_id']) }}"
                            class="text-sm text-blue-600 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300 hover:underline">
                             {{ $data['email'] }}
                         </a>
@@ -111,7 +111,7 @@
                 <div>
                     <label class="block text-xs font-medium text-gray-500 dark:text-gray-400 mb-1">이름</label>
                     @if($data['user_id'] && $data['name'])
-                        <a href="{{ route('admin.users.show', $data['user_id']) }}"
+                        <a href="{{ route('admin.system.users.show', $data['user_id']) }}"
                            class="text-sm text-blue-600 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300 hover:underline">
                             {{ $data['name'] }}
                         </a>

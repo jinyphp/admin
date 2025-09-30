@@ -3,7 +3,7 @@
     "subtitle": "SMS 메시지 발송 및 이력 관리",
     "description": "SMS 메시지를 발송하고 발송 이력을 관리합니다.",
     "route": {
-        "name": "admin.sms.send",
+        "name": "admin.system.sms.send",
         "prefix": "admin/sms/send",
         "actions": {
             "index": "index",

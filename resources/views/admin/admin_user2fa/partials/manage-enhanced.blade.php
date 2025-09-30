@@ -36,7 +36,7 @@
         
         <div class="flex space-x-2">
             @if($user->two_factor_method !== 'totp')
-                <form action="{{ route('admin.user.2fa.change-method', $user->id) }}" method="POST" class="inline">
+                <form action="{{ route('admin.system.user.2fa.change-method', $user->id) }}" method="POST" class="inline">
                     @csrf
                     <input type="hidden" name="method" value="totp">
                     <button type="submit" 
@@ -50,7 +50,7 @@
             @endif
             
             @if($user->two_factor_method !== 'sms' && $user->phone_number)
-                <form action="{{ route('admin.user.2fa.change-method', $user->id) }}" method="POST" class="inline">
+                <form action="{{ route('admin.system.user.2fa.change-method', $user->id) }}" method="POST" class="inline">
                     @csrf
                     <input type="hidden" name="method" value="sms">
                     <button type="submit" 
@@ -64,7 +64,7 @@
             @endif
             
             @if($user->two_factor_method !== 'email')
-                <form action="{{ route('admin.user.2fa.change-method', $user->id) }}" method="POST" class="inline">
+                <form action="{{ route('admin.system.user.2fa.change-method', $user->id) }}" method="POST" class="inline">
                     @csrf
                     <input type="hidden" name="method" value="email">
                     <button type="submit" 
@@ -109,7 +109,7 @@
             </div>
             
             <div class="flex space-x-2">
-                <form action="{{ route('admin.user.2fa.regenerate-backup', $user->id) }}" method="POST" class="inline">
+                <form action="{{ route('admin.system.user.2fa.regenerate-backup', $user->id) }}" method="POST" class="inline">
                     @csrf
                     <button type="submit" 
                             onclick="return confirm('기존 백업 코드가 모두 무효화됩니다. 계속하시겠습니까?')"
@@ -121,7 +121,7 @@
                     </button>
                 </form>
                 
-                <a href="{{ route('admin.user.2fa.download-backup', $user->id) }}" 
+                <a href="{{ route('admin.system.user.2fa.download-backup', $user->id) }}" 
                    class="inline-flex items-center h-8 px-3 border border-gray-300 dark:border-gray-600 text-xs font-medium rounded text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700">
                     <svg class="w-3.5 h-3.5 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
@@ -141,7 +141,7 @@
                 2FA를 비활성화하면 계정 보안이 약해집니다. 신중하게 결정하세요.
             </p>
             
-            <form action="{{ route('admin.user.2fa.destroy', $user->id) }}" method="POST" class="inline">
+            <form action="{{ route('admin.system.user.2fa.destroy', $user->id) }}" method="POST" class="inline">
                 @csrf
                 @method('DELETE')
                 <button type="submit" 

@@ -51,7 +51,7 @@ class AdminUserPasswordShow extends Controller
         $log = DB::table('admin_password_logs')->where('id', $id)->first();
 
         if (! $log) {
-            return redirect()->route('admin.user.password')
+            return redirect()->route('admin.system.user.password')
                 ->with('error', '비밀번호 로그를 찾을 수 없습니다.');
         }
 
@@ -76,7 +76,7 @@ class AdminUserPasswordShow extends Controller
         $settingsPath = $jsonPath;
 
         // currentRoute 설정 (목록 페이지로 설정)
-        $this->jsonData['currentRoute'] = 'admin.user.password';
+        $this->jsonData['currentRoute'] = 'admin.system.user.password';
 
         // 컨트롤러 클래스를 JSON 데이터에 추가
         $this->jsonData['controllerClass'] = get_class($this);

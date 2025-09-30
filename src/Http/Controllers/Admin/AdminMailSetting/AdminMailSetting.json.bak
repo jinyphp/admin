@@ -1,0 +1,19 @@
+{
+    "title": "메일 설정",
+    "subtitle": "SMTP 메일 서버 설정을 관리합니다",
+    "route": "admin.mail.setting",
+    "view": "jiny-admin::admin.mail.setting",
+    "controller": "Jiny\\Admin\\App\\Http\\Controllers\\Admin\\AdminMailSetting\\AdminMailSetting",
+    "description": "메일 서버 설정 관리 페이지",
+    "icon": "envelope",
+    "menu": {
+        "title": "메일 설정",
+        "group": "설정",
+        "order": 10
+    },
+    "permissions": [
+        "admin.mail.setting.view",
+        "admin.mail.setting.update",
+        "admin.mail.setting.test"
+    ]
+}

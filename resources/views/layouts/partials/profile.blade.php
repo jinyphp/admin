@@ -1,4 +1,4 @@
-<a href="{{ route('admin.users.show', Auth::id()) }}" class="flex items-center gap-x-4 px-6 py-3 text-sm/6 font-semibold text-white hover:bg-white/5">
+<a href="{{ route('admin.system.users.show', Auth::id()) }}" class="flex items-center gap-x-4 px-6 py-3 text-sm/6 font-semibold text-white hover:bg-white/5">
     @if(auth()->user() && auth()->user()->avatar && auth()->user()->avatar !== '/images/default-avatar.png')
         <img src="{{ auth()->user()->avatar }}" 
              alt="{{ auth()->user()->name }}" 

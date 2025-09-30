@@ -20,7 +20,7 @@ class AdminCaptchaLogsCreate extends Controller
     {
         // CAPTCHA 로그는 로그인 시도 시 자동으로 생성됨
         return redirect()
-            ->route('admin.captcha.logs')
+            ->route('admin.system.captcha.logs')
             ->with('error', 'CAPTCHA 로그는 수동으로 생성할 수 없습니다. 로그인 시도 시 자동으로 기록됩니다.');
     }
 }

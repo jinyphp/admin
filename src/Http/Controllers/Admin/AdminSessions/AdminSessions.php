@@ -286,7 +286,7 @@ class AdminSessions extends Controller
         $session = \Jiny\Admin\Models\AdminUserSession::with(['user', 'logs'])->find($id);
 
         if (! $session) {
-            return redirect()->route('admin.user.sessions.index')
+            return redirect()->route('admin.system.user.sessions.index')
                 ->with('error', '세션을 찾을 수 없습니다.');
         }
 

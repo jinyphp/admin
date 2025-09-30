@@ -39,7 +39,7 @@ class AdminCaptchaLogsShow extends Controller
 
         if (!$item) {
             return redirect()
-                ->route('admin.captcha.logs')
+                ->route('admin.system.captcha.logs')
                 ->with('error', 'CAPTCHA 로그를 찾을 수 없습니다.');
         }
 

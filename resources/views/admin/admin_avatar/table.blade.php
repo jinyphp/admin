@@ -98,7 +98,7 @@
                     {{ $item->id }}
                 </td>
                 <td class="px-3 py-2.5 whitespace-nowrap">
-                    <a href="{{ route('admin.avatar.show', $item->id) }}"
+                    <a href="{{ route('admin.system.avatar.show', $item->id) }}"
                        class="text-xs text-blue-600 hover:text-blue-900 font-medium">
                         {{ $item->name ?? '' }}
                     </a>
@@ -106,14 +106,14 @@
 
                 <td class="px-3 py-2.5 whitespace-nowrap text-right text-xs font-medium">
                     <div class="flex items-center space-x-1">
-                        <a href="{{ route('admin.avatar.show', $item->id) }}"
+                        <a href="{{ route('admin.system.avatar.show', $item->id) }}"
                            class="text-gray-600 hover:text-gray-900">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
                             </svg>
                         </a>
-                        <a href="{{ route('admin.avatar.edit', $item->id) }}"
+                        <a href="{{ route('admin.system.avatar.edit', $item->id) }}"
                            class="text-blue-600 hover:text-blue-900">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>

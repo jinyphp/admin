@@ -29,7 +29,7 @@ class AdminUserLogsDelete extends Controller
                 ]);
             }
 
-            return redirect()->route('admin.user.logs')
+            return redirect()->route('admin.system.user.logs')
                 ->with('success', 'Log entry deleted successfully.');
 
         } catch (\Exception $e) {

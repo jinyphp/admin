@@ -50,11 +50,14 @@ Route::middleware(['web'])->group(function () {
 
         // Authenticated routes (관리자 권한 필요)
         Route::middleware(['auth', 'admin'])->group(function () {
-            Route::get('/dashboard', \Jiny\Admin\Http\Controllers\Admin\AdminDashboard\AdminDashboard::class)->name('admin.dashboard');
             Route::match(['get', 'post'], '/logout', [AdminLogout::class, 'logout'])->name('admin.logout');
 
-            Route::get('/', function () {
-                return redirect()->route('admin.dashboard');
+            // /admin 경로로 접속 시 Home 컨트롤러 호출
+            Route::get('/', \Jiny\Admin\Http\Controllers\Home\AdminHome::class)->name('admin.home');
+
+            // ERP routes
+            Route::prefix('erp')->group(function () {
+                Route::get('/dashboard', \Jiny\Admin\Http\Controllers\Erp\AdminErpDashboard::class)->name('admin.erp.dashboard');
             });
         });
     });

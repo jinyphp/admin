@@ -3,7 +3,7 @@
     "subtitle": "IP별 로그인 시도 및 차단 관리",
     "description": "관리자 로그인 시도를 IP별로 추적하고 차단을 관리합니다",
     "route": {
-        "name": "admin.iptracking",
+        "name": "admin.system.iptracking",
         "prefix": "admin/iptracking",
         "actions": {
             "index": "index",

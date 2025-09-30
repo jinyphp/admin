@@ -74,7 +74,7 @@ class AdminPasswordLogsShow extends Controller
         $log = DB::table('admin_password_logs')->where('id', $id)->first();
 
         if (! $log) {
-            return redirect()->route('admin.user.password.logs')
+            return redirect()->route('admin.system.user.password.logs')
                 ->with('error', '비밀번호 로그를 찾을 수 없습니다.');
         }
 

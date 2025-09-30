@@ -1,0 +1,207 @@
+{
+    "controllerClass": "\\Jiny\\Admin\\App\\Http\\Controllers\\Admin\\AdminCaptchaLogs\\AdminCaptchaLogs",
+    "title": "CAPTCHA 로그",
+    "subtitle": "CAPTCHA 인증 시도 로그 및 분석",
+    "description": "시스템의 CAPTCHA 인증 시도를 모니터링하고 분석합니다",
+    "route": {
+        "name": "admin.captcha.logs",
+        "prefix": "admin.user.captcha.logs",
+        "actions": {
+            "index": "index",
+            "show": "show",
+            "destroy": "destroy"
+        }
+    },
+    "table": {
+        "name": "admin_captcha_logs",
+        "model": "\\Jiny\\Admin\\Models\\AdminCaptchaLog",
+        "primaryKey": "id",
+        "timestamps": true,
+        "softDeletes": false,
+        "where": {
+            "default": [
+                {
+                    "field": "action",
+                    "operator": "in",
+                    "value": ["captcha_success", "captcha_failed", "captcha_missing"]
+                }
+            ],
+            "conditions": []
+        },
+        "casts": {
+            "details": "array",
+            "logged_at": "datetime"
+        }
+    },
+    "template": {
+        "layout": "jiny-admin::layouts.admin",
+        "index": "jiny-admin::template.index",
+        "show": "jiny-admin::template.show"
+    },
+    "index": {
+        "tableLayoutPath": "jiny-admin::template.livewire.admin-table",
+        "tablePath": "jiny-admin::admin.admin_captcha_logs.table",
+        "searchLayoutPath": "jiny-admin::template.livewire.admin-search",
+        "searchFormPath": "jiny-admin::admin.admin_captcha_logs.search",
+        "searchable": [
+            "email",
+            "ip_address"
+        ],
+        "sortable": [
+            "id",
+            "email",
+            "action",
+            "logged_at",
+            "ip_address"
+        ],
+        "filterable": [
+            "action"
+        ],
+        "heading": {
+            "title": "CAPTCHA 로그",
+            "description": "CAPTCHA 인증 시도 로그를 모니터링합니다"
+        },
+        "features": {
+            "enableCreate": false,
+            "enableDelete": false,
+            "enableEdit": false,
+            "enableSearch": true,
+            "enableSort": true,
+            "enablePagination": true,
+            "enableBulkActions": false,
+            "enableExport": true,
+            "enableImport": false,
+            "enableStatusToggle": false,
+            "enableSettingsDrawer": true
+        },
+        "pagination": {
+            "perPage": 20,
+            "perPageOptions": [10, 20, 50, 100]
+        },
+        "sorting": {
+            "default": "logged_at",
+            "direction": "desc"
+        },
+        "search": {
+            "placeholder": "이메일, IP 주소로 검색...",
+            "debounce": 300
+        },
+        "filters": {
+            "action": {
+                "label": "상태",
+                "options": {
+                    "": "전체",
+                    "captcha_success": "성공",
+                    "captcha_failed": "실패",
+                    "captcha_missing": "미입력"
+                }
+            },
+            "period": {
+                "label": "기간",
+                "options": {
+                    "1": "오늘",
+                    "7": "최근 7일",
+                    "30": "최근 30일",
+                    "90": "최근 90일"
+                }
+            }
+        },
+        "table": {
+            "columns": {
+                "checkbox": {
+                    "visible": false,
+                    "width": "50px"
+                },
+                "id": {
+                    "label": "ID",
+                    "visible": true,
+                    "sortable": true,
+                    "width": "80px"
+                },
+                "logged_at": {
+                    "label": "시간",
+                    "visible": true,
+                    "sortable": true,
+                    "format": "Y-m-d H:i:s",
+                    "width": "140px"
+                },
+                "action": {
+                    "label": "상태",
+                    "visible": true,
+                    "sortable": true,
+                    "badge": true,
+                    "badgeColors": {
+                        "captcha_success": "green",
+                        "captcha_failed": "red",
+                        "captcha_missing": "yellow"
+                    },
+                    "badgeLabels": {
+                        "captcha_success": "성공",
+                        "captcha_failed": "실패",
+                        "captcha_missing": "미입력"
+                    },
+                    "width": "100px"
+                },
+                "email": {
+                    "label": "이메일",
+                    "visible": true,
+                    "sortable": true,
+                    "searchable": true,
+                    "width": "200px"
+                },
+                "ip_address": {
+                    "label": "IP 주소",
+                    "visible": true,
+                    "sortable": true,
+                    "searchable": true,
+                    "width": "120px"
+                },
+                "browser": {
+                    "label": "브라우저",
+                    "visible": true,
+                    "responsive": "md",
+                    "width": "150px"
+                },
+                "platform": {
+                    "label": "플랫폼",
+                    "visible": true,
+                    "responsive": "lg",
+                    "width": "100px"
+                },
+                "actions": {
+                    "label": "작업",
+                    "visible": true,
+                    "width": "100px"
+                }
+            }
+        }
+    },
+    "show": {
+        "heading": {
+            "title": "CAPTCHA 로그 상세",
+            "description": "CAPTCHA 인증 시도 상세 정보"
+        },
+        "enableEdit": false,
+        "enableDelete": false,
+        "enableCreate": false,
+        "enableListButton": true,
+        "enableSettingsDrawer": true,
+        "showLayoutPath": "jiny-admin::template.livewire.admin-show",
+        "showPath": "jiny-admin::admin.admin_captcha_logs.show",
+        "display": {
+            "datetimeFormat": "Y-m-d H:i:s",
+            "booleanLabels": {
+                "true": "예",
+                "false": "아니오"
+            }
+        }
+    },
+    "destroy": {
+        "enableSoftDelete": false,
+        "enableTransaction": false,
+        "requireConfirmation": false,
+        "messages": {
+            "error": "CAPTCHA 로그는 시스템 로그이므로 삭제할 수 없습니다."
+        }
+    }
+}

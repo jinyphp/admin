@@ -59,7 +59,7 @@ class AdminUser2faShow extends Controller
         if (!$user) {
             $redirectUrl = isset($this->jsonData['route']['name'])
                 ? route($this->jsonData['route']['name'].'.index')
-                : route('admin.user.2fa');
+                : route('admin.system.user.2fa');
 
             return redirect($redirectUrl)
                 ->with('error', '사용자를 찾을 수 없습니다.');
@@ -189,7 +189,7 @@ class AdminUser2faShow extends Controller
         }
         
         // Edit 페이지로 리다이렉트
-        return redirect()->route('admin.user.2fa.edit', $userId);
+        return redirect()->route('admin.system.user.2fa.edit', $userId);
     }
     
     /**

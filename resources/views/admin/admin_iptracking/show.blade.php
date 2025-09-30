@@ -102,11 +102,11 @@
     {{-- 액션 버튼들 --}}
     <div class="bg-gray-50 px-4 py-4 sm:px-6">
         <div class="flex justify-end space-x-3">
-            <a href="{{ route('admin.iptrackings') }}"
+            <a href="{{ route('admin.system.iptrackings') }}"
                class="inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                 Back to List
             </a>
-            <a href="{{ route('admin.iptrackings.edit', $data->id) }}"
+            <a href="{{ route('admin.system.iptrackings.edit', $data->id) }}"
                class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                 Edit
             </a>

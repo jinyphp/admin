@@ -15,7 +15,7 @@
                 <p class="mt-1">로그인 시도 시 CAPTCHA 검증 결과가 자동으로 기록됩니다.</p>
             </div>
             <div class="mt-4">
-                <a href="{{ route('admin.captcha.logs') }}" 
+                <a href="{{ route('admin.system.captcha.logs') }}" 
                    class="text-xs font-medium text-yellow-800 hover:text-yellow-600">
                     ← CAPTCHA 로그 목록으로 돌아가기
                 </a>

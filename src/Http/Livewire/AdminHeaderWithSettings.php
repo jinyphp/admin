@@ -45,6 +45,7 @@ class AdminHeaderWithSettings extends Component
             // index 모드일 때 heading 정보 추출
             $this->title = $jsonData['index']['heading']['title'] ?? 'Admin Page';
             $this->description = $jsonData['index']['heading']['description'] ?? '';
+
         } elseif ($mode === 'create' && isset($jsonData['create'])) {
             // create 모드일 때 heading 정보 추출
             $this->title = $jsonData['create']['heading']['title'] ?? 'Create New';

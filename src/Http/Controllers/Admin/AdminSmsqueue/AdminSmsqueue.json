@@ -3,7 +3,7 @@
     "subtitle": "SMS 발송 대기열을 관리합니다",
     "description": "{{description}}",
     "route": {
-        "name": "admin.{{routeName}}",
+        "name": "admin.system.{{routeName}}",
         "prefix": "admin/{{routePrefix}}",
         "actions": {
             "index": "index",

@@ -72,7 +72,7 @@
                 <div>
                     <label class="block text-xs font-medium text-gray-500 mb-1">사용자</label>
                     @if($data['user_id'] ?? false)
-                        <a href="{{ route('admin.users.show', $data['user_id']) }}" 
+                        <a href="{{ route('admin.system.users.show', $data['user_id']) }}" 
                            class="inline-flex items-center text-sm text-blue-600 hover:text-blue-800">
                             <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
@@ -229,7 +229,7 @@
 
 {{-- 액션 버튼 --}}
 <div class="flex items-center justify-between">
-    <a href="{{ route('admin.captcha.logs') }}" 
+    <a href="{{ route('admin.system.captcha.logs') }}" 
        class="inline-flex items-center px-3 py-1.5 border border-gray-300 text-xs font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
         <svg class="w-3.5 h-3.5 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
@@ -238,7 +238,7 @@
     </a>
     
     @if($data['user_id'] ?? false)
-    <a href="{{ route('admin.users.show', $data['user_id']) }}" 
+    <a href="{{ route('admin.system.users.show', $data['user_id']) }}" 
        class="inline-flex items-center px-3 py-1.5 border border-blue-300 text-xs font-medium rounded-md text-blue-700 bg-blue-50 hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
         <svg class="w-3.5 h-3.5 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>

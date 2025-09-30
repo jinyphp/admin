@@ -46,7 +46,7 @@
         <!-- 주요 통계 카드 -->
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-8">
             <!-- 전체 사용자 -->
-            <a href="{{ route('admin.users') }}" class="block">
+            <a href="{{ route('admin.system.users') }}" class="block">
                 <div class="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer min-h-[100px]">
 
                     <div class="flex items-start space-x-3">
@@ -66,7 +66,7 @@
             </a>
 
             <!-- 활성 세션 -->
-            <a href="{{ route('admin.user.sessions') }}" class="block">
+            <a href="{{ route('admin.system.user.sessions') }}" class="block">
                 <div class="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer relative min-h-[100px]">
                     <span class="absolute top-3 right-3 flex h-2 w-2">
                         <span class="animate-ping absolute inline-flex h-2 w-2 rounded-full bg-green-400 opacity-75"></span>
@@ -89,7 +89,7 @@
             </a>
 
             <!-- 오늘 로그인 -->
-            <a href="{{ route('admin.user.logs') }}" class="block">
+            <a href="{{ route('admin.system.user.logs') }}" class="block">
                 <div class="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer min-h-[100px]">
 
                     <div class="flex items-start space-x-3">
@@ -109,7 +109,7 @@
             </a>
 
             <!-- 2FA 사용률 -->
-            <a href="{{ route('admin.user.2fa') }}" class="block">
+            <a href="{{ route('admin.system.user.2fa') }}" class="block">
                 <div class="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer min-h-[100px]">
 
                     <div class="flex items-start space-x-3">
@@ -129,7 +129,7 @@
             </a>
 
             <!-- 이메일 발송 -->
-            <a href="{{ route('admin.mail.logs') }}" class="block">
+            <a href="{{ route('admin.system.mail.logs') }}" class="block">
                 <div class="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer min-h-[100px]">
 
                     <div class="flex items-start space-x-3">
@@ -149,7 +149,7 @@
             </a>
 
             <!-- SMS 발송 -->
-            <a href="{{ route('admin.sms.send') }}" class="block">
+            <a href="{{ route('admin.system.sms.send') }}" class="block">
                 <div class="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer min-h-[100px]">
 
                     <div class="flex items-start space-x-3">
@@ -176,37 +176,37 @@
             </div>
             <div class="p-6">
                 <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3">
-                    <a href="{{ route('admin.users.create') }}" class="flex items-center justify-center px-4 py-3 bg-blue-50 text-blue-700 rounded-lg hover:bg-blue-100 transition-colors text-sm font-medium">
+                    <a href="{{ route('admin.system.users.create') }}" class="flex items-center justify-center px-4 py-3 bg-blue-50 text-blue-700 rounded-lg hover:bg-blue-100 transition-colors text-sm font-medium">
                         <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path>
                         </svg>
                         사용자 추가
                     </a>
-                    <a href="{{ route('admin.mail.templates.create') }}" class="flex items-center justify-center px-4 py-3 bg-green-50 text-green-700 rounded-lg hover:bg-green-100 transition-colors text-sm font-medium">
+                    <a href="{{ route('admin.system.mail.templates.create') }}" class="flex items-center justify-center px-4 py-3 bg-green-50 text-green-700 rounded-lg hover:bg-green-100 transition-colors text-sm font-medium">
                         <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
                         </svg>
                         이메일 템플릿
                     </a>
-                    <a href="{{ route('admin.ipblacklist') }}" class="flex items-center justify-center px-4 py-3 bg-red-50 text-red-700 rounded-lg hover:bg-red-100 transition-colors text-sm font-medium">
+                    <a href="{{ route('admin.system.ipblacklist') }}" class="flex items-center justify-center px-4 py-3 bg-red-50 text-red-700 rounded-lg hover:bg-red-100 transition-colors text-sm font-medium">
                         <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"></path>
                         </svg>
                         IP 차단 관리
                     </a>
-                    <a href="{{ route('admin.webhook') }}" class="flex items-center justify-center px-4 py-3 bg-purple-50 text-purple-700 rounded-lg hover:bg-purple-100 transition-colors text-sm font-medium">
+                    <a href="{{ route('admin.system.webhook') }}" class="flex items-center justify-center px-4 py-3 bg-purple-50 text-purple-700 rounded-lg hover:bg-purple-100 transition-colors text-sm font-medium">
                         <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path>
                         </svg>
                         웹훅 설정
                     </a>
-                    <a href="{{ route('admin.user.type.create') }}" class="flex items-center justify-center px-4 py-3 bg-yellow-50 text-yellow-700 rounded-lg hover:bg-yellow-100 transition-colors text-sm font-medium">
+                    <a href="{{ route('admin.system.user.type.create') }}" class="flex items-center justify-center px-4 py-3 bg-yellow-50 text-yellow-700 rounded-lg hover:bg-yellow-100 transition-colors text-sm font-medium">
                         <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path>
                         </svg>
                         사용자 유형
                     </a>
-                    <a href="{{ route('admin.sms.provider') }}" class="flex items-center justify-center px-4 py-3 bg-cyan-50 text-cyan-700 rounded-lg hover:bg-cyan-100 transition-colors text-sm font-medium">
+                    <a href="{{ route('admin.system.sms.provider') }}" class="flex items-center justify-center px-4 py-3 bg-cyan-50 text-cyan-700 rounded-lg hover:bg-cyan-100 transition-colors text-sm font-medium">
                         <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
@@ -251,7 +251,7 @@
                             <h3 class="text-base font-semibold text-gray-800">최근 활동</h3>
                             <p class="text-sm text-gray-500 mt-1">실시간 사용자 활동 모니터링</p>
                         </div>
-                        <a href="{{ route('admin.user.logs') }}" class="text-sm text-indigo-600 hover:text-indigo-700 font-medium">
+                        <a href="{{ route('admin.system.user.logs') }}" class="text-sm text-indigo-600 hover:text-indigo-700 font-medium">
                             전체 보기 →
                         </a>
                     </div>
@@ -270,7 +270,7 @@
                                     <div class="flex items-center justify-between">
                                         <p class="text-sm">
                                             @if($activity['user_id'])
-                                                <a href="{{ route('admin.users.show', $activity['user_id']) }}" class="font-medium text-gray-900 hover:text-indigo-600">
+                                                <a href="{{ route('admin.system.users.show', $activity['user_id']) }}" class="font-medium text-gray-900 hover:text-indigo-600">
                                                     {{ $activity['name'] ?? $activity['email'] }}
                                                 </a>
                                             @else
@@ -313,7 +313,7 @@
                             <div class="border border-gray-200 rounded-lg p-4">
                                 <div class="flex items-center justify-between mb-3">
                                     <h4 class="text-sm font-medium text-gray-700">이메일</h4>
-                                    <a href="{{ route('admin.mail.logs') }}" class="text-xs text-indigo-600 hover:text-indigo-700">
+                                    <a href="{{ route('admin.system.mail.logs') }}" class="text-xs text-indigo-600 hover:text-indigo-700">
                                         더보기 →
                                     </a>
                                 </div>
@@ -335,7 +335,7 @@
                             <div class="border border-gray-200 rounded-lg p-4">
                                 <div class="flex items-center justify-between mb-3">
                                     <h4 class="text-sm font-medium text-gray-700">SMS</h4>
-                                    <a href="{{ route('admin.sms.send') }}" class="text-xs text-indigo-600 hover:text-indigo-700">
+                                    <a href="{{ route('admin.system.sms.send') }}" class="text-xs text-indigo-600 hover:text-indigo-700">
                                         더보기 →
                                     </a>
                                 </div>
@@ -357,7 +357,7 @@
                             <div class="border border-gray-200 rounded-lg p-4">
                                 <div class="flex items-center justify-between mb-3">
                                     <h4 class="text-sm font-medium text-gray-700">웹훅</h4>
-                                    <a href="{{ route('admin.webhook.logs') }}" class="text-xs text-indigo-600 hover:text-indigo-700">
+                                    <a href="{{ route('admin.system.webhook.logs') }}" class="text-xs text-indigo-600 hover:text-indigo-700">
                                         더보기 →
                                     </a>
                                 </div>
@@ -385,7 +385,7 @@
                 <div class="bg-white rounded-lg shadow-sm border border-gray-100">
                     <div class="px-6 py-4 border-b border-gray-100 flex items-center justify-between">
                         <h3 class="text-base font-semibold text-gray-800">활성 세션</h3>
-                        <a href="{{ route('admin.user.sessions') }}" class="text-sm text-indigo-600 hover:text-indigo-700 font-medium">
+                        <a href="{{ route('admin.system.user.sessions') }}" class="text-sm text-indigo-600 hover:text-indigo-700 font-medium">
                             전체 →
                         </a>
                     </div>
@@ -452,10 +452,10 @@
                         </div>
 
                         <div class="pt-4 border-t border-gray-100 space-y-2">
-                            <a href="{{ route('admin.ipblacklist') }}" class="block text-sm text-indigo-600 hover:text-indigo-700 font-medium">
+                            <a href="{{ route('admin.system.ipblacklist') }}" class="block text-sm text-indigo-600 hover:text-indigo-700 font-medium">
                                 IP 차단 관리 →
                             </a>
-                            <a href="{{ route('admin.captcha.logs') }}" class="block text-sm text-indigo-600 hover:text-indigo-700 font-medium">
+                            <a href="{{ route('admin.system.captcha.logs') }}" class="block text-sm text-indigo-600 hover:text-indigo-700 font-medium">
                                 CAPTCHA 로그 →
                             </a>
                         </div>
@@ -524,7 +524,7 @@
                     <h3 class="text-base font-semibold text-gray-800">최근 차단된 IP</h3>
                     <p class="text-sm text-gray-500 mt-1">비정상적인 접근 시도로 차단된 IP 주소</p>
                 </div>
-                <a href="{{ route('admin.ipblacklist') }}" class="text-sm text-indigo-600 hover:text-indigo-700 font-medium">
+                <a href="{{ route('admin.system.ipblacklist') }}" class="text-sm text-indigo-600 hover:text-indigo-700 font-medium">
                     전체 보기 →
                 </a>
             </div>
@@ -763,7 +763,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 실시간 데이터 업데이트 (30초마다)
     setInterval(function() {
-        fetch('{{ route("admin.dashboard") }}?ajax=1')
+        fetch('{{ route("admin.system.dashboard") }}?ajax=1')
             .then(response => response.json())
             .then(data => {
                 // 차트 업데이트

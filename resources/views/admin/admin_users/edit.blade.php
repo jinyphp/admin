@@ -136,7 +136,7 @@
                 @endif
             </div>
             @if(isset($form['id']))
-                <a href="{{ route('admin.user.2fa.edit', $form['id']) }}" 
+                <a href="{{ route('admin.system.user.2fa.edit', $form['id']) }}" 
                    class="inline-flex items-center h-7 px-2.5 border border-gray-200 bg-white text-gray-700 text-xs font-medium rounded hover:bg-gray-50 focus:outline-none focus:ring-1 focus:ring-blue-500 transition-colors">
                     <svg class="w-3.5 h-3.5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 

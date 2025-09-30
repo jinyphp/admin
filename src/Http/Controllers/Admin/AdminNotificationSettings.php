@@ -110,7 +110,7 @@ class AdminNotificationSettings extends Controller
 
         $channelId = $this->webhookService->createChannel($validated);
 
-        return redirect()->route('admin.notifications.webhooks')
+        return redirect()->route('admin.system.notifications.webhooks')
             ->with('success', '웹훅 채널이 생성되었습니다.');
     }
 
@@ -144,7 +144,7 @@ class AdminNotificationSettings extends Controller
 
         $this->webhookService->updateChannel($id, $validated);
 
-        return redirect()->route('admin.notifications.webhooks')
+        return redirect()->route('admin.system.notifications.webhooks')
             ->with('success', '웹훅 채널이 업데이트되었습니다.');
     }
 
@@ -155,7 +155,7 @@ class AdminNotificationSettings extends Controller
     {
         $this->webhookService->deleteChannel($id);
 
-        return redirect()->route('admin.notifications.webhooks')
+        return redirect()->route('admin.system.notifications.webhooks')
             ->with('success', '웹훅 채널이 삭제되었습니다.');
     }
 

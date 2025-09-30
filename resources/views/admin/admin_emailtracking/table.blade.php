@@ -246,7 +246,7 @@
                 <td class="px-3 py-2.5 whitespace-nowrap text-right text-xs font-medium">
                     <div class="flex items-center space-x-1">
                         {{-- 상세 보기 --}}
-                        <a href="{{ route('admin.mail.tracking.show', $item->id) }}"
+                        <a href="{{ route('admin.system.mail.tracking.show', $item->id) }}"
                            class="text-gray-600 hover:text-gray-900"
                            title="상세보기">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

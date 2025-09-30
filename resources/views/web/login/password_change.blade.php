@@ -179,7 +179,7 @@
                             비밀번호 변경
                         </button>
                         @if(!$required)
-                            <a href="{{ route('admin.dashboard') }}"
+                            <a href="{{ route('admin.system.dashboard') }}"
                                 class="flex-1 h-8 px-3 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs font-medium rounded hover:bg-gray-300 dark:hover:bg-gray-600 focus:outline-none focus:ring-1 focus:ring-gray-500 focus:ring-offset-1 transition duration-200 flex items-center justify-center">
                                 나중에 변경
                             </a>

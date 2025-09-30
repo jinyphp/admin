@@ -4,7 +4,7 @@
     "subtitle": "활성 세션 모니터링 및 관리",
     "description": "현재 로그인된 사용자 세션을 관리합니다.",
     "route": {
-        "name": "admin.user.sessions",
+        "name": "admin.system.user.sessions",
         "prefix": "admin/user/sessions",
         "actions": {
             "index": "index",

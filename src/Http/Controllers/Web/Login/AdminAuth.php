@@ -476,7 +476,7 @@ class AdminAuth extends Controller
         // 성공 메시지 설정
         session()->flash('success', '관리자 페이지에 로그인했습니다.');
 
-        return redirect()->intended(route('admin.dashboard'));
+        return redirect()->intended(route('admin.home'));
     }
 
     /**

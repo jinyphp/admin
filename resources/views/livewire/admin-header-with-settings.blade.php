@@ -1,12 +1,5 @@
 <div class="mb-6">
-    <div class="flex justify-between items-center">
-        <div>
-            <h1 class="text-2xl font-semibold text-gray-900">{{ $title }}</h1>
-            @if($description)
-                <p class="mt-1 text-sm text-gray-600">{{ $description }}</p>
-            @endif
-        </div>
-        
+    <div class="flex justify-end">
         <div class="flex space-x-3">
             @if($createRoute && ($jsonData['index']['features']['enableCreate'] ?? true))
                 <a href="{{ $createRoute }}" 

@@ -48,7 +48,7 @@ class AdminEmailLogsSend extends Controller
         
         if (!$emailLog) {
             return redirect()
-                ->route('admin.mail.logs')
+                ->route('admin.system.mail.logs')
                 ->with('error', '이메일 로그를 찾을 수 없습니다.');
         }
         
@@ -94,7 +94,7 @@ class AdminEmailLogsSend extends Controller
             $emailLog->markAsSent();
             
             return redirect()
-                ->route('admin.mail.logs')
+                ->route('admin.system.mail.logs')
                 ->with('success', $this->jsonData['send']['messages']['success'] ?? '이메일이 발송되었습니다.');
             
         } catch (\Exception $e) {

@@ -1,0 +1,42 @@
+{
+    "title": "SMS 대시보드",
+    "subtitle": "SMS 발송 현황 및 통계",
+    "description": "SMS 발송 현황, 프로바이더 상태, 큐 관리를 한눈에 확인할 수 있는 대시보드입니다.",
+    "route": {
+        "name": "admin.sms",
+        "prefix": "admin/sms",
+        "actions": {
+            "index": "index"
+        }
+    },
+    "table": {
+        "name": "admin_sms_dashboard",
+        "model": "\\Jiny\\Admin\\Models\\AdminSmsdashboard",
+        "primaryKey": "id",
+        "timestamps": false,
+        "softDeletes": false
+    },
+    "template": {
+        "layout": "jiny-admin::layouts.admin",
+        "index": "jiny-admin::admin.admin_smsdashboard.table"
+    },
+    "index": {
+        "heading": {
+            "title": "SMS 대시보드",
+            "description": "SMS 발송 현황 및 통계를 확인할 수 있습니다."
+        },
+        "features": {
+            "enableCreate": false,
+            "enableDelete": false,
+            "enableEdit": false,
+            "enableSearch": false,
+            "enableSort": false,
+            "enablePagination": false,
+            "enableBulkActions": false,
+            "enableExport": false,
+            "enableImport": false,
+            "enableStatusToggle": false,
+            "enableSettingsDrawer": false
+        }
+    }
+}

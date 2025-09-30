@@ -6,8 +6,8 @@
     "viewPath": "jiny-admin::web.login.login",
     
     "routes": {
-        "dashboard": "admin.dashboard",
-        "login": "admin.login"
+        "dashboard": "admin.system.dashboard",
+        "login": "admin.system.login"
     },
     
     "messages": {

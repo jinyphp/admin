@@ -42,7 +42,7 @@
                 <dt class="text-xs font-medium text-gray-500 dark:text-gray-400">이메일</dt>
                 <dd class="mt-1 text-sm text-gray-900 dark:text-gray-100">
                     @if($data['user_id'] ?? null)
-                        <a href="{{ route('admin.users.show', $data['user_id']) }}" 
+                        <a href="{{ route('admin.system.users.show', $data['user_id']) }}" 
                            class="text-blue-600 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300 hover:underline">
                             {{ $data['email'] ?? '-' }}
                         </a>
@@ -166,7 +166,7 @@
                 <dt class="text-xs font-medium text-gray-500 dark:text-gray-400">해결한 관리자</dt>
                 <dd class="mt-1 text-sm text-gray-900 dark:text-gray-100">
                     @if($data['resolved_by'])
-                        <a href="{{ route('admin.users.show', $data['resolved_by']) }}" 
+                        <a href="{{ route('admin.system.users.show', $data['resolved_by']) }}" 
                            class="text-blue-600 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300 hover:underline">
                             관리자 #{{ $data['resolved_by'] }}
                         </a>

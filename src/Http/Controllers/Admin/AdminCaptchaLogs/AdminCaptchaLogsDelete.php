@@ -31,7 +31,7 @@ class AdminCaptchaLogsDelete extends Controller
         // 단일 로그 삭제는 허용하지 않음
         if ($id) {
             return redirect()
-                ->route('admin.captcha.logs')
+                ->route('admin.system.captcha.logs')
                 ->with('error', '개별 CAPTCHA 로그는 삭제할 수 없습니다. 일괄 정리 기능을 사용하세요.');
         }
 
@@ -40,7 +40,7 @@ class AdminCaptchaLogsDelete extends Controller
             return $this->cleanup($request);
         }
 
-        return redirect()->route('admin.captcha.logs');
+        return redirect()->route('admin.system.captcha.logs');
     }
 
     /**
@@ -57,11 +57,11 @@ class AdminCaptchaLogsDelete extends Controller
                 ->delete();
 
             return redirect()
-                ->route('admin.captcha.logs')
+                ->route('admin.system.captcha.logs')
                 ->with('success', "{$deleted}개의 오래된 CAPTCHA 로그가 정리되었습니다.");
         } catch (\Exception $e) {
             return redirect()
-                ->route('admin.captcha.logs')
+                ->route('admin.system.captcha.logs')
                 ->with('error', '로그 정리 중 오류가 발생했습니다: ' . $e->getMessage());
         }
     }

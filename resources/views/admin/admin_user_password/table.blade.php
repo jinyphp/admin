@@ -107,7 +107,7 @@
                         {{ Str::limit($row->change_reason ?? '-', 30) }}
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                        <a href="{{ route('admin.user.password.show', $row->id) }}" 
+                        <a href="{{ route('admin.system.user.password.show', $row->id) }}" 
                            class="text-indigo-600 hover:text-indigo-900">
                             상세보기
                         </a>

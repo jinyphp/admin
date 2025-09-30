@@ -3,8 +3,8 @@
     "subtitle": "시스템 사용자를 관리합니다",
     "description": "User management system with CRUD operations.",
     "route": {
-        "name": "admin.users",
-        "prefix": "admin.users",
+        "name": "admin.system.users",
+        "prefix": "admin.system.users",
         "actions": {
             "index": "index",
             "create": "create",
@@ -150,7 +150,7 @@
                     "visible": true,
                     "sortable": true,
                     "responsive": "md",
-                    "linkRoute": "admin.user.type"
+                    "linkRoute": "admin.system.user.type"
                 },
                 "email_verified_at": {
                     "label": "Verified",

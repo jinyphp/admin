@@ -42,7 +42,7 @@ class AdminUser2faCreate extends Controller
 
         // 이미 2FA가 설정되어 있으면 편집 페이지로 이동
         if ($user->two_factor_enabled) {
-            return redirect()->route('admin.user.2fa.edit', $user->id);
+            return redirect()->route('admin.system.user.2fa.edit', $user->id);
         }
 
         // Google2FA 객체 생성

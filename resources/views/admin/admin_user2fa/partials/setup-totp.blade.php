@@ -91,7 +91,7 @@
             Authenticator 앱에 표시된 6자리 코드를 입력하여 설정을 완료하세요
         </p>
         
-        <form action="{{ route('admin.user.2fa.store', $user->id) }}" method="POST">
+        <form action="{{ route('admin.system.user.2fa.store', $user->id) }}" method="POST">
             @csrf
             <input type="hidden" name="method" value="totp">
             <input type="hidden" name="secret" value="{{ $secret }}">

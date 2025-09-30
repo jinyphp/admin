@@ -124,7 +124,7 @@
         <div class="bg-white rounded-lg shadow p-6">
             <div class="flex justify-between items-center mb-4">
                 <h3 class="text-lg font-medium text-gray-900">채널 상태</h3>
-                <a href="{{ route('admin.webhook.channels') }}" class="text-sm text-blue-600 hover:text-blue-900">
+                <a href="{{ route('admin.system.webhook.channels') }}" class="text-sm text-blue-600 hover:text-blue-900">
                     전체 보기 →
                 </a>
             </div>
@@ -155,7 +155,7 @@
         <div class="px-6 py-4 border-b border-gray-200">
             <div class="flex justify-between items-center">
                 <h3 class="text-lg font-medium text-gray-900">최근 웹훅 로그</h3>
-                <a href="{{ route('admin.webhook.logs') }}" class="text-sm text-blue-600 hover:text-blue-900">
+                <a href="{{ route('admin.system.webhook.logs') }}" class="text-sm text-blue-600 hover:text-blue-900">
                     전체 로그 보기 →
                 </a>
             </div>
@@ -212,16 +212,16 @@
 
     {{-- 빠른 링크 --}}
     <div class="mt-6 flex justify-center space-x-4">
-        <a href="{{ route('admin.webhook.channels.create') }}" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700">
+        <a href="{{ route('admin.system.webhook.channels.create') }}" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700">
             <svg class="mr-2 -ml-1 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
             </svg>
             새 채널 추가
         </a>
-        <a href="{{ route('admin.webhook.channels') }}" class="inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+        <a href="{{ route('admin.system.webhook.channels') }}" class="inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
             채널 관리
         </a>
-        <a href="{{ route('admin.webhook.logs') }}" class="inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+        <a href="{{ route('admin.system.webhook.logs') }}" class="inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
             로그 보기
         </a>
     </div>

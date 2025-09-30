@@ -141,7 +141,7 @@ class AdminAvatarDelete extends Controller
 
             // 성공 메시지
             $successMessage = $this->jsonData['destroy']['messages']['success'] ?? '삭제되었습니다.';
-            $redirectRoute = $this->jsonData['route']['name'] ?? 'admin.avatar';
+            $redirectRoute = $this->jsonData['route']['name'] ?? 'admin.system.avatar';
             
             return redirect()->route($redirectRoute)->with('success', $successMessage);
 

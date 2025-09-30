@@ -88,7 +88,7 @@
         </button>
         <div class="flex-1 text-sm/6 font-semibold text-white">@yield('title', 'Dashboard')</div>
         @if(Auth::check())
-        <a href="{{ route('admin.users.show', Auth::id()) }}">
+        <a href="{{ route('admin.system.users.show', Auth::id()) }}">
             <span class="sr-only">Your profile</span>
             @if(Auth::user()->avatar && Auth::user()->avatar !== '/images/default-avatar.png')
                 <img src="{{ Auth::user()->avatar }}"

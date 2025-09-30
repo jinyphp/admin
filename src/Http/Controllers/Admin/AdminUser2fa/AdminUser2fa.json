@@ -4,8 +4,8 @@
     "subtitle": "2FA(Two-Factor Authentication) 설정 관리",
     "description": "사용자의 2차 인증 설정을 관리합니다.",
     "route": {
-        "name": "admin.user.2fa",
-        "prefix": "admin.user.2fa",
+        "name": "admin.system.user.2fa",
+        "prefix": "admin.system.user.2fa",
         "actions": {
             "index": "index",
             "create": "create",
@@ -88,11 +88,11 @@
         },
         "filters": {
             "enable": {
-                "label": "Status",
+                "label": "상태",
                 "options": {
-                    "": "All",
-                    "1": "Enabled",
-                    "0": "Disabled"
+                    "": "전체",
+                    "1": "활성",
+                    "0": "비활성"
                 }
             }
         },
@@ -141,14 +141,14 @@
                     "format": "Y-m-d H:i"
                 },
                 "created_at": {
-                    "label": "Created",
+                    "label": "생성일",
                     "visible": true,
                     "sortable": true,
                     "responsive": "md",
                     "format": "Y-m-d"
                 },
                 "actions": {
-                    "label": "Actions",
+                    "label": "작업",
                     "visible": true,
                     "width": "150px"
                 }
@@ -159,8 +159,8 @@
         "buttonText": "2FA 설정",
         "enabled": false,
         "heading": {
-            "title": "Create New User2fa",
-            "description": "Add a new user2fa to the system"
+            "title": "새 2FA 설정",
+            "description": "시스템에 새로운 2FA 설정을 추가합니다"
         },
         "enableContinueCreate": true,
         "enableListButton": true,
@@ -171,8 +171,8 @@
     },
     "edit": {
         "heading": {
-            "title": "Edit User2fa",
-            "description": "Update user2fa information"
+            "title": "2FA 설정 수정",
+            "description": "2FA 설정 정보를 수정합니다"
         },
         "enableDelete": true,
         "enableListButton": true,
@@ -184,8 +184,8 @@
     },
     "show": {
         "heading": {
-            "title": "User2fa Details",
-            "description": "View user2fa information"
+            "title": "2FA 설정 상세",
+            "description": "2FA 설정 정보를 확인합니다"
         },
         "enableEdit": true,
         "enableDelete": true,
@@ -197,8 +197,8 @@
         "display": {
             "datetimeFormat": "Y-m-d H:i:s",
             "booleanLabels": {
-                "true": "Enabled",
-                "false": "Disabled"
+                "true": "활성",
+                "false": "비활성"
             }
         }
     },
@@ -207,12 +207,12 @@
         "enableTransaction": true,
         "requireConfirmation": true,
         "confirmation": {
-            "message": "Are you sure you want to delete this user2fa?"
+            "message": "이 2FA 설정을 삭제하시겠습니까?"
         },
         "messages": {
-            "success": "User2fa deleted successfully.",
-            "error": "Error deleting user2fa: %s",
-            "confirmRequired": "Delete confirmation required."
+            "success": "2FA 설정이 삭제되었습니다.",
+            "error": "2FA 설정 삭제 중 오류가 발생했습니다: %s",
+            "confirmRequired": "삭제 확인이 필요합니다."
         }
     },
     "store": {
@@ -228,9 +228,9 @@
             "pos"
         ],
         "messages": {
-            "success": "User2fa created successfully.",
-            "error": "Error creating user2fa.",
-            "continueSuccess": "User2fa created. You can continue adding more."
+            "success": "2FA 설정이 생성되었습니다.",
+            "error": "2FA 설정 생성 중 오류가 발생했습니다.",
+            "continueSuccess": "2FA 설정이 생성되었습니다. 계속 추가할 수 있습니다."
         },
         "validation": {
             "rules": {
@@ -240,7 +240,7 @@
                 "pos": "nullable|integer"
             },
             "messages": {
-                "title.required": "Title is required."
+                "title.required": "제목은 필수입니다."
             }
         }
     },
@@ -258,8 +258,8 @@
             "pos"
         ],
         "messages": {
-            "success": "User2fa updated successfully.",
-            "error": "Error updating user2fa."
+            "success": "2FA 설정이 수정되었습니다.",
+            "error": "2FA 설정 수정 중 오류가 발생했습니다."
         },
         "validation": {
             "rules": {
@@ -269,7 +269,7 @@
                 "pos": "nullable|integer"
             },
             "messages": {
-                "title.required": "Title is required."
+                "title.required": "제목은 필수입니다."
             }
         }
     }

@@ -68,7 +68,7 @@
                 {{-- 동적 데이터 --}}
                 {{-- 실제 사용시 필요한 데이터를 표시하세요 --}}
                 <td class="px-3 py-2.5 whitespace-nowrap">
-                    <a href="{{ route('admin.ipblacklists.show', $item->id) }}"
+                    <a href="{{ route('admin.system.ipblacklists.show', $item->id) }}"
                        class="text-xs text-blue-600 hover:text-blue-900 font-medium">
                         {{ $item->name ?? '-' }}
                     </a>
@@ -96,7 +96,7 @@
                 <td class="px-3 py-2.5 whitespace-nowrap text-right text-xs font-medium">
                     <div class="flex items-center space-x-1">
                         {{-- 보기 --}}
-                        <a href="{{ route('admin.ipblacklists.show', $item->id) }}"
+                        <a href="{{ route('admin.system.ipblacklists.show', $item->id) }}"
                            class="text-gray-600 hover:text-gray-900"
                            title="View">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -105,7 +105,7 @@
                             </svg>
                         </a>
                         {{-- 수정 --}}
-                        <a href="{{ route('admin.ipblacklists.edit', $item->id) }}"
+                        <a href="{{ route('admin.system.ipblacklists.edit', $item->id) }}"
                            class="text-blue-600 hover:text-blue-900"
                            title="Edit">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

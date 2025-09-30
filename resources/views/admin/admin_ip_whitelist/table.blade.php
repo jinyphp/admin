@@ -197,7 +197,7 @@
                         </button>
                         
                         {{-- 보기 버튼 --}}
-                        <a href="{{ route('admin.security.ip-whitelist.show', $row->id) }}"
+                        <a href="{{ route('admin.system.security.ip-whitelist.show', $row->id) }}"
                            class="text-blue-600 hover:text-blue-900"
                            title="상세보기">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -207,7 +207,7 @@
                         </a>
                         
                         {{-- 수정 버튼 --}}
-                        <a href="{{ route('admin.security.ip-whitelist.edit', $row->id) }}"
+                        <a href="{{ route('admin.system.security.ip-whitelist.edit', $row->id) }}"
                            class="text-green-600 hover:text-green-900"
                            title="수정">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

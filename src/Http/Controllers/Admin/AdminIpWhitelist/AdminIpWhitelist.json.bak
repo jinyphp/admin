@@ -1,0 +1,384 @@
+{
+    "title": "IP 화이트리스트 관리",
+    "subtitle": "관리자 페이지 접근 IP 관리",
+    "description": "관리자 페이지에 접근 가능한 IP 주소를 관리합니다. 단일 IP, IP 범위, CIDR 표기법을 지원합니다.",
+    "route": {
+        "name": "admin.security.ip-whitelist",
+        "prefix": "admin\/security\/ip-whitelist"
+    },
+    "template": {
+        "index": "jiny-admin::template.index",
+        "create": "jiny-admin::template.create",
+        "edit": "jiny-admin::template.edit",
+        "show": "jiny-admin::template.show"
+    },
+    "table": {
+        "name": "admin_ip_whitelist",
+        "primaryKey": "id",
+        "timestamps": true,
+        "perPage": 20
+    },
+    "index": {
+        "title": "IP 화이트리스트 목록",
+        "searchFormPath": "jiny-admin::admin.admin_ip_whitelist.search",
+        "tablePath": "jiny-admin::admin.admin_ip_whitelist.table",
+        "searchable": true,
+        "sortable": true,
+        "pagination": {
+            "enabled": true,
+            "perPage": 20,
+            "options": [
+                10,
+                20,
+                50,
+                100
+            ]
+        },
+        "columns": [
+            {
+                "field": "id",
+                "label": "ID",
+                "type": "text",
+                "sortable": true,
+                "width": "80px"
+            },
+            {
+                "field": "ip_address",
+                "label": "IP 주소",
+                "type": "text",
+                "sortable": true,
+                "searchable": true
+            },
+            {
+                "field": "type",
+                "label": "타입",
+                "type": "badge",
+                "sortable": true,
+                "options": {
+                    "single": {
+                        "label": "단일 IP",
+                        "color": "primary"
+                    },
+                    "range": {
+                        "label": "IP 범위",
+                        "color": "info"
+                    },
+                    "cidr": {
+                        "label": "CIDR",
+                        "color": "warning"
+                    }
+                }
+            },
+            {
+                "field": "description",
+                "label": "설명",
+                "type": "text",
+                "searchable": true
+            },
+            {
+                "field": "is_active",
+                "label": "상태",
+                "type": "boolean",
+                "sortable": true,
+                "trueLabel": "활성",
+                "falseLabel": "비활성"
+            },
+            {
+                "field": "access_count",
+                "label": "접근 횟수",
+                "type": "number",
+                "sortable": true
+            },
+            {
+                "field": "last_accessed_at",
+                "label": "마지막 접근",
+                "type": "datetime",
+                "sortable": true,
+                "format": "Y-m-d H:i"
+            },
+            {
+                "field": "expires_at",
+                "label": "만료일",
+                "type": "datetime",
+                "sortable": true,
+                "format": "Y-m-d H:i",
+                "nullable": true
+            }
+        ],
+        "actions": {
+            "create": true,
+            "edit": true,
+            "delete": true,
+            "show": true,
+            "bulk": true
+        },
+        "filters": [
+            {
+                "field": "type",
+                "label": "IP 타입",
+                "type": "select",
+                "options": {
+                    "": "전체",
+                    "single": "단일 IP",
+                    "range": "IP 범위",
+                    "cidr": "CIDR"
+                }
+            },
+            {
+                "field": "is_active",
+                "label": "상태",
+                "type": "select",
+                "options": {
+                    "": "전체",
+                    "1": "활성",
+                    "0": "비활성"
+                }
+            }
+        ],
+        "heading": {
+            "title": "IP 화이트리스트",
+            "description": ""
+        }
+    },
+    "create": {
+        "title": "IP 화이트리스트 추가",
+        "formPath": "jiny-admin::admin.admin_ip_whitelist.create",
+        "fields": [
+            {
+                "field": "type",
+                "label": "IP 타입",
+                "type": "select",
+                "required": true,
+                "options": {
+                    "single": "단일 IP",
+                    "range": "IP 범위",
+                    "cidr": "CIDR 표기법"
+                },
+                "default": "single",
+                "help": "IP 주소 입력 방식을 선택하세요"
+            },
+            {
+                "field": "ip_address",
+                "label": "IP 주소",
+                "type": "text",
+                "required": true,
+                "placeholder": "예: 192.168.1.100",
+                "validation": "required|ip",
+                "help": "단일 IP 또는 CIDR의 기본 IP를 입력하세요"
+            },
+            {
+                "field": "ip_range_start",
+                "label": "시작 IP (범위)",
+                "type": "text",
+                "placeholder": "예: 192.168.1.1",
+                "validation": "nullable|ip",
+                "showIf": {
+                    "type": "range"
+                },
+                "help": "IP 범위의 시작 주소"
+            },
+            {
+                "field": "ip_range_end",
+                "label": "종료 IP (범위)",
+                "type": "text",
+                "placeholder": "예: 192.168.1.255",
+                "validation": "nullable|ip",
+                "showIf": {
+                    "type": "range"
+                },
+                "help": "IP 범위의 종료 주소"
+            },
+            {
+                "field": "cidr_prefix",
+                "label": "CIDR 프리픽스",
+                "type": "number",
+                "min": 1,
+                "max": 32,
+                "placeholder": "예: 24",
+                "validation": "nullable|integer|min:1|max:32",
+                "showIf": {
+                    "type": "cidr"
+                },
+                "help": "CIDR 표기법의 프리픽스 (예: \/24)"
+            },
+            {
+                "field": "description",
+                "label": "설명",
+                "type": "text",
+                "required": true,
+                "placeholder": "예: 본사 사무실",
+                "validation": "required|string|max:255",
+                "help": "이 IP의 용도나 위치를 입력하세요"
+            },
+            {
+                "field": "is_active",
+                "label": "즉시 활성화",
+                "type": "checkbox",
+                "default": true,
+                "help": "체크하면 저장 즉시 활성화됩니다"
+            },
+            {
+                "field": "expires_at",
+                "label": "만료일시",
+                "type": "datetime-local",
+                "validation": "nullable|date|after:now",
+                "help": "임시 허용인 경우 만료일을 설정하세요"
+            }
+        ]
+    },
+    "edit": {
+        "title": "IP 화이트리스트 수정",
+        "formPath": "jiny-admin::admin.admin_ip_whitelist.edit",
+        "fields": [
+            {
+                "field": "type",
+                "label": "IP 타입",
+                "type": "select",
+                "required": true,
+                "readonly": true,
+                "options": {
+                    "single": "단일 IP",
+                    "range": "IP 범위",
+                    "cidr": "CIDR 표기법"
+                }
+            },
+            {
+                "field": "ip_address",
+                "label": "IP 주소",
+                "type": "text",
+                "required": true,
+                "validation": "required|ip"
+            },
+            {
+                "field": "ip_range_start",
+                "label": "시작 IP (범위)",
+                "type": "text",
+                "validation": "nullable|ip",
+                "showIf": {
+                    "type": "range"
+                }
+            },
+            {
+                "field": "ip_range_end",
+                "label": "종료 IP (범위)",
+                "type": "text",
+                "validation": "nullable|ip",
+                "showIf": {
+                    "type": "range"
+                }
+            },
+            {
+                "field": "cidr_prefix",
+                "label": "CIDR 프리픽스",
+                "type": "number",
+                "min": 1,
+                "max": 32,
+                "validation": "nullable|integer|min:1|max:32",
+                "showIf": {
+                    "type": "cidr"
+                }
+            },
+            {
+                "field": "description",
+                "label": "설명",
+                "type": "text",
+                "required": true,
+                "validation": "required|string|max:255"
+            },
+            {
+                "field": "is_active",
+                "label": "활성화 상태",
+                "type": "checkbox"
+            },
+            {
+                "field": "expires_at",
+                "label": "만료일시",
+                "type": "datetime-local",
+                "validation": "nullable|date"
+            }
+        ]
+    },
+    "show": {
+        "title": "IP 화이트리스트 상세",
+        "showPath": "jiny-admin::admin.admin_ip_whitelist.show",
+        "formPath": "jiny-admin::admin.admin_ip_whitelist.show",
+        "fields": [
+            {
+                "field": "id",
+                "label": "ID"
+            },
+            {
+                "field": "type",
+                "label": "IP 타입",
+                "type": "badge"
+            },
+            {
+                "field": "ip_address",
+                "label": "IP 주소"
+            },
+            {
+                "field": "ip_range_start",
+                "label": "시작 IP",
+                "showIf": {
+                    "type": "range"
+                }
+            },
+            {
+                "field": "ip_range_end",
+                "label": "종료 IP",
+                "showIf": {
+                    "type": "range"
+                }
+            },
+            {
+                "field": "cidr_prefix",
+                "label": "CIDR 프리픽스",
+                "showIf": {
+                    "type": "cidr"
+                }
+            },
+            {
+                "field": "description",
+                "label": "설명"
+            },
+            {
+                "field": "is_active",
+                "label": "활성화 상태",
+                "type": "boolean"
+            },
+            {
+                "field": "added_by",
+                "label": "추가한 관리자"
+            },
+            {
+                "field": "access_count",
+                "label": "총 접근 횟수"
+            },
+            {
+                "field": "last_accessed_at",
+                "label": "마지막 접근",
+                "type": "datetime"
+            },
+            {
+                "field": "expires_at",
+                "label": "만료일시",
+                "type": "datetime"
+            },
+            {
+                "field": "created_at",
+                "label": "생성일시",
+                "type": "datetime"
+            },
+            {
+                "field": "updated_at",
+                "label": "수정일시",
+                "type": "datetime"
+            }
+        ]
+    },
+    "destroy": {
+        "confirm": true,
+        "confirmMessage": "이 IP를 화이트리스트에서 제거하시겠습니까?",
+        "softDelete": false
+    }
+}

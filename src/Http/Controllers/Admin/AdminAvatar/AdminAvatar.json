@@ -1,10 +1,10 @@
 {
     "title": "아바타 관리",
     "subtitle": "사용자 아바타 이미지를 관리합니다",
-    "description": "Avatar image management system for users.",
+    "description": "사용자 아바타 이미지를 관리하는 시스템입니다. 이미지 업로드, 수정, 삭제 기능을 제공합니다.",
     "route": {
-        "name": "admin.avatar",
-        "prefix": "admin.avatar",
+        "name": "admin.system.avatar",
+        "prefix": "admin.system.avatar",
         "actions": {
             "index": "index",
             "create": "create",
@@ -106,14 +106,14 @@
             "direction": "desc"
         },
         "search": {
-            "placeholder": "Search users...",
+            "placeholder": "사용자 검색...",
             "debounce": 300
         },
         "filters": {
             "isAdmin": {
                 "label": "관리자 상태",
                 "options": {
-                    "": "All",
+                    "": "전체",
                     "1": "관리자",
                     "0": "일반 사용자"
                 }
@@ -121,7 +121,7 @@
             "utype": {
                 "label": "사용자 타입",
                 "options": {
-                    "": "All"
+                    "": "전체"
                 }
             }
         },
@@ -147,13 +147,13 @@
                     "defaultImage": "/images/default-avatar.png"
                 },
                 "name": {
-                    "label": "Name",
+                    "label": "이름",
                     "visible": true,
                     "sortable": true,
                     "searchable": true
                 },
                 "email": {
-                    "label": "Email",
+                    "label": "이메일",
                     "visible": true,
                     "sortable": true,
                     "searchable": true
@@ -169,7 +169,7 @@
                     "visible": true,
                     "sortable": true,
                     "responsive": "md",
-                    "linkRoute": "admin.user.type"
+                    "linkRoute": "admin.system.user.type"
                 },
                 "email_verified_at": {
                     "label": "인증됨",
@@ -307,8 +307,8 @@
         "display": {
             "datetimeFormat": "Y-m-d H:i:s",
             "booleanLabels": {
-                "true": "Yes",
-                "false": "No"
+                "true": "예",
+                "false": "아니오"
             }
         }
     },
@@ -317,12 +317,12 @@
         "enableTransaction": true,
         "requireConfirmation": true,
         "confirmation": {
-            "message": "Are you sure you want to delete this user?"
+            "message": "이 사용자를 삭제하시겠습니까?"
         },
         "messages": {
-            "success": "User deleted successfully.",
-            "error": "Error deleting user: %s",
-            "confirmRequired": "Delete confirmation required."
+            "success": "사용자가 삭제되었습니다.",
+            "error": "사용자 삭제 중 오류가 발생했습니다: %s",
+            "confirmRequired": "삭제 확인이 필요합니다."
         }
     },
     "store": {
@@ -331,9 +331,9 @@
             "isAdmin": false
         },
         "messages": {
-            "success": "User created successfully.",
-            "error": "Error creating user.",
-            "continueSuccess": "User created. You can continue adding more."
+            "success": "사용자가 생성되었습니다.",
+            "error": "사용자 생성 중 오류가 발생했습니다.",
+            "continueSuccess": "사용자가 생성되었습니다. 계속 추가할 수 있습니다."
         },
         "validation": {
             "rules": {
@@ -345,13 +345,13 @@
                 "utype": "nullable|string|exists:admin_user_types,code"
             },
             "messages": {
-                "name.required": "Name is required.",
-                "email.required": "Email is required.",
-                "email.unique": "This email is already registered.",
-                "password.required": "Password is required.",
-                "password.min": "Password must be at least 8 characters.",
-                "avatar.image": "Avatar must be an image file.",
-                "avatar.max": "Avatar image must not exceed 2MB."
+                "name.required": "이름은 필수입니다.",
+                "email.required": "이메일은 필수입니다.",
+                "email.unique": "이 이메일은 이미 등록되어 있습니다.",
+                "password.required": "비밀번호는 필수입니다.",
+                "password.min": "비밀번호는 최소 8자 이상이어야 합니다.",
+                "avatar.image": "아바타는 이미지 파일이어야 합니다.",
+                "avatar.max": "아바타 이미지는 2MB를 초과할 수 없습니다."
             }
         }
     },
@@ -363,8 +363,8 @@
             "error": "edit"
         },
         "messages": {
-            "success": "User updated successfully.",
-            "error": "Error updating user."
+            "success": "사용자가 수정되었습니다.",
+            "error": "사용자 수정 중 오류가 발생했습니다."
         },
         "validation": {
             "rules": {
@@ -376,11 +376,11 @@
                 "utype": "nullable|string|exists:admin_user_types,code"
             },
             "messages": {
-                "name.required": "Name is required.",
-                "email.required": "Email is required.",
-                "password.min": "Password must be at least 8 characters when provided.",
-                "avatar.image": "Avatar must be an image file.",
-                "avatar.max": "Avatar image must not exceed 2MB."
+                "name.required": "이름은 필수입니다.",
+                "email.required": "이메일은 필수입니다.",
+                "password.min": "비밀번호를 입력할 경우 최소 8자 이상이어야 합니다.",
+                "avatar.image": "아바타는 이미지 파일이어야 합니다.",
+                "avatar.max": "아바타 이미지는 2MB를 초과할 수 없습니다."
             }
         }
     }

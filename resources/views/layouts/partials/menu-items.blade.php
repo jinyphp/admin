@@ -7,8 +7,8 @@
     <ul role="list" class="-mx-2 space-y-1">
         <!-- Dashboard -->
         <li>
-            <a href="{{ route('admin.dashboard') }}"
-               class="group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold {{ str_starts_with($currentRoute, 'admin.dashboard') ? 'bg-white/5 text-white' : 'text-gray-400 hover:bg-white/5 hover:text-white' }}">
+            <a href="{{ route('admin.system.dashboard') }}"
+               class="group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold {{ str_starts_with($currentRoute, 'admin.system.dashboard') ? 'bg-white/5 text-white' : 'text-gray-400 hover:bg-white/5 hover:text-white' }}">
                 <svg class="size-6 shrink-0"
                      fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -26,8 +26,8 @@
     <ul role="list" class="-mx-2 mt-2 space-y-1">
         <!-- 사용자 목록 -->
         <li>
-            <a href="{{ route('admin.users') }}"
-               class="group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold {{ str_starts_with($currentRoute, 'admin.users') && !str_contains($currentRoute, 'type') ? 'bg-white/5 text-white' : 'text-gray-400 hover:bg-white/5 hover:text-white' }}">
+            <a href="{{ route('admin.system.users') }}"
+               class="group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold {{ str_starts_with($currentRoute, 'admin.system.users') && !str_contains($currentRoute, 'type') ? 'bg-white/5 text-white' : 'text-gray-400 hover:bg-white/5 hover:text-white' }}">
                 <svg class="size-6 shrink-0"
                      fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -39,8 +39,8 @@
 
         <!-- 사용자 유형 -->
         <li>
-            <a href="{{ route('admin.user.type') }}"
-               class="group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold {{ str_starts_with($currentRoute, 'admin.user.type') ? 'bg-white/5 text-white' : 'text-gray-400 hover:bg-white/5 hover:text-white' }}">
+            <a href="{{ route('admin.system.user.type') }}"
+               class="group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold {{ str_starts_with($currentRoute, 'admin.system.user.type') ? 'bg-white/5 text-white' : 'text-gray-400 hover:bg-white/5 hover:text-white' }}">
                 <svg class="size-6 shrink-0"
                      fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -52,8 +52,8 @@
 
         <!-- 2FA 관리 -->
         <li>
-            <a href="{{ route('admin.user.2fa') }}"
-               class="group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold {{ str_starts_with($currentRoute, 'admin.user.2fa') || str_starts_with($currentRoute, 'admin.2fa') ? 'bg-white/5 text-white' : 'text-gray-400 hover:bg-white/5 hover:text-white' }}">
+            <a href="{{ route('admin.system.user.2fa') }}"
+               class="group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold {{ str_starts_with($currentRoute, 'admin.system.user.2fa') || str_starts_with($currentRoute, 'admin.system.2fa') ? 'bg-white/5 text-white' : 'text-gray-400 hover:bg-white/5 hover:text-white' }}">
                 <svg class="size-6 shrink-0"
                      fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -71,8 +71,8 @@
     <ul role="list" class="-mx-2 mt-2 space-y-1">
         <!-- 활동 로그 -->
         <li>
-            <a href="{{ route('admin.user.logs') }}"
-               class="group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold {{ str_starts_with($currentRoute, 'admin.user.logs') ? 'bg-white/5 text-white' : 'text-gray-400 hover:bg-white/5 hover:text-white' }}">
+            <a href="{{ route('admin.system.user.logs') }}"
+               class="group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold {{ str_starts_with($currentRoute, 'admin.system.user.logs') ? 'bg-white/5 text-white' : 'text-gray-400 hover:bg-white/5 hover:text-white' }}">
                 <svg class="size-6 shrink-0"
                      fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -84,8 +84,8 @@
 
         <!-- 세션 관리 -->
         <li>
-            <a href="{{ route('admin.user.sessions') }}"
-               class="group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold {{ str_starts_with($currentRoute, 'admin.user.sessions') ? 'bg-white/5 text-white' : 'text-gray-400 hover:bg-white/5 hover:text-white' }}">
+            <a href="{{ route('admin.system.user.sessions') }}"
+               class="group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold {{ str_starts_with($currentRoute, 'admin.system.user.sessions') ? 'bg-white/5 text-white' : 'text-gray-400 hover:bg-white/5 hover:text-white' }}">
                 <svg class="size-6 shrink-0"
                      fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -97,8 +97,8 @@
 
         <!-- 통계 -->
         <li>
-            <a href="{{ route('admin.user.stats') }}"
-               class="group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold {{ str_starts_with($currentRoute, 'admin.user.stats') ? 'bg-white/5 text-white' : 'text-gray-400 hover:bg-white/5 hover:text-white' }}">
+            <a href="{{ route('admin.system.user.stats') }}"
+               class="group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold {{ str_starts_with($currentRoute, 'admin.system.user.stats') ? 'bg-white/5 text-white' : 'text-gray-400 hover:bg-white/5 hover:text-white' }}">
                 <svg class="size-6 shrink-0"
                      fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -116,8 +116,8 @@
     <ul role="list" class="-mx-2 mt-2 space-y-1">
         <!-- IP 화이트리스트 -->
         <li>
-            <a href="{{ route('admin.security.ip-whitelist') }}"
-               class="group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold {{ str_starts_with($currentRoute, 'admin.security.ip-whitelist') ? 'bg-white/5 text-white' : 'text-gray-400 hover:bg-white/5 hover:text-white' }}">
+            <a href="{{ route('admin.system.security.ip-whitelist') }}"
+               class="group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold {{ str_starts_with($currentRoute, 'admin.system.security.ip-whitelist') ? 'bg-white/5 text-white' : 'text-gray-400 hover:bg-white/5 hover:text-white' }}">
                 <svg class="size-6 shrink-0"
                      fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -129,8 +129,8 @@
 
         <!-- 비밀번호 로그 -->
         <li>
-            <a href="{{ route('admin.user.password.logs') }}"
-               class="group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold {{ str_starts_with($currentRoute, 'admin.user.password') ? 'bg-white/5 text-white' : 'text-gray-400 hover:bg-white/5 hover:text-white' }}">
+            <a href="{{ route('admin.system.user.password.logs') }}"
+               class="group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold {{ str_starts_with($currentRoute, 'admin.system.user.password') ? 'bg-white/5 text-white' : 'text-gray-400 hover:bg-white/5 hover:text-white' }}">
                 <svg class="size-6 shrink-0"
                      fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -142,8 +142,8 @@
 
         <!-- CAPTCHA 로그 -->
         <li>
-            <a href="{{ route('admin.captcha.logs') }}"
-               class="group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold {{ str_starts_with($currentRoute, 'admin.captcha') ? 'bg-white/5 text-white' : 'text-gray-400 hover:bg-white/5 hover:text-white' }}">
+            <a href="{{ route('admin.system.captcha.logs') }}"
+               class="group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold {{ str_starts_with($currentRoute, 'admin.system.captcha') ? 'bg-white/5 text-white' : 'text-gray-400 hover:bg-white/5 hover:text-white' }}">
                 <svg class="size-6 shrink-0"
                      fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -161,8 +161,8 @@
     <ul role="list" class="-mx-2 mt-2 space-y-1">
         <!-- 메일 설정 -->
         <li>
-            <a href="{{ route('admin.mail') }}"
-               class="group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold {{ str_starts_with($currentRoute, 'admin.mail') ? 'bg-white/5 text-white' : 'text-gray-400 hover:bg-white/5 hover:text-white' }}">
+            <a href="{{ route('admin.system.mail') }}"
+               class="group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold {{ str_starts_with($currentRoute, 'admin.system.mail') ? 'bg-white/5 text-white' : 'text-gray-400 hover:bg-white/5 hover:text-white' }}">
                 <svg class="size-6 shrink-0"
                      fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -174,8 +174,8 @@
 
         <!-- SMS 발송 -->
         <li>
-            <a href="{{ route('admin.sms') }}"
-               class="group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold {{ str_starts_with($currentRoute, 'admin.sms') ? 'bg-white/5 text-white' : 'text-gray-400 hover:bg-white/5 hover:text-white' }}">
+            <a href="{{ route('admin.system.sms') }}"
+               class="group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold {{ str_starts_with($currentRoute, 'admin.system.sms') ? 'bg-white/5 text-white' : 'text-gray-400 hover:bg-white/5 hover:text-white' }}">
                 <svg class="size-6 shrink-0"
                      fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -187,8 +187,8 @@
 
         <!-- SMS 제공업체 -->
         <li>
-            <a href="{{ route('admin.webhook') }}"
-               class="group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold {{ str_starts_with($currentRoute, 'admin.webhook') ? 'bg-white/5 text-white' : 'text-gray-400 hover:bg-white/5 hover:text-white' }}">
+            <a href="{{ route('admin.system.webhook') }}"
+               class="group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold {{ str_starts_with($currentRoute, 'admin.system.webhook') ? 'bg-white/5 text-white' : 'text-gray-400 hover:bg-white/5 hover:text-white' }}">
                 <svg class="size-6 shrink-0"
                      fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -207,8 +207,8 @@
     <ul role="list" class="-mx-2 mt-2 space-y-1">
         <!-- 템플릿 -->
         <li>
-            <a href="{{ route('admin.templates') }}"
-               class="group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold {{ str_starts_with($currentRoute, 'admin.templates') ? 'bg-white/5 text-white' : 'text-gray-400 hover:bg-white/5 hover:text-white' }}">
+            <a href="{{ route('admin.system.templates') }}"
+               class="group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold {{ str_starts_with($currentRoute, 'admin.system.templates') ? 'bg-white/5 text-white' : 'text-gray-400 hover:bg-white/5 hover:text-white' }}">
                 <svg class="size-6 shrink-0"
                      fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -220,8 +220,8 @@
 
         <!-- 테스트 -->
         <li>
-            <a href="{{ route('admin.test') }}"
-               class="group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold {{ str_starts_with($currentRoute, 'admin.test') ? 'bg-white/5 text-white' : 'text-gray-400 hover:bg-white/5 hover:text-white' }}">
+            <a href="{{ route('admin.system.test') }}"
+               class="group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold {{ str_starts_with($currentRoute, 'admin.system.test') ? 'bg-white/5 text-white' : 'text-gray-400 hover:bg-white/5 hover:text-white' }}">
                 <svg class="size-6 shrink-0"
                      fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -233,8 +233,8 @@
 
         <!-- Hello -->
         <li>
-            <a href="{{ route('admin.hello') }}"
-               class="group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold {{ str_starts_with($currentRoute, 'admin.hello') ? 'bg-white/5 text-white' : 'text-gray-400 hover:bg-white/5 hover:text-white' }}">
+            <a href="{{ route('admin.system.hello') }}"
+               class="group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold {{ str_starts_with($currentRoute, 'admin.system.hello') ? 'bg-white/5 text-white' : 'text-gray-400 hover:bg-white/5 hover:text-white' }}">
                 <svg class="size-6 shrink-0"
                      fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -250,7 +250,7 @@
 <!-- 사용자 정보 -->
 <li class="-mx-6 mt-auto">
     @if(Auth::check())
-    <a href="{{ route('admin.users.show', Auth::id()) }}" class="flex items-center gap-x-4 px-6 py-3 text-sm/6 font-semibold text-white hover:bg-white/5">
+    <a href="{{ route('admin.system.users.show', Auth::id()) }}" class="flex items-center gap-x-4 px-6 py-3 text-sm/6 font-semibold text-white hover:bg-white/5">
         @if(Auth::user()->avatar && Auth::user()->avatar !== '/images/default-avatar.png')
             <img src="{{ Auth::user()->avatar }}"
                  alt="{{ Auth::user()->name }}"
