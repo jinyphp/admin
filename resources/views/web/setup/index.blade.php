@@ -31,7 +31,7 @@
                 관리자 시스템을 설정하는 과정입니다
             </p>
         </div> --}}
-        <div class="text-center mb-8">
+        <div class="text-center mb-2">
                 <div
                     class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-blue-100 dark:bg-blue-900 mb-4">
                     <svg class="h-8 w-8 text-blue-600 dark:text-blue-400" fill="none" viewBox="0 0 24 24"
@@ -42,13 +42,13 @@
                             d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                     </svg>
                 </div>
-                <h2 class="text-3xl font-extrabold text-gray-900 dark:text-white mb-2">@jiny/admin 초기 설정</h2>
-                <p class="text-base text-gray-600 dark:text-gray-400">
+                <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-1">@jiny/admin 초기 설정</h3>
+                {{-- <p class="text-lg text-gray-600 dark:text-gray-400">
                     관리자 시스템을 설정하는 과정입니다
-                </p>
+                </p> --}}
         </div>
 
-        <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-2xl">
+        <div class="mt-2 sm:mx-auto sm:w-full sm:max-w-2xl">
             <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
                 <!-- Progress Bar -->
                 <div class="mb-8">
