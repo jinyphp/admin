@@ -5,60 +5,89 @@ use Jiny\Admin\Http\Controllers\Web\Login\AdminAuth;
 use Jiny\Admin\Http\Controllers\Web\Login\AdminLogin;
 use Jiny\Admin\Http\Controllers\Web\Login\AdminLogout;
 use Jiny\Admin\Http\Controllers\Web\Login\AdminPasswordChange;
+use Jiny\Admin\Http\Controllers\Web\Login\AdminPasswordForgot;
 use Jiny\Admin\Http\Controllers\Web\Setup\AdminSetup;
+use Jiny\Admin\Http\Controllers\Home\AdminHome;
+use Jiny\Admin\Http\Controllers\Erp\AdminErpDashboard;
 
 /*
 |--------------------------------------------------------------------------
-| Admin Domain Web Routes
+| Admin Web Routes
 |--------------------------------------------------------------------------
+|
+| 관리자 영역의 웹 라우트를 정의합니다.
+| 미들웨어별로 계층적으로 구성되어 있습니다.
+|
 */
 
-// Web 미들웨어 그룹 적용
-Route::middleware(['web'])->group(function () {
+Route::middleware(['web'])->prefix('admin')->group(function () {
 
-    // Admin Login Routes
-    Route::prefix('admin')->group(function () {
-        // Setup routes (초기 설정 시에만 접근 가능)
-        Route::prefix('setup')->group(function () {
-            Route::get('/', [AdminSetup::class, 'index'])->name('admin.setup');
-            Route::get('/check-requirements', [AdminSetup::class, 'checkRequirements'])->name('admin.setup.check-requirements');
-            Route::get('/check-database', [AdminSetup::class, 'checkDatabase'])->name('admin.setup.check-database');
-            Route::get('/check-pending-migrations', [AdminSetup::class, 'checkPendingMigrations'])->name('admin.setup.check-pending-migrations');
-            Route::post('/run-migrations', [AdminSetup::class, 'runMigrations'])->name('admin.setup.run-migrations');
-            Route::post('/create-admin', [AdminSetup::class, 'createAdmin'])->name('admin.setup.create-admin');
-            Route::post('/save-settings', [AdminSetup::class, 'saveSettings'])->name('admin.setup.save-settings');
-            Route::post('/next-step', [AdminSetup::class, 'nextStep'])->name('admin.setup.next-step');
-            Route::post('/go-to-step', [AdminSetup::class, 'goToStep'])->name('admin.setup.go-to-step');
-            Route::post('/complete', [AdminSetup::class, 'completeSetup'])->name('admin.setup.complete');
-        });
+    /*
+    |--------------------------------------------------------------------------
+    | Public Routes (미들웨어 없음 - 누구나 접근 가능)
+    |--------------------------------------------------------------------------
+    */
 
-        // Login routes (누구나 접근 가능, 컨트롤러에서 처리)
-        Route::get('/login', [AdminLogin::class, 'showLoginForm'])->name('admin.login');
-        Route::post('/login', [AdminAuth::class, 'login'])->name('admin.login.post');
-
-        // Password related routes
-        Route::prefix('login/password')->group(function () {
-            // Password forgot route (누구나 접근 가능)
-            Route::get('/forgot', \Jiny\Admin\Http\Controllers\Web\Login\AdminPasswordForgot::class)->name('admin.password.forgot');
-
-            // Password change route (인증된 사용자만)
-            Route::middleware(['auth'])->group(function () {
-                Route::get('/change', [AdminPasswordChange::class, 'showChangeForm'])->name('admin.password.change');
-                Route::post('/change', [AdminPasswordChange::class, 'changePassword'])->name('admin.password.change.post');
-            });
-        });
-
-        // Authenticated routes (관리자 권한 필요)
-        Route::middleware(['auth', 'admin'])->group(function () {
-            Route::match(['get', 'post'], '/logout', [AdminLogout::class, 'logout'])->name('admin.logout');
-
-            // /admin 경로로 접속 시 Home 컨트롤러 호출
-            Route::get('/', \Jiny\Admin\Http\Controllers\Home\AdminHome::class)->name('admin.home');
-
-            // ERP routes
-            Route::prefix('erp')->group(function () {
-                Route::get('/dashboard', \Jiny\Admin\Http\Controllers\Erp\AdminErpDashboard::class)->name('admin.erp.dashboard');
-            });
-        });
+    // Setup Routes - 초기 설정
+    Route::prefix('setup')->name('admin.setup.')->group(function () {
+        Route::get('/', [AdminSetup::class, 'index'])->name('');
+        Route::get('/check-requirements', [AdminSetup::class, 'checkRequirements'])->name('check-requirements');
+        Route::get('/check-database', [AdminSetup::class, 'checkDatabase'])->name('check-database');
+        Route::get('/check-pending-migrations', [AdminSetup::class, 'checkPendingMigrations'])->name('check-pending-migrations');
+        Route::post('/run-migrations', [AdminSetup::class, 'runMigrations'])->name('run-migrations');
+        Route::post('/create-admin', [AdminSetup::class, 'createAdmin'])->name('create-admin');
+        Route::post('/save-settings', [AdminSetup::class, 'saveSettings'])->name('save-settings');
+        Route::post('/next-step', [AdminSetup::class, 'nextStep'])->name('next-step');
+        Route::post('/go-to-step', [AdminSetup::class, 'goToStep'])->name('go-to-step');
+        Route::post('/complete', [AdminSetup::class, 'completeSetup'])->name('complete');
     });
+
+    // Login Routes - 로그인
+    Route::name('admin.login')->group(function () {
+        Route::get('/login', [AdminLogin::class, 'showLoginForm']);
+        Route::post('/login', [AdminAuth::class, 'login'])->name('.post');
+    });
+
+    // Password Routes - 비밀번호 (공개)
+    Route::prefix('login/password')->name('admin.password.')->group(function () {
+        Route::get('/forgot', AdminPasswordForgot::class)->name('forgot');
+    });
+
+    /*
+    |--------------------------------------------------------------------------
+    | Authenticated Routes (auth 미들웨어 - 인증된 사용자만)
+    |--------------------------------------------------------------------------
+    */
+
+    Route::middleware(['auth'])->group(function () {
+
+        // Password Change Routes - 비밀번호 변경
+        Route::prefix('login/password')->name('admin.password.')->group(function () {
+            Route::get('/change', [AdminPasswordChange::class, 'showChangeForm'])->name('change');
+            Route::post('/change', [AdminPasswordChange::class, 'changePassword'])->name('change.post');
+        });
+
+    });
+
+    /*
+    |--------------------------------------------------------------------------
+    | Admin Routes (auth + admin 미들웨어 - 관리자만)
+    |--------------------------------------------------------------------------
+    */
+
+    Route::middleware(['auth', 'admin'])->group(function () {
+
+        // Logout - 로그아웃
+        Route::match(['get', 'post'], '/logout', [AdminLogout::class, 'logout'])->name('admin.logout');
+
+        // Admin Home - 관리자 홈
+        Route::get('/', AdminHome::class)->name('admin.home');
+
+        // ERP Routes - ERP 시스템
+        Route::prefix('erp')->name('admin.erp.')->group(function () {
+            Route::get('/dashboard', AdminErpDashboard::class)->name('dashboard');
+        });
+
+    });
+
 });

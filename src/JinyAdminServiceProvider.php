@@ -44,11 +44,6 @@ class JinyAdminServiceProvider extends ServiceProvider
         // 2. 라우트 파일 로드
         // ========================================
         $this->loadRoutes();
-        
-        // ========================================
-        // 2-1. Laravel 기본 인증 라우트 오버라이드
-        // ========================================
-        $this->overrideAuthenticationDefaults();
 
         // ========================================
         // 3. 뷰 리소스 등록
@@ -301,27 +296,6 @@ class JinyAdminServiceProvider extends ServiceProvider
         });
     }
 
-    /**
-     * Laravel 기본 인증 라우트 오버라이드
-     * 
-     * Laravel의 기본 'login' 라우트를 'admin.login'으로 리다이렉트합니다.
-     * 이를 통해 패키지가 독립적으로 작동할 수 있습니다.
-     * 
-     * @return void
-     */
-    protected function overrideAuthenticationDefaults()
-    {
-        // Laravel의 기본 인증 예외 핸들러가 사용하는 'login' 라우트를 등록
-        // 이렇게 하면 auth 미들웨어가 실패할 때 admin.login으로 리다이렉트됩니다.
-        $this->app->booted(function () {
-            if (!app('router')->has('login')) {
-                app('router')->get('/login', function () {
-                    return redirect()->route('admin.login');
-                })->name('login');
-            }
-        });
-    }
-    
     /**
      * Tailwind CSS 자동 설정
      * 
