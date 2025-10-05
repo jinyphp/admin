@@ -6,6 +6,7 @@ use Jiny\Admin\Models\User;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 use Jiny\Admin\Models\AdminUserLog;
 use Jiny\Admin\Models\AdminUsertype;
 use Illuminate\Support\Facades\DB;
@@ -74,11 +75,17 @@ class AdminUserCreate extends Command
         // 관리자 생성
         try {
             DB::beginTransaction();
-            
+
+            // UUID 생성
+            $uuid = (string) Str::uuid();
+            $shardId = hexdec(substr($uuid, 0, 1)) % 16; // UUID 첫 글자로 샤드 ID 계산 (0-15)
+
             $user = User::create([
                 'name' => $data['name'],
                 'email' => $data['email'],
                 'password' => Hash::make($data['password']),
+                'uuid' => $uuid,
+                'shard_id' => $shardId,
                 'isAdmin' => true,
                 'utype' => $data['type'],
                 'password_changed_at' => now(),

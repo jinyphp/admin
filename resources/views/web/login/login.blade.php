@@ -71,18 +71,18 @@
     @livewire('jiny-admin::admin-notification')
 
     <div class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-        <div class="max-w-sm w-full">
+        <div class="max-w-md w-full">
             <div class="text-center mb-6">
                 <div
-                    class="mx-auto flex items-center justify-center h-10 w-10 rounded-full bg-blue-100 dark:bg-blue-900 mb-3">
-                    <svg class="h-5 w-5 text-blue-600 dark:text-blue-400" fill="none" viewBox="0 0 24 24"
+                    class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-blue-100 dark:bg-blue-900 mb-3">
+                    <svg class="h-6 w-6 text-blue-600 dark:text-blue-400" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                     </svg>
                 </div>
                 <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-1">관리자 로그인</h3>
-                <p class="text-xs text-gray-600 dark:text-gray-400">
+                <p class="text-sm text-gray-600 dark:text-gray-400">
                     관리자 계정으로 로그인하세요
                 </p>
             </div>
@@ -92,17 +92,17 @@
             <div class="bg-white dark:bg-gray-800 shadow rounded-lg p-6">
                 @if (session('message'))
                     <div
-                        class="mb-3 p-3 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded text-xs text-green-800 dark:text-green-400">
+                        class="mb-3 p-3 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded text-sm text-green-800 dark:text-green-400">
                         {{ session('message') }}
                     </div>
                 @endif
 
                 @if ($errors->any())
                     <div
-                        class="mb-3 p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded text-xs">
+                        class="mb-3 p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded text-sm">
                         <div class="flex">
                             <div class="flex-shrink-0">
-                                <svg class="h-4 w-4 text-red-400" viewBox="0 0 20 20" fill="currentColor">
+                                <svg class="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
                                     <path fill-rule="evenodd"
                                         d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
                                         clip-rule="evenodd" />
@@ -138,7 +138,7 @@
                         <label for="email"
                             class="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">이메일</label>
                         <input type="email" id="email" name="email"
-                            class="block w-full h-8 px-2.5 text-xs border border-gray-200 dark:border-gray-600 rounded focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white @error('email') border-red-500 dark:border-red-500 @enderror"
+                            class="block w-full h-10 px-3 text-sm border border-gray-200 dark:border-gray-600 rounded focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white @error('email') border-red-500 dark:border-red-500 @enderror"
                             placeholder="admin@example.com" value="{{ old('email') }}" autocomplete="email" required>
                     </div>
 
@@ -146,7 +146,7 @@
                         <label for="password"
                             class="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">비밀번호</label>
                         <input type="password" id="password" name="password"
-                            class="block w-full h-8 px-2.5 text-xs border border-gray-200 dark:border-gray-600 rounded focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white @error('password') border-red-500 dark:border-red-500 @enderror"
+                            class="block w-full h-10 px-3 text-sm border border-gray-200 dark:border-gray-600 rounded focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white @error('password') border-red-500 dark:border-red-500 @enderror"
                             placeholder="••••••••" autocomplete="current-password" required>
                     </div>
 
@@ -162,19 +162,19 @@
                                     ]);
                                     echo $captchaHtml;
                                 } catch (\Exception $e) {
-                                    echo '<div class="text-xs text-red-600 dark:text-red-400">CAPTCHA 설정 오류: ' . e($e->getMessage()) . '</div>';
+                                    echo '<div class="text-sm text-red-600 dark:text-red-400">CAPTCHA 설정 오류: ' . e($e->getMessage()) . '</div>';
                                 }
                             @endphp
                             @error('captcha')
-                                <p class="mt-1 text-xs text-red-600 dark:text-red-400">{{ $message }}</p>
+                                <p class="mt-1 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
                             @enderror
                         </div>
                     @endif
 
                     @if($showCaptcha && config('admin.setting.captcha.enabled'))
-                        <div class="mt-3 p-2 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded text-[10px]">
+                        <div class="mt-3 p-3 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded text-xs">
                             <div class="flex items-start">
-                                <svg class="h-3.5 w-3.5 text-yellow-600 dark:text-yellow-400 mt-0.5 mr-1.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <svg class="h-4 w-4 text-yellow-600 dark:text-yellow-400 mt-0.5 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                                 </svg>
                                 <div class="text-yellow-800 dark:text-yellow-300">
@@ -187,7 +187,7 @@
                         </div>
                     @endif
 
-                    <div class="mt-3 p-2.5 bg-gray-50 dark:bg-gray-900/50 rounded text-[10px]">
+                    <div class="mt-3 p-3 bg-gray-50 dark:bg-gray-900/50 rounded text-xs">
                         <div class="text-gray-500 dark:text-gray-400">
                             <p class="font-medium mb-1">현재 접속 정보:</p>
                             <ul class="list-disc pl-3.5 space-y-0.5 text-gray-400 dark:text-gray-500">
@@ -237,7 +237,7 @@
                                 <li>언어/지역: {{ $langDisplay }} {{ $countryCode ? '(' . strtoupper($countryCode) . ')' : '' }}</li>
                                 <li>세션 ID: {{ substr(session()->getId(), 0, 8) }}...</li>
                             </ul>
-                            <p class="mt-1.5 text-gray-400 dark:text-gray-500">
+                            <p class="mt-2 text-gray-400 dark:text-gray-500">
                                 모든 접속 기록은 보안을 위해 저장되며, 불법적인 접근 시도는 차단됩니다.
                             </p>
                         </div>
@@ -246,13 +246,13 @@
                     <div class="flex items-center justify-between">
                         <div class="flex items-center">
                             <input id="remember" name="remember" type="checkbox"
-                                class="h-3.5 w-3.5 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-1 dark:bg-gray-700 dark:border-gray-600">
-                            <label for="remember" class="ml-2 text-xs text-gray-900 dark:text-gray-300">
+                                class="h-4 w-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-1 dark:bg-gray-700 dark:border-gray-600">
+                            <label for="remember" class="ml-2 text-sm text-gray-900 dark:text-gray-300">
                                 로그인 상태 유지
                             </label>
                         </div>
 
-                        <div class="text-xs">
+                        <div class="text-sm">
                             <a href="{{ route('admin.password.forgot') }}"
                                 class="font-medium text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300">
                                 비밀번호를 잊으셨나요?
@@ -261,13 +261,13 @@
                     </div>
 
                     <button type="submit"
-                        class="w-full h-8 px-3 bg-blue-600 text-white text-xs font-medium rounded hover:bg-blue-700 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:ring-offset-1 transition duration-200">
+                        class="w-full h-10 px-6 bg-blue-600 text-white text-sm font-medium rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-200">
                         로그인
                     </button>
                 </form>
             </div>
 
-            <div class="mt-6 text-xs text-gray-400 text-center">
+            <div class="mt-6 text-sm text-gray-400 text-center">
                 <p>본 로그인은 관리자 전용입니다. 무단 사용 시 법적 처벌을 받을 수 있습니다.</p>
                 <p class="mt-1">© 2025 Jiny Admin. All rights reserved.</p>
             </div>

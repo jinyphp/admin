@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 use Jiny\Admin\Services\JsonConfigService;
 use Jiny\Admin\Services\PasswordValidator;
 
@@ -185,6 +186,13 @@ class AdminUsersCreate extends Controller
 
         // isAdmin 필드 처리 (체크박스)
         $form['isAdmin'] = isset($form['isAdmin']) ? 1 : 0;
+
+        // UUID 생성 (없는 경우)
+        if (!isset($form['uuid']) || empty($form['uuid'])) {
+            $uuid = (string) Str::uuid();
+            $form['uuid'] = $uuid;
+            $form['shard_id'] = hexdec(substr($uuid, 0, 1)) % 16; // UUID 첫 글자로 샤드 ID 계산 (0-15)
+        }
 
         // 불필요한 필드 제거
         unset($form['_token']);

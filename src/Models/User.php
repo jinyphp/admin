@@ -15,6 +15,8 @@ class User extends Authenticatable
         'email',
         'password',
         'avatar',
+        'uuid',
+        'shard_id',
         'isAdmin',
         'utype',
         'last_login_at',

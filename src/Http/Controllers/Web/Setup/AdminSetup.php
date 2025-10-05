@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 use Jiny\Admin\Models\User;
 
 class AdminSetup extends Controller
@@ -353,10 +354,16 @@ class AdminSetup extends Controller
                 ->where('code', 'super')
                 ->first();
             
+            // UUID 생성
+            $uuid = (string) Str::uuid();
+            $shardId = hexdec(substr($uuid, 0, 1)) % 16; // UUID 첫 글자로 샤드 ID 계산 (0-15)
+
             $user = User::create([
                 'name' => $request->name,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
+                'uuid' => $uuid,
+                'shard_id' => $shardId,
                 'isAdmin' => true,  // is_admin 대신 isAdmin 사용 (컬럼명 확인)
                 'utype' => $superType ? $superType->code : 'super',  // super 관리자 타입 할당
                 'email_verified_at' => now(),
