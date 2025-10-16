@@ -121,18 +121,26 @@ class AdminEdit extends Component
         }
         
         // photo 속성 처리 (아바타 등 특별한 파일 업로드 필드)
+        // hookUpdating에서 이미 처리되었는지 확인 (중복 방지)
         if ($this->photo) {
             // 특정 필드명 매핑 (photo -> avatar)
             $fieldMapping = [
                 'photo' => 'avatar',
                 // 필요시 다른 매핑 추가
             ];
-            
+
             $fieldName = $fieldMapping['photo'] ?? 'photo';
-            $processedValue = $this->processFileUpload($this->photo, $fieldName, $uploadPath);
-            if ($processedValue !== null) {
-                $updateData[$fieldName] = $processedValue;
-                // 업로드 성공 후 임시 파일 참조 제거
+
+            // hookUpdating에서 이미 처리했으면 건너뛰기
+            if (!isset($updateData[$fieldName]) || empty($updateData[$fieldName])) {
+                $processedValue = $this->processFileUpload($this->photo, $fieldName, $uploadPath);
+                if ($processedValue !== null) {
+                    $updateData[$fieldName] = $processedValue;
+                    // 업로드 성공 후 임시 파일 참조 제거
+                    $this->photo = null;
+                }
+            } else {
+                // 이미 hookUpdating에서 처리되었으므로 photo만 초기화
                 $this->photo = null;
             }
         }

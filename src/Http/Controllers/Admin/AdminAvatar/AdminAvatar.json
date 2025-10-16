@@ -46,7 +46,7 @@
         "path": "avatars",
         "disk": "public",
         "folderStrategy": "hash",
-        "maxSize": 2048,
+        "maxSize": 5120,
         "mimeTypes": ["image/jpeg", "image/png", "image/gif", "image/webp"],
         "deleteOldFile": true,
         "defaultImage": "/images/default-avatar.png"
@@ -227,8 +227,8 @@
                 "label": "아바타 이미지",
                 "type": "file",
                 "accept": "image/*",
-                "maxSize": 2048,
-                "helpText": "최대 2MB, JPG/PNG/GIF 형식"
+                "maxSize": 5120,
+                "helpText": "최대 5MB, JPG/PNG/GIF/WEBP 형식"
             },
             "isAdmin": {
                 "label": "관리자 권한",
@@ -277,9 +277,9 @@
                 "label": "아바타 이미지 변경",
                 "type": "file",
                 "accept": "image/*",
-                "maxSize": 2048,
+                "maxSize": 5120,
                 "required": false,
-                "helpText": "새 이미지를 업로드하려면 선택하세요"
+                "helpText": "새 이미지를 업로드하려면 선택하세요 (최대 5MB)"
             },
             "isAdmin": {
                 "label": "관리자 권한",
@@ -340,7 +340,7 @@
                 "name": "required|string|max:255",
                 "email": "required|email|unique:users,email",
                 "password": "required|string|min:8|confirmed",
-                "avatar": "nullable|image|max:2048",
+                "avatar": "nullable|image|max:5120",
                 "isAdmin": "boolean",
                 "utype": "nullable|string|exists:admin_user_types,code"
             },
@@ -351,7 +351,7 @@
                 "password.required": "비밀번호는 필수입니다.",
                 "password.min": "비밀번호는 최소 8자 이상이어야 합니다.",
                 "avatar.image": "아바타는 이미지 파일이어야 합니다.",
-                "avatar.max": "아바타 이미지는 2MB를 초과할 수 없습니다."
+                "avatar.max": "아바타 이미지는 5MB를 초과할 수 없습니다."
             }
         }
     },
@@ -371,7 +371,7 @@
                 "name": "required|string|max:255",
                 "email": "required|email",
                 "password": "nullable|string|min:8|confirmed",
-                "avatar": "nullable|image|max:2048",
+                "avatar": "nullable|image|max:5120",
                 "isAdmin": "boolean",
                 "utype": "nullable|string|exists:admin_user_types,code"
             },
@@ -380,7 +380,7 @@
                 "email.required": "이메일은 필수입니다.",
                 "password.min": "비밀번호를 입력할 경우 최소 8자 이상이어야 합니다.",
                 "avatar.image": "아바타는 이미지 파일이어야 합니다.",
-                "avatar.max": "아바타 이미지는 2MB를 초과할 수 없습니다."
+                "avatar.max": "아바타 이미지는 5MB를 초과할 수 없습니다."
             }
         }
     }

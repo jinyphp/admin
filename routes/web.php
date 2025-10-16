@@ -75,6 +75,10 @@ Route::middleware(['web'])->prefix('admin')->group(function () {
     |--------------------------------------------------------------------------
     */
 
+    // 문제 원인
+    // 1. 미들웨어 실행 순서: ['auth', 'admin']로 설정되어 있어 auth 미들웨어가 먼저 실행됩니다
+    // 2. auth 미들웨어: 인증되지 않은 사용자를 /login으로 리다이렉트
+    // 3. admin 미들웨어: 실행되지 못함 (이미 리다이렉트가 발생)
     Route::middleware(['auth', 'admin'])->group(function () {
 
         // Logout - 로그아웃

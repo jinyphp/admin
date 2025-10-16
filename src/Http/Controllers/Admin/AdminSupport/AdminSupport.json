@@ -1,0 +1,117 @@
+{
+    "template": {
+        "index": "jiny-admin::admin.support.index",
+        "show": "jiny-admin::admin.support.show",
+        "edit": "jiny-admin::admin.support.edit",
+        "create": "jiny-admin::admin.support.create"
+    },
+    "route": {
+        "name": "admin.support",
+        "prefix": "/admin/support"
+    },
+    "table": {
+        "name": "site_support"
+    },
+    "index": {
+        "title": "지원 요청 관리",
+        "description": "사용자들의 지원 요청을 관리합니다.",
+        "table": {
+            "columns": {
+                "id": {
+                    "label": "ID",
+                    "sortable": true,
+                    "width": "80px"
+                },
+                "type_label": {
+                    "label": "유형",
+                    "sortable": false
+                },
+                "subject": {
+                    "label": "제목",
+                    "sortable": true
+                },
+                "user_name": {
+                    "label": "요청자",
+                    "sortable": false
+                },
+                "status_label": {
+                    "label": "상태",
+                    "sortable": true
+                },
+                "priority_label": {
+                    "label": "우선순위",
+                    "sortable": true
+                },
+                "assignee_name": {
+                    "label": "담당자",
+                    "sortable": false
+                },
+                "created_at": {
+                    "label": "요청일시",
+                    "sortable": true
+                }
+            }
+        },
+        "pagination": {
+            "perPage": 15,
+            "perPageOptions": [10, 15, 25, 50, 100]
+        },
+        "sorting": {
+            "default": "created_at",
+            "direction": "desc"
+        },
+        "search": {
+            "placeholder": "제목, 내용, 이름, 이메일로 검색...",
+            "debounce": 300
+        },
+        "filters": {
+            "status": {
+                "type": "select",
+                "label": "상태",
+                "options": {
+                    "": "모든 상태",
+                    "pending": "대기중",
+                    "in_progress": "처리중",
+                    "resolved": "해결완료",
+                    "closed": "종료"
+                }
+            },
+            "type": {
+                "type": "select",
+                "label": "유형",
+                "options": {
+                    "": "모든 유형",
+                    "technical": "기술 지원",
+                    "inquiry": "일반 문의",
+                    "bug_report": "버그 신고",
+                    "feature_request": "기능 요청",
+                    "account": "계정 관련",
+                    "other": "기타"
+                }
+            },
+            "priority": {
+                "type": "select",
+                "label": "우선순위",
+                "options": {
+                    "": "모든 우선순위",
+                    "urgent": "긴급",
+                    "high": "높음",
+                    "normal": "보통",
+                    "low": "낮음"
+                }
+            }
+        }
+    },
+    "actions": {
+        "create": true,
+        "show": true,
+        "edit": true,
+        "delete": true
+    },
+    "permissions": {
+        "index": "admin.support.index",
+        "show": "admin.support.show",
+        "edit": "admin.support.edit",
+        "delete": "admin.support.delete"
+    }
+}

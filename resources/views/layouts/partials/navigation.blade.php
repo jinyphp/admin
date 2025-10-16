@@ -214,6 +214,74 @@
         </a>
     </li>
     
+    {{-- E-commerce Section --}}
+    <li>
+        <div class="text-xs/6 font-semibold text-gray-400 mt-4">이커머스</div>
+    </li>
+    <li>
+        <a href="{{ route('admin.cms.ecommerce.dashboard') }}"
+           class="group flex gap-x-3 rounded-md {{ request()->routeIs('admin.cms.ecommerce.dashboard*') ? 'bg-white/5 text-white' : 'text-gray-400 hover:text-white hover:bg-white/5' }} p-2 text-sm/6 font-semibold">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true" class="size-6 shrink-0">
+                <path d="M13.5 21v-7.5a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 .75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349M3.75 21V9.349m0 0a3.001 3.001 0 0 0 3.75-.615A2.993 2.993 0 0 0 9.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 0 0 2.25 1.016c.896 0 1.7-.393 2.25-1.016a3.001 3.001 0 0 0 3.75.614m-16.5 0a3.004 3.004 0 0 1-.621-4.72L4.318 3.44A1.5 1.5 0 0 1 5.378 3h13.243a1.5 1.5 0 0 1 1.06.44l1.19 1.189a3 3 0 0 1-.621 4.72M6.75 18h3.75a.75.75 0 0 0 .75-.75V13.5a.75.75 0 0 0-.75-.75H6.75a.75.75 0 0 0-.75.75v3.75c0 .414.336.75.75.75Z" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            이커머스 대시보드
+        </a>
+    </li>
+    <li>
+        <a href="{{ route('admin.cms.ecommerce.orders.index') }}"
+           class="group flex gap-x-3 rounded-md {{ request()->routeIs('admin.cms.ecommerce.orders*') ? 'bg-white/5 text-white' : 'text-gray-400 hover:text-white hover:bg-white/5' }} p-2 text-sm/6 font-semibold">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true" class="size-6 shrink-0">
+                <path d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            주문 관리
+        </a>
+    </li>
+    <li>
+        <a href="#" onclick="alert('준비 중입니다.')"
+           class="group flex gap-x-3 rounded-md text-gray-400 hover:text-white hover:bg-white/5 p-2 text-sm/6 font-semibold">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true" class="size-6 shrink-0">
+                <path d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 1-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m6.75 4.5v-3a1.5 1.5 0 0 1 3 0v3m-3 0h3m-3-3h3m-3-3V9.75a1.5 1.5 0 0 1 3 0V12m-3 0h3" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            배송 관리 (준비중)
+        </a>
+    </li>
+    <li>
+        <a href="{{ route('admin.site.products.index') }}"
+           class="group flex gap-x-3 rounded-md {{ request()->routeIs('admin.site.products*') ? 'bg-white/5 text-white' : 'text-gray-400 hover:text-white hover:bg-white/5' }} p-2 text-sm/6 font-semibold">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true" class="size-6 shrink-0">
+                <path d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            상품 관리
+        </a>
+    </li>
+    <li>
+        <a href="{{ route('admin.cms.cart.index') }}"
+           class="group flex gap-x-3 rounded-md {{ request()->routeIs('admin.cms.cart*') ? 'bg-white/5 text-white' : 'text-gray-400 hover:text-white hover:bg-white/5' }} p-2 text-sm/6 font-semibold">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true" class="size-6 shrink-0">
+                <path d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            장바구니 관리
+        </a>
+    </li>
+    <li>
+        <a href="{{ route('admin.cms.currencies.index') }}"
+           class="group flex gap-x-3 rounded-md {{ request()->routeIs('admin.cms.currencies*') ? 'bg-white/5 text-white' : 'text-gray-400 hover:text-white hover:bg-white/5' }} p-2 text-sm/6 font-semibold">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true" class="size-6 shrink-0">
+                <path d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            통화 관리
+        </a>
+    </li>
+    <li>
+        <a href="{{ route('admin.cms.tax.index') }}"
+           class="group flex gap-x-3 rounded-md {{ request()->routeIs('admin.cms.tax*') ? 'bg-white/5 text-white' : 'text-gray-400 hover:text-white hover:bg-white/5' }} p-2 text-sm/6 font-semibold">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true" class="size-6 shrink-0">
+                <path d="M15 8.25H9m6 3H9m3 6-3-3h1.5a3 3 0 1 0 0-6M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            세율 관리
+        </a>
+    </li>
+
     {{-- Documents Section --}}
     <li>
         <div class="text-xs/6 font-semibold text-gray-400 mt-4">리소스</div>

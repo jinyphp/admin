@@ -6,7 +6,7 @@
     "viewPath": "jiny-admin::web.login.login",
     
     "routes": {
-        "dashboard": "admin.system.dashboard",
+        "dashboard": "admin.cms.dashboard",
         "login": "admin.system.login"
     },
     

@@ -41,6 +41,11 @@ class JinyAdminServiceProvider extends ServiceProvider
         $this->registerMiddleware();
 
         // ========================================
+        // 1-1. 미들웨어 설정 (쿠키 등)
+        // ========================================
+        $this->configureMiddleware();
+
+        // ========================================
         // 2. 라우트 파일 로드
         // ========================================
         $this->loadRoutes();
@@ -98,24 +103,73 @@ class JinyAdminServiceProvider extends ServiceProvider
 
     /**
      * 미들웨어 등록
-     * 
+     *
      * @return void
      */
     protected function registerMiddleware()
     {
         $router = $this->app->make(Router::class);
-        
+
         // 관리자 접근 제어 미들웨어
         $router->aliasMiddleware('admin', \Jiny\Admin\Http\Middleware\AdminMiddleware::class);
-        
+
         // IP 화이트리스트 미들웨어
         $router->aliasMiddleware('ip.whitelist', \Jiny\Admin\Http\Middleware\IpWhitelistMiddleware::class);
-        
+
         // CAPTCHA 검증 미들웨어
         $router->aliasMiddleware('captcha', \Jiny\Admin\Http\Middleware\CaptchaMiddleware::class);
-        
+
         // 비밀번호 변경 체크 미들웨어
         $router->aliasMiddleware('check.password.change', \Jiny\Admin\Http\Middleware\CheckPasswordChange::class);
+    }
+
+    /**
+     * 미들웨어 설정 (쿠키 암호화 제외 등)
+     *
+     * @return void
+     */
+    protected function configureMiddleware()
+    {
+        // Admin 관련 쿠키 암호화 제외가 필요한 경우 여기에 추가
+        $this->app->booted(function () {
+            try {
+                // Admin 패키지에서 암호화 제외할 쿠키가 있으면 여기에 추가
+                $adminCookies = [
+                    // 예: 'admin_session', 'admin_token' 등
+                ];
+
+                if (empty($adminCookies)) {
+                    return; // 제외할 쿠키가 없으면 종료
+                }
+
+                // EncryptCookies 미들웨어 인스턴스 가져오기
+                $encryptCookies = $this->app->make(\Illuminate\Cookie\Middleware\EncryptCookies::class);
+
+                // Reflection을 사용하여 protected $except 속성에 접근
+                $reflection = new \ReflectionClass($encryptCookies);
+
+                if ($reflection->hasProperty('except')) {
+                    $exceptProperty = $reflection->getProperty('except');
+                    $exceptProperty->setAccessible(true);
+
+                    // 기존 제외 목록 가져오기
+                    $except = $exceptProperty->getValue($encryptCookies);
+
+                    // Admin 쿠키 추가
+                    $except = array_unique(array_merge((array)$except, $adminCookies));
+
+                    // 업데이트된 목록 설정
+                    $exceptProperty->setValue($encryptCookies, $except);
+                }
+            } catch (\Exception $e) {
+                // 에러 발생 시에도 앱 실행 계속
+                if (config('app.debug')) {
+                    \Log::warning('JinyAdmin: Failed to configure cookie encryption exceptions', [
+                        'error' => $e->getMessage()
+                    ]);
+                }
+            }
+        });
     }
 
     /**

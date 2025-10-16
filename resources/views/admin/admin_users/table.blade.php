@@ -160,10 +160,30 @@
                     {{ $item->id }}
                 </td>
                 <td class="px-3 py-2.5 whitespace-nowrap">
-                    <a href="{{ route('admin.system.users.show', $item->id) }}"
-                       class="text-xs text-blue-600 hover:text-blue-900 font-medium">
-                        {{ $item->name ?? '' }}
-                    </a>
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0 h-8 w-8 mr-2">
+                            @if(!empty($item->avatar))
+                                <img class="h-8 w-8 rounded-full object-cover"
+                                     src="{{ $item->avatar }}"
+                                     alt="{{ $item->name }}"
+                                     onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2232%22 height=%2232%22%3E%3Ccircle cx=%2216%22 cy=%2216%22 r=%2216%22 fill=%22%236366f1%22/%3E%3Ctext x=%2216%22 y=%2222%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2216%22 font-weight=%22bold%22%3E{{ mb_substr($item->name ?? 'U', 0, 1) }}%3C/text%3E%3C/svg%3E';">
+                            @else
+                                <div class="h-8 w-8 rounded-full flex items-center justify-center text-white font-semibold text-xs"
+                                     style="background-color: #6366f1;">
+                                    {{ mb_substr($item->name ?? 'U', 0, 1) }}
+                                </div>
+                            @endif
+                        </div>
+                        <div class="min-w-0">
+                            <a href="{{ route('admin.system.users.show', $item->id) }}"
+                               class="text-xs text-blue-600 hover:text-blue-900 font-medium block truncate">
+                                {{ $item->name ?? '' }}
+                            </a>
+                            @if(!empty($item->username))
+                                <div class="text-xs text-gray-400">@{{ $item->username }}</div>
+                            @endif
+                        </div>
+                    </div>
                 </td>
                 <td class="px-3 py-2.5 whitespace-nowrap">
                     <span class="text-xs text-gray-900">{{ $item->email ?? '' }}</span>

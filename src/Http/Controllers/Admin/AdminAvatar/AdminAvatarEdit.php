@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Jiny\Admin\Services\JsonConfigService;
+use Jiny\Auth\Services\AvatarUploadService;
 
 /**
  * 아바타 수정 컨트롤러
@@ -159,34 +160,55 @@ class AdminAvatarEdit extends Controller
             unset($form['password']);
         }
 
-        // 아바타 이미지는 AdminEdit 컴포넌트의 processFileUpload에서 처리됨
-        // photo 속성이 있는 경우 검증만 수행
+        // 아바타 이미지 업로드 처리
         if ($wire && $wire->photo) {
             // Livewire의 TemporaryUploadedFile 객체 처리
             $file = $wire->photo;
-            
+
             // 파일 유효성 검증
             if (!$file->isValid()) {
                 return '아바타 이미지 업로드에 실패했습니다.';
             }
 
-            // 파일 크기 검증 (2MB)
-            $maxSize = $this->jsonData['upload']['maxSize'] ?? 2048;
-            if ($file->getSize() > $maxSize * 1024) {
-                return "아바타 이미지는 {$maxSize}KB를 초과할 수 없습니다.";
-            }
+            // AvatarUploadService를 사용하여 파일 업로드
+            try {
+                $avatarService = new AvatarUploadService();
+                $userUuid = $oldData->uuid ?? null;
 
-            // 이미지 파일 검증
-            $mimeType = $file->getMimeType();
-            $allowedMimes = $this->jsonData['upload']['mimeTypes'] ?? 
-                           ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
-            if (!in_array($mimeType, $allowedMimes)) {
-                $formats = str_replace('image/', '', implode(', ', $allowedMimes));
-                return "아바타는 {$formats} 형식만 지원합니다.";
+                \Log::info('AdminAvatarEdit: Starting avatar upload', [
+                    'user_id' => $id,
+                    'user_uuid' => $userUuid,
+                    'file_name' => $file->getClientOriginalName(),
+                    'file_size' => $file->getSize(),
+                ]);
+
+                $uploadResult = $avatarService->upload($file, $userUuid);
+
+                \Log::info('AdminAvatarEdit: Avatar upload successful', [
+                    'path' => $uploadResult['path'],
+                    'hash' => substr($uploadResult['hash'], 0, 16) . '...',
+                ]);
+
+                // 업로드된 파일 경로를 form에 설정
+                $form['avatar'] = $uploadResult['path'];
+
+                // 기존 아바타 파일이 있으면 삭제 (기본 이미지가 아닌 경우)
+                if ($oldData->avatar &&
+                    $oldData->avatar !== '/images/default-avatar.png' &&
+                    !str_contains($oldData->avatar, '/default')) {
+                    $avatarService->delete($oldData->avatar);
+                }
+
+                // photo 속성을 null로 설정하여 AdminEdit에서 중복 처리되지 않도록 함
+                $wire->photo = null;
+
+            } catch (\Exception $e) {
+                \Log::error('AdminAvatarEdit: Avatar upload failed', [
+                    'error' => $e->getMessage(),
+                    'trace' => $e->getTraceAsString(),
+                ]);
+                return '아바타 업로드 중 오류가 발생했습니다: ' . $e->getMessage();
             }
-            
-            // 실제 파일 저장은 AdminEdit 컴포넌트에서 처리
-            // 여기서는 검증만 수행하고 파일 저장은 위임
         }
 
         // 타임스탬프 갱신

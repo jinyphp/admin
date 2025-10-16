@@ -12,8 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('admin_webhook_logs', function (Blueprint $table) {
-            $table->string('channel_name')->nullable()->after('config_id');
-            $table->index('channel_name');
+            if (!Schema::hasColumn('admin_webhook_logs', 'channel_name')) {
+                $table->string('channel_name')->nullable();
+                $table->index('channel_name');
+            }
         });
     }
 
