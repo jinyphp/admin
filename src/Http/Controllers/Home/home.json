@@ -45,26 +45,26 @@
             "buttonText": "CMS 관리 진입"
         },
         {
-            "id": "erp",
+            "id": "store",
             "enabled": true,
-            "title": "ERP 업무관리",
-            "description": "기업 자원과 업무 프로세스를 통합 관리합니다.",
+            "title": "스토어 관리",
+            "description": "이커머스 스토어와 상품, 주문, 재고 등을 관리합니다.",
             "icon": {
                 "type": "svg",
-                "path": "M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+                "path": "M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
             },
             "color": {
-                "from": "purple-500",
-                "to": "indigo-600"
+                "from": "orange-500",
+                "to": "red-600"
             },
             "features": [
-                "재고 및 물류 관리",
-                "회계 및 재무 관리",
-                "인사 및 급여 관리",
-                "영업 및 고객 관리"
+                "상품 및 카테고리 관리",
+                "주문 및 배송 관리",
+                "재고 및 프로모션 관리",
+                "결제 및 쿠폰 관리"
             ],
-            "route": "admin.erp.dashboard",
-            "buttonText": "ERP 관리 진입"
+            "route": "/admin/store",
+            "buttonText": "스토어 관리 진입"
         }
     ]
 }

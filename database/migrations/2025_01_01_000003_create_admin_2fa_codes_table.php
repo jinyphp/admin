@@ -23,16 +23,21 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->string('method', 20); // sms, email
+            $table->boolean('enabled')->default(true)->comment('2FA 활성화 상태');
             $table->string('code', 6); // 6자리 숫자 코드
             $table->string('destination'); // 전화번호 또는 이메일
             $table->integer('attempts')->default(0); // 시도 횟수
             $table->boolean('used')->default(false); // 사용 여부
             $table->timestamp('expires_at'); // 만료 시간 (5분)
+            $table->timestamp('last_used_at')->nullable()->comment('마지막 사용 시간');
+            $table->integer('backup_codes_used')->default(0)->comment('사용된 백업 코드 수');
+            $table->json('metadata')->nullable()->comment('추가 메타데이터');
             $table->timestamps();
             
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->index(['user_id', 'code', 'expires_at']);
             $table->index(['method', 'destination']);
+            $table->index('enabled');
         });
     }
 

@@ -55,6 +55,9 @@
                     } elseif ($card['id'] == 'cms') {
                         $gradientClass = 'bg-gradient-to-r from-green-500 to-teal-600 hover:from-green-600 hover:to-teal-700';
                         $focusClass = 'focus:ring-green-500';
+                    } elseif ($card['id'] == 'store') {
+                        $gradientClass = 'bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700';
+                        $focusClass = 'focus:ring-orange-500';
                     } elseif ($card['id'] == 'erp') {
                         $gradientClass = 'bg-gradient-to-r from-purple-500 to-indigo-600 hover:from-purple-600 hover:to-indigo-700';
                         $focusClass = 'focus:ring-purple-500';

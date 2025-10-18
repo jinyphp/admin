@@ -177,6 +177,12 @@ return new class extends Migration
                 $table->string('session_id')->unique();
                 $table->string('ip_address', 45)->nullable();
                 $table->string('user_agent')->nullable();
+                $table->string('browser', 50)->nullable()->comment('브라우저 종류');
+                $table->string('browser_version', 20)->nullable()->comment('브라우저 버전');
+                $table->string('platform', 50)->nullable()->comment('운영체제');
+                $table->string('device', 30)->nullable()->comment('디바이스 타입');
+                $table->timestamp('login_at')->nullable()->comment('로그인 시간');
+                $table->timestamp('last_activity')->nullable()->comment('마지막 활동 시간');
                 $table->timestamp('last_activity_at');
                 $table->boolean('is_active')->default(true);
                 $table->json('extra_data')->nullable();
@@ -186,6 +192,9 @@ return new class extends Migration
                 $table->index(['user_id', 'is_active']);
                 $table->index('session_id');
                 $table->index('last_activity_at');
+                $table->index('browser');
+                $table->index('platform');
+                $table->index('device');
             });
         }
 
