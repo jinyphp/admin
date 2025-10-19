@@ -246,8 +246,8 @@
         </a>
     </li>
     <li>
-        <a href="{{ route('admin.site.products.index') }}"
-           class="group flex gap-x-3 rounded-md {{ request()->routeIs('admin.site.products*') ? 'bg-white/5 text-white' : 'text-gray-400 hover:text-white hover:bg-white/5' }} p-2 text-sm/6 font-semibold">
+        <a href="{{ route('admin.store.products.index') }}"
+           class="group flex gap-x-3 rounded-md {{ request()->routeIs('admin.store.products*') ? 'bg-white/5 text-white' : 'text-gray-400 hover:text-white hover:bg-white/5' }} p-2 text-sm/6 font-semibold">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" data-slot="icon" aria-hidden="true" class="size-6 shrink-0">
                 <path d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
