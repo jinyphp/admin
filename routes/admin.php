@@ -632,41 +632,42 @@ Route::middleware(['web'])->prefix('admin/system')->group(function () {
 
 
 
+
 // Admin Webhook Routes
 Route::middleware(['web'])->prefix('admin/system/webhook')->group(function () {
     // 웹훅 대시보드
     Route::get('/', \Jiny\Admin\Http\Controllers\Admin\AdminWebhookdashboard\AdminWebhookdashboard::class)
         ->name('admin.system.webhook');
-    
+
     // 웹훅 채널 관리
     Route::group(['prefix' => 'channels'], function () {
         Route::get('/', \Jiny\Admin\Http\Controllers\Admin\AdminWebhookchannels\AdminWebhookchannels::class)
             ->name('admin.system.webhook.channels');
-        
+
         Route::get('/create', \Jiny\Admin\Http\Controllers\Admin\AdminWebhookchannels\AdminWebhookchannelsCreate::class)
             ->name('admin.system.webhook.channels.create');
-        
+
         Route::get('/{id}/edit', \Jiny\Admin\Http\Controllers\Admin\AdminWebhookchannels\AdminWebhookchannelsEdit::class)
             ->name('admin.system.webhook.channels.edit');
-        
+
         Route::get('/{id}', \Jiny\Admin\Http\Controllers\Admin\AdminWebhookchannels\AdminWebhookchannelsShow::class)
             ->name('admin.system.webhook.channels.show');
-        
+
         Route::delete('/{id}', \Jiny\Admin\Http\Controllers\Admin\AdminWebhookchannels\AdminWebhookchannelsDelete::class)
             ->name('admin.system.webhook.channels.delete');
-        
+
         Route::post('/{id}/test', [\Jiny\Admin\Http\Controllers\Admin\AdminWebhookchannels\AdminWebhookchannels::class, 'test'])
             ->name('admin.system.webhook.channels.test');
     });
-    
+
     // 웹훅 로그
     Route::group(['prefix' => 'logs'], function () {
         Route::get('/', \Jiny\Admin\Http\Controllers\Admin\AdminWebhooklogs\AdminWebhooklogs::class)
             ->name('admin.system.webhook.logs');
-        
+
         Route::get('/{id}', \Jiny\Admin\Http\Controllers\Admin\AdminWebhooklogs\AdminWebhooklogsShow::class)
             ->name('admin.system.webhook.logs.show');
-        
+
         Route::delete('/{id}', \Jiny\Admin\Http\Controllers\Admin\AdminWebhooklogs\AdminWebhooklogsDelete::class)
             ->name('admin.system.webhook.logs.delete');
     });
