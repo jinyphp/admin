@@ -198,5 +198,7 @@
             document.getElementById('step-content').appendChild(alertDiv);
         }
     </script>
+
+    @livewireScripts
 </body>
 </html>
