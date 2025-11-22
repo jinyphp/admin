@@ -10,7 +10,7 @@
                      class="h-10 w-10 rounded-full object-cover border border-gray-200 dark:border-gray-700">
             @else
                 <div class="h-10 w-10 rounded-full bg-gray-300 dark:bg-gray-600 flex items-center justify-center">
-                    <span class="text-gray-600 dark:text-gray-300 font-medium text-sm">{{ substr($user->name, 0, 1) }}</span>
+                    <span class="text-gray-600 dark:text-gray-300 font-medium text-sm">{{ mb_substr($user->name, 0, 1, 'UTF-8') }}</span>
                 </div>
             @endif
             <div>

@@ -159,9 +159,9 @@
                                 미사용
                             </span>
                         @endif
-                    @elseif($item->action === 'failed_login' && $item->two_factor_attempts)
+                    @elseif($item->action === 'failed_login' && isset($item->details['two_factor_attempts']) && $item->details['two_factor_attempts'] > 0)
                         <span class="inline-flex items-center px-1.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800 dark:bg-red-900/50 dark:text-red-300">
-                            실패 {{ $item->two_factor_attempts }}회
+                            실패 {{ $item->details['two_factor_attempts'] }}회
                         </span>
                     @else
                         <span class="text-xs text-gray-400 dark:text-gray-500">-</span>

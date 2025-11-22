@@ -24,7 +24,6 @@ class AdminUserLog extends Model
         'two_factor_method',
         'two_factor_required',
         'two_factor_verified_at',
-        'two_factor_attempts',
     ];
 
     protected $casts = [
@@ -33,7 +32,6 @@ class AdminUserLog extends Model
         'two_factor_used' => 'boolean',
         'two_factor_required' => 'boolean',
         'two_factor_verified_at' => 'datetime',
-        'two_factor_attempts' => 'integer',
     ];
 
     /**
@@ -81,10 +79,11 @@ class AdminUserLog extends Model
             unset($details['two_factor_verified_at']);
         }
 
-        if (isset($details['two_factor_attempts'])) {
-            $data['two_factor_attempts'] = $details['two_factor_attempts'];
-            unset($details['two_factor_attempts']);
-        }
+        // two_factor_attempts는 details에 저장 (테이블에 해당 컬럼이 없음)
+        // if (isset($details['two_factor_attempts'])) {
+        //     $data['two_factor_attempts'] = $details['two_factor_attempts'];
+        //     unset($details['two_factor_attempts']);
+        // }
 
         $data['details'] = $details;
 

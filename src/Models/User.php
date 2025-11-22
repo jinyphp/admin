@@ -25,6 +25,13 @@ class User extends Authenticatable
         'password_expires_at',
         'password_expiry_days',
         'password_expiry_notified',
+        // 2FA 관련 필드
+        'two_factor_enabled',
+        'two_factor_secret',
+        'two_factor_recovery_codes',
+        'two_factor_confirmed_at',
+        'two_factor_method',
+        'last_2fa_used_at',
     ];
 
     protected $hidden = [
@@ -42,6 +49,10 @@ class User extends Authenticatable
             'password_changed_at' => 'datetime',
             'password_expires_at' => 'datetime',
             'password_expiry_notified' => 'boolean',
+            // 2FA 관련 필드
+            'two_factor_enabled' => 'boolean',
+            'two_factor_confirmed_at' => 'datetime',
+            'last_2fa_used_at' => 'datetime',
         ];
     }
 

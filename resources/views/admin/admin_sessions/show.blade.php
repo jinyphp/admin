@@ -179,7 +179,19 @@
                 <div class="flex items-start">
                     <dt class="text-xs text-gray-500 w-28">2FA 사용:</dt>
                     <dd class="text-xs flex-1">
-                        @if($data['two_factor_used'])
+                        @php
+                            // 2FA 사용 여부 확인 - extra_data에서 먼저 확인하고, 없으면 사용자의 2FA 활성화 상태 확인
+                            $twoFactorUsed = false;
+                            if (isset($data['extra_data']['two_factor_used'])) {
+                                $twoFactorUsed = $data['extra_data']['two_factor_used'];
+                            } elseif (isset($data['user']['two_factor_enabled'])) {
+                                $twoFactorUsed = $data['user']['two_factor_enabled'];
+                            } elseif (isset($data['two_factor_used'])) {
+                                $twoFactorUsed = $data['two_factor_used'];
+                            }
+                        @endphp
+
+                        @if($twoFactorUsed)
                             <span class="inline-flex items-center px-1.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
                                 <svg class="w-3 h-3 mr-0.5" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M10 1a4.5 4.5 0 00-4.5 4.5V9H5a2 2 0 00-2 2v6a2 2 0 002 2h10a2 2 0 002-2v-6a2 2 0 00-2-2h-.5V5.5A4.5 4.5 0 0010 1zm3 8V5.5a3 3 0 10-6 0V9h6z" clip-rule="evenodd"/>

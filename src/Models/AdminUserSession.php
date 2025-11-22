@@ -32,12 +32,32 @@ class AdminUserSession extends Model
         'extra_data' => 'array',
     ];
 
+    protected $appends = [
+        'two_factor_used'
+    ];
+
     /**
      * 관련 사용자
      */
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    /**
+     * 2FA 사용 여부 접근자
+     *
+     * @return bool
+     */
+    public function getTwoFactorUsedAttribute()
+    {
+        // extra_data에 저장된 경우 우선 확인
+        if (isset($this->extra_data['two_factor_used'])) {
+            return (bool) $this->extra_data['two_factor_used'];
+        }
+
+        // 사용자의 2FA 활성화 상태로 판단
+        return $this->user ? (bool) $this->user->two_factor_enabled : false;
     }
 
     /**

@@ -51,6 +51,13 @@ class AdminSessionsShow extends Controller
         // 현재 세션인지 확인
         $data['is_current_session'] = ($session->session_id === session()->getId());
 
+        // 2FA 사용 정보 설정
+        if ($session->user) {
+            $data['two_factor_used'] = $session->user->two_factor_enabled ?? false;
+        } else {
+            $data['two_factor_used'] = false;
+        }
+
         // Apply hookShowing if exists
         if (method_exists($this, 'hookShowing')) {
             $data = $this->hookShowing(null, $data);

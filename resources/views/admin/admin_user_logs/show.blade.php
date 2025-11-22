@@ -204,9 +204,9 @@
 
                 <div>
                     <label class="block text-xs font-medium text-gray-500 dark:text-gray-400 mb-1">인증 시도 횟수</label>
-                    @if($data['two_factor_attempts'] ?? false)
-                        <span class="inline-flex items-center h-6 px-2.5 rounded-full text-xs font-medium {{ $data['two_factor_attempts'] > 2 ? 'bg-red-100 text-red-800 dark:bg-red-900/50 dark:text-red-300' : 'bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-300' }}">
-                            {{ $data['two_factor_attempts'] }}회
+                    @if(($data['details']['two_factor_attempts'] ?? 0) > 0)
+                        <span class="inline-flex items-center h-6 px-2.5 rounded-full text-xs font-medium {{ $data['details']['two_factor_attempts'] > 2 ? 'bg-red-100 text-red-800 dark:bg-red-900/50 dark:text-red-300' : 'bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-300' }}">
+                            {{ $data['details']['two_factor_attempts'] }}회
                         </span>
                     @else
                         <p class="text-sm text-gray-900 dark:text-white">-</p>

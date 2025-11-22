@@ -153,13 +153,21 @@ class AdminLogout extends Controller
 
         if (! $allowConcurrent) {
             // 사용자의 모든 활성 세션 종료
-            AdminUserSession::where('user_id', $user->id)
+            $activeSessions = AdminUserSession::where('user_id', $user->id)
                 ->where('is_active', true)
-                ->update([
+                ->get();
+
+            foreach ($activeSessions as $session) {
+                $extraData = json_decode($session->extra_data, true) ?? [];
+                $extraData['terminated_at'] = now()->toDateTimeString();
+                $extraData['termination_reason'] = 'user_logout';
+
+                $session->update([
                     'is_active' => false,
-                    'terminated_at' => now(),
-                    'termination_reason' => 'user_logout',
+                    'last_activity_at' => now(),
+                    'extra_data' => json_encode($extraData),
                 ]);
+            }
         }
     }
 

@@ -17,9 +17,9 @@ class AdminHome extends Controller
         // JSON 파일 경로
         $jsonPath = resource_path('views/home/home.json');
 
-        // vendor 패키지 경로로 대체
+        // 로컬 jiny/admin 패키지 경로로 대체
         if (!file_exists($jsonPath)) {
-            $jsonPath = base_path('vendor/jiny/admin/src/Http/Controllers/Home/home.json');
+            $jsonPath = __DIR__ . '/home.json';
         }
 
         // JSON 파일 읽기 (UTF-8 인코딩)

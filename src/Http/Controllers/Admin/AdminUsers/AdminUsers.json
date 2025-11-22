@@ -28,8 +28,15 @@
             "isAdmin",
             "utype"
         ],
-        "guarded": ["id", "created_at", "updated_at"],
-        "hidden": ["password", "remember_token"],
+        "guarded": [
+            "id",
+            "created_at",
+            "updated_at"
+        ],
+        "hidden": [
+            "password",
+            "remember_token"
+        ],
         "where": {
             "default": [],
             "conditions": []
@@ -50,7 +57,7 @@
     },
     "index": {
         "tableLayoutPath": "jiny-admin::template.livewire.admin-table",
-        "tablePath": "jiny-admin::admin.admin_users.table",
+        "tablePath": "jiny-admin::admin.admin_users.table_modern",
         "searchLayoutPath": "jiny-admin::template.livewire.admin-search",
         "searchFormPath": "jiny-admin::admin.admin_users.search",
         "searchable": [
@@ -89,7 +96,12 @@
         },
         "pagination": {
             "perPage": 20,
-            "options": [10, 25, 50, 100]
+            "options": [
+                10,
+                25,
+                50,
+                100
+            ]
         },
         "sorting": {
             "default": "created_at",
@@ -185,7 +197,6 @@
         "enableContinueCreate": true,
         "enableListButton": true,
         "enableSettingsDrawer": true
-
     },
     "edit": {
         "heading": {

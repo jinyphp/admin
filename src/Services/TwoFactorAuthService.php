@@ -4,13 +4,8 @@ namespace Jiny\Admin\Services;
 
 use Illuminate\Support\Str;
 use PragmaRX\Google2FA\Google2FA;
-use PragmaRX\Google2FAQRCode\Google2FA as Google2FAQRCode;
 use Jiny\Admin\Models\User;
 use Illuminate\Support\Facades\DB;
-use BaconQrCode\Renderer\ImageRenderer;
-use BaconQrCode\Renderer\Image\SvgImageBackEnd;
-use BaconQrCode\Renderer\RendererStyle\RendererStyle;
-use BaconQrCode\Writer;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Cache;
@@ -31,7 +26,7 @@ class TwoFactorAuthService
     /**
      * Google2FA 인스턴스
      *
-     * @var Google2FAQRCode
+     * @var Google2FA
      */
     protected $google2fa;
 
@@ -40,7 +35,7 @@ class TwoFactorAuthService
      */
     public function __construct()
     {
-        $this->google2fa = new Google2FAQRCode();
+        $this->google2fa = new Google2FA();
     }
 
     /**
@@ -301,25 +296,15 @@ class TwoFactorAuthService
      */
     protected function logTwoFactorAction(User $user, $action, $description, $metadata = null)
     {
-        DB::table('admin_2fa_codes')->insert([
-            'user_id' => $user->id,
-            'method' => 'google2fa',
-            'enabled' => $user->two_factor_enabled,
-            'last_used_at' => $user->last_2fa_used_at,
-            'backup_codes_used' => 0,
-            'metadata' => $metadata ? json_encode($metadata) : null,
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
-
-        // 일반 로그에도 기록
+        // 2FA 관련 로그는 admin_user_logs 테이블에만 기록
         DB::table('admin_user_logs')->insert([
             'user_id' => $user->id,
             'email' => $user->email,
             'name' => $user->name,
             'action' => '2fa_' . $action,
-            'description' => $description,
+            'event_type' => '2fa_management',
             'details' => json_encode([
+                'description' => $description,
                 'admin_id' => auth()->id(),
                 'admin_email' => auth()->user()->email ?? 'system',
                 'metadata' => $metadata,
@@ -340,11 +325,6 @@ class TwoFactorAuthService
      */
     protected function logBackupCodeUsage(User $user, $code)
     {
-        // 사용된 백업 코드 수 업데이트
-        DB::table('admin_2fa_codes')
-            ->where('user_id', $user->id)
-            ->increment('backup_codes_used');
-
         // 로그 기록
         $this->logTwoFactorAction(
             $user,
@@ -459,6 +439,9 @@ class TwoFactorAuthService
             'method' => 'sms',
             'code' => $code,
             'destination' => $phone,
+            'enabled' => true,
+            'used' => false,
+            'attempts' => 0,
             'expires_at' => Carbon::now()->addMinutes(5),
             'created_at' => now(),
             'updated_at' => now()
@@ -524,6 +507,9 @@ class TwoFactorAuthService
             'method' => 'email',
             'code' => $code,
             'destination' => $user->email,
+            'enabled' => true,
+            'used' => false,
+            'attempts' => 0,
             'expires_at' => Carbon::now()->addMinutes(5),
             'created_at' => now(),
             'updated_at' => now()

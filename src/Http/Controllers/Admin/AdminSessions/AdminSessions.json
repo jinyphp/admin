@@ -24,7 +24,6 @@
         },
         "casts": {
             "is_active": "boolean",
-            "two_factor_used": "boolean",
             "last_activity": "datetime",
             "login_at": "datetime"
         }
@@ -51,8 +50,7 @@
             "login_at"
         ],
         "filterable": [
-            "is_active",
-            "two_factor_used"
+            "is_active"
         ],
         "heading": {
             "title": "활성 세션 목록",
@@ -90,14 +88,6 @@
                     "": "전체",
                     "1": "활성",
                     "0": "비활성"
-                }
-            },
-            "two_factor_used": {
-                "label": "2FA",
-                "options": {
-                    "": "전체",
-                    "1": "사용",
-                    "0": "미사용"
                 }
             }
         },

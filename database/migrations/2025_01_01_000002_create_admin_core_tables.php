@@ -230,6 +230,10 @@ return new class extends Migration
         
         // users 테이블 컬럼 삭제
         Schema::table('users', function (Blueprint $table) {
+            // 인덱스 먼저 삭제 (SQLite 호환성)
+            $table->dropIndex(['isAdmin']);
+            $table->dropIndex(['utype']);
+            
             $table->dropForeign(['utype']);
             $table->dropColumn([
                 'isAdmin', 'utype',

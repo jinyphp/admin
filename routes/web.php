@@ -48,6 +48,11 @@ Route::middleware(['web'])->prefix('admin')->group(function () {
         Route::post('/login', [AdminAuth::class, 'login'])->name('.post');
     });
 
+    // Redirect 'login' to admin login (for middleware compatibility)
+    Route::get('/login', function () {
+        return redirect()->route('admin.login');
+    })->name('login');
+
     // Password Routes - 비밀번호 (공개)
     Route::prefix('login/password')->name('admin.password.')->group(function () {
         Route::get('/forgot', AdminPasswordForgot::class)->name('forgot');

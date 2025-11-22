@@ -118,7 +118,13 @@
                     </div>
                 </td>
                 <td class="px-3 py-2 whitespace-nowrap">
-                    @if($item->two_factor_used)
+                    @php
+                        $twoFactorUsed = $item->two_factor_used ?? false;
+                        if (!$twoFactorUsed && $item->user) {
+                            $twoFactorUsed = $item->user->two_factor_enabled ?? false;
+                        }
+                    @endphp
+                    @if($twoFactorUsed)
                         <span class="inline-flex items-center px-1.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
                             <svg class="w-3 h-3 mr-0.5" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M10 1a4.5 4.5 0 00-4.5 4.5V9H5a2 2 0 00-2 2v6a2 2 0 002 2h10a2 2 0 002-2v-6a2 2 0 00-2-2h-.5V5.5A4.5 4.5 0 0010 1zm3 8V5.5a3 3 0 10-6 0V9h6z" clip-rule="evenodd"/>
